@@ -49,32 +49,6 @@ style: |
 
 ---
 
-# Organisatorisches
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/_2021-10-26-22-13-54.png)
-
----
-
-## Organisatorisches
-### Studienleistung
-
-- Anmeldezeitraum 18.10.2021 -12.02.2022
-- Anmelden zur **Studienleistung** in HISinOne
-- Voraussetzung zur Anmeldung zur Studienleistung ist **Anmeldung zur Übung** in HISinOne
-- **12** von **15** Übungsblättern sinnvoll bearbeitet
-- Regelmäßige **aktive Teilnahme** an den Tutoraten
-  - aber **keine** Anwesenheitspflicht!
-  - **Vorrechnen** freiwillig
-
-**➡** zeigt einfach, dass ihr bemüht seid :thumbsup:
-
-<!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
-
----
-
 # Übungsblatt
 
 <!--_class: lead-->
@@ -159,7 +133,7 @@ style: |
 
 ## Übungsblatt
 ### Dateien Verzeichnise 3 von 5
-- `rmdir path/dir`: **removes directory** `dir`
+- `rmdir path/dir`: **r**e**m**oves **dir**ectory `dir`
   - if `path` isn’t empty, this command fails, therefore use `rm -rf path/dir`
 - `pwd`: (print working directory) simply outputs the name of the current working directory
   - `-P`: symbolic links can sometimes obscure the true full path of the current working directory
@@ -189,7 +163,7 @@ style: |
 ---
 
 ## Übungsblatt
-### Dateien Verzeichnise 4 von 5
+### Dateien Verzeichnise 5 von 5
 - `find dir -name file -print`: find file in dir
   - accepts special pattern-matching characters such as *, but you must enclose them in single quotes (`'*'`) to protect the special characters from the shell’s own globbing feature
 - `cat ./index.md | wc -l / -w / -m / -c`: count output (line, words, chars, bytes)
@@ -281,6 +255,9 @@ style: |
 - Bourne Shell: a standard shell in `/bin/sh` developed at Bell Labs for early versions of Unix. Every Unix system needs the Bourne shell in order to function correctly
 - Bourne-again Shell: enhanced version of the Bourne shell in  `/bin/bash`, `/bin/sh` is normally a link to bash
 - `$` for normal user and `#` for superuser / root user
+
+<!--small-->
+![bg right:10%](_resources/_2021-10-26-22-13-07.png)
 
 ---
 
