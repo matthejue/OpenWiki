@@ -7,7 +7,7 @@ style: |
   h1 { color: #2a8892; font-size: 80px; text-align: center;}
   h2 { color: #2a8892; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
   h3 { color: #e96e1a; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
-  h4 { color: ##2a8892; font-size: 20px; text-align: left; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; text-align: center }
+  h4 { color: ##2a8892; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
   a { color: #2a8892; }
   strong { color: #e96e1a; }
   footer { color: #e96e1a; font-size: 20px; text-align: center; }
