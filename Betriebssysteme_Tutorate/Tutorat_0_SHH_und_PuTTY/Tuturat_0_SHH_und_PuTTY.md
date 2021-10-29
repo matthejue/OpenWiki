@@ -60,7 +60,7 @@ style: |
 ## Organisatorisches
 ### Studienleistung
 
-- Anmeldezeitraum 18.10.2021 -12.02.2022
+- Anmeldezeitraum **18.10.2021 -12.02.2022**
 - Anmelden zur **Studienleistung** in HISinOne
 - Voraussetzung zur Anmeldung zur Studienleistung ist **Anmeldung zur Übung** in HISinOne
 - **12** von **15** Übungsblättern sinnvoll bearbeitet
@@ -107,7 +107,7 @@ style: |
 #### ![height:150px](_resources/_2021-10-28-21-07-34.png)
 #### PuTTY
 
-- zum **Verlassen** `exit` eingeben
+- zum **Verlassen** `exit`, `logout`, `ctrl + d` eingeben
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -115,7 +115,7 @@ style: |
 ---
 
 ## SSH
-### Es sich bequem machen (keine Domain angeben)
+### Es sich bequem machen
 - `~/.ssh/config`:
   ```
   HostName login.uni-freiburg.de
@@ -128,11 +128,118 @@ style: |
   ```
 - `ssh uni` oder `ssh tf` und dann da enstprechende **Passwort** eingeben
 
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
 ---
 
 ## SSH
-### Es sich bequem machen (kein Passwort durch SSH Keypair)
-- Passwort generieren
+### SSH-Key generieren
+- `ssh-keygen -t rsa -b 4096 -C "username@servername.com"`: generate a new SSH key. When "Enter a file in which to save the key" is prompted press Enter. This accepts the default filename. The passphrase can also be ignored with enter, thus a pasphrase doesn't have to be typed in everytime the ssh key gets used
+- existing SSH keys in `~/.ssh`
+  - **private key:** `~/.ssh/id_rsa`
+  - **public key:** `~/.ssh/id_rsa.pub`
+
+### SSH-Key für eine Zeit merken
+- `eval $(ssh-agent -s)`: ensure the ssh-agent is running
+- `ssh-add ~/.ssh/id_rsa`: add SSH private key to the ssh-agent
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## SSH
+### Keine Passwörter mehr bei SSH Verbindung (Public Key an Server weiterreichen)
+  - **copy all:** `ssh-copy-id -i ~/.ssh/id_rsa.pub username@servername.com`
+  - **copy single:** `scp ~/.ssh/id_rsa.pub username@servername.com:~/.ssh/authorized_keys`
+  - **add single:** `cat ~/.ssh/id_rsa.pub | ssh username@servername "cat >> ~/.ssh/authorized_keys"`
+
+### Keine Passwörter mehr für Git
+
+- `xclip < ~/.ssh/id_rsa.pub`: copy the SSH key to clipboard and paste with middle mouse button (primary clipboard) to website field (e.g. Github)
+- **Github:** `Account/Settings/SSH and GPG keys>New SSH key`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## SSH
+### Mehrere Github Keys
+- **nicht möglich** zwei mal den gleichen Public Key für verschiedene Accounts
+- `~/.ssh/config`:
+  ```
+  Host github.com
+    Hostname github.com
+    User git
+    IdentityFile /home/areo/.ssh/id_rsa
+
+  Host github.com-2
+    Hostname github.com
+    User git
+    IdentityFile /home/areo/.ssh/id_rsa_2
+  ```
+  - **für zweiten Github Account:**
+    - `git clone git@github.com-2:<username>/<repository-name>.git`
+    - `git remote (add/set-url) origin git@github.com-2:<username>/<repository-name>.git`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## SSH
+### transfer file to server
+- `scp path/to/file.txt username@servername.com:~/folder`
+  - wie beim normalen `cp` ein Verzeichnis angeben
+
+### print file from server
+- `lpr path/to/file.txt -PhpXX`: print command
+  - e.g. `hp14` / `hp15`
+- `lpq -PhpXX`: queue
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Vertiefungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Vertiefungen
+### xclip
+- `xclip < ~/.ssh/id_rsa.pub`, `xclip -i ~/.ssh/id_rsa.pub` oder `echo "asdf" | xclip`
+- `xclip -selection clipboard /etc/lsb-release` (the usual clipboard)
+  - `primary` (default) - die primäre Auswahl (Kopie der letzten Markierung)
+    ![[_2021-10-29-00-28-00](_2021-10-29-00-28-00)](_resources/_2021-10-29-00-28-00.png)
+  - `secondary` - anwendungsspezifische Auswahl
+  - `clipboard` - die eigentliche Zwischenablage
+- `xclip -o`: print out clipboard
+- **copy image:** `xclip -selection clipboard -i /home/path/image.png -t image/png`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vertiefungen
+### Zugriffsrechte für `~/.ssh`
+- **.ssh directory:** 700 (`drwx------`)
+- **public key (.pub file):** 644 (`-rw-r--r--`)
+- **private key (id_rsa):** 600 (`-rw-------`)
+- **home directory:** at most 755 (`drwxr-xr-x`)
+  - should not be writeable by the group or others
+- and the home folder's user and group should be it's user and the user's group (`sudo chown areo:users ./Documents -R`)
+- (`config` and `know_hosts` are both `-r--------`)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
 
 ---
 
@@ -144,9 +251,13 @@ style: |
 
 ---
 ## Linux Überblick
-### Linux Grunddaten
-- **L**inus Torvalds + **Unix** **➡ Linux**
-- Tux
+### Linux Facts
+- **L**inus Torvalds + **Unix** **➡ Linux**, **Tux:** Maskottchen
+  - **Unix** wurde August **1969** von **Bell Laboratories** (Forschungsabteilung der Telefongesellschaft **AT&T**) entwickelt
+  - **1983** startete **Richard Stallman** das **GNU-Projekt**
+  - **1991** begann **Linus Torvalds** mit der Entwicklung einer Terminal-Emulation, die sich zu einem Betriebssysteme entwickelte, welches er **1992** unter die **GNU GPL** stelle
+- **Verwendung:** Server (Kubernetes), Android, "Year of the Linux Desktop"-Meme
+#### ![right height:150px](_resources/_2021-10-29-01-32-57.png)![right height:150px](_resources/_2021-10-29-01-40-44.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -205,10 +316,13 @@ style: |
 - **Desktopenvironment:** KDE, Gnome, Cinnamon, XFCE, Deepin
   - **Window manager:** **➡** Fenster managen
     - i3, dwm, Bspwm, KWin (KDE), Qtile, awesome
-    - Stacking, Tiling, Dynamic window manager
-- **Terminal** vs **Terminal Emulator**
-  - **Shell:** Zsh, Bash, Fish, (Powershell, Batch **➡** Windows)
-- **Package Manager:** pacman, yay (AUR), apt, [...] sudo make install
+    - **Stacking**, **Tiling**, **Dynamic** window manager
+- **Package Manager:** `pacman`, `yay` (AUR), `apt`, `nix`, [...] `sudo make install`
+- **Terminal** vs **Terminal Emulator** (`Alacritty`, `Kitty`, `urxvt` (rxvt-unicode), `Yakuake`, `Guake`)
+  - Early user terminals connected to computers were electromechanical teleprinters/teletypewriters (**T**ele**TY**pewriter, **TTY**)
+  - **change tty:** `ctrl + alt + fX`
+    - if one is already in a tty one can just use `alt + left/right arrow`
+  - **Shell:** Zsh, Bash, Fish, (Powershell, Batch **➡** Windows), später mehr dazu
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -220,7 +334,7 @@ style: |
 
 - **X11:** **➡** Netzwerkprotokoll
   - **Compositor** **➡** Eye-Candy's für Fenster, finaler Zeichenschritt
-  - Picom (fork of Compton), Compiz xprop
+  - Picom (fork of Compton), Compiz
 - **Wayland:** **➡** Display-Server-Protokoll
 
 #### ![height:250px](_resources/_2021-10-27-02-25-42.png)![height:250px](_resources/_2021-10-27-02-27-00.png)
@@ -233,13 +347,36 @@ style: |
 
 ## Linux Überblick
 ### Begriffe 4 von 4
-
-- **Displaymanager:** asdf, xinit
-- **GTK** (lxappereance) vs **QT** (qt5ct, kvantummanger)
+- **Displaymanager/Loginmanager:** LightDM, GDM (GNOME display manager)
+  - displayed at the end of the boot process in place of the default shell
+  - starts the **display server** and loads the **desktop environment** right after **username** and **password** were entered
+  - `xorg-xinit`: xinit program allows a user to manually start an **Xorg display server**, `startx` (front-end for xinit)
+  - `xinit-xsession` (AUR): provide an option to run `~/.xinitrc` as a session with `startx`
+- **GTK** (`lxappereance`) vs **QT** (`qt5ct`, `kvantummanger`)
+- **Pulseaudio:** `pavucontrol` (GTK and QT), `pulsemixer` (curses)
+  - **Alsa:** `alsamixer` (`alsa-utils` package)
 - **Initsystem:** systemd, OpenRC
-- **Sudo**, **Doas**
-- **Pulseaudio:** pavucontrol (GTK and QT), pulsemixer (curses)
-  - **Alsa:** alsamixer (alsa-utils package)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Quellen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Quellen
+### Wissensquellen
+- **Multiple Github Keys:** https://www.cluemediator.com/multiple-ssh-keys-for-different-github-accounts
+
+### Bildquellen
+- **Tux:** By Maxo based opoun the work File:Tux-G2.png - Own work based uppon the work File:Tux-G2.png, Public Domain, https://commons.wikimedia.org/w/index.php?curid=10524355
+- **Fuck u Nvidea:** http://lininuxrookies.blogspot.com/2013/06/linus-torvalds-descarga-su-furia-contra.html
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)

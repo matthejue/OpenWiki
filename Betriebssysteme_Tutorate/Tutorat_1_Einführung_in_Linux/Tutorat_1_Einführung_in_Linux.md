@@ -252,8 +252,8 @@ style: |
 ## Vertiefung
 ### Shell
 - program that runs commands the user enters
-- Bourne Shell: a standard shell in `/bin/sh` developed at Bell Labs for early versions of Unix. Every Unix system needs the Bourne shell in order to function correctly
-- Bourne-again Shell: enhanced version of the Bourne shell in  `/bin/bash`, `/bin/sh` is normally a link to bash
+- Bourne **Sh**ell: a standard shell in `/bin/sh` developed at Bell Labs for early versions of Unix. Every Unix system needs the Bourne shell in order to function correctly
+- **B**ourne-**a**gain **Sh**ell: enhanced version of the Bourne shell in  `/bin/bash`, `/bin/sh` is normally a link to bash
 - `$` for normal user and `#` for superuser / root user
 
 <!--small-->
@@ -271,7 +271,6 @@ style: |
   - `shift+s` or `:sort` and then type right letter from menu: show files in directory sorted after...
   - `gA`: calculate filesize of folder
   - `w` toggle file preview or `:view`
-
 
 <!--small-->
 ![bg right:10%](_resources/_2021-10-26-22-13-07.png)
