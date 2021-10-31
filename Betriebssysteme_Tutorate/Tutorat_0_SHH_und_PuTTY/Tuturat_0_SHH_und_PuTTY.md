@@ -88,6 +88,16 @@ style: |
 
 ---
 
+## Organisatorisches
+### Feedback
+- https://forms.gle/2tGvF4ao5hAVNeRs5
+#### ![height:400px](_resources/_2021-10-31-01-37-03.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # SSH
 
 <!--_class: lead-->
@@ -190,11 +200,11 @@ style: |
 ---
 
 ## SSH
-### transfer file to server
+### Transfer file to server
 - `scp path/to/file.txt username@servername.com:~/folder`
   - wie beim normalen `cp` ein Verzeichnis angeben
 
-### print file from server
+### Print file from server
 - `lpr path/to/file.txt -PhpXX`: print command
   - e.g. `hp14` / `hp15`
 - `lpq -PhpXX`: queue
