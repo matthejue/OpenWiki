@@ -76,12 +76,15 @@ style: |
 ---
 
 ## Organisatorisches
-### Tutorat und Repository
+### Tutorat und Materialien
 - **Uhrzeit:** `8:15` bis `9:30` (`8:00` s.t geht auch, da ich sowieso da bin)
-- **Repository:** https://github.com/matthejue/OpenWiki/tree/master/Betriebssysteme_Tutorate
+- **Materialien:** https://nc.informatik.uni-freiburg.de/index.php/s/eWsZk9C5ceGTT44
 
-#### ![height:250px](_resources/_2021-10-28-21-15-26.png)
+#### ![height:200px](_resources/_2021-11-03-11-09-51.png)
 #### Folien downloaden
+
+<!-- #### ![height:250px](_resources/_2021-10-28-21-15-26.png)
+#### Folien und Aufzeichnungen downloaden -->
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
