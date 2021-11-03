@@ -60,7 +60,7 @@ style: |
 ## Übungsblatt
 ### Kommandos im Zusammenhang mit Nutzern
 
-- `w`, `who`: angemeldete Benutzer
+- `w`, `who`: angemeldete Benutzer (`w`: momentaner Prozess und Laufzeiten)
 - `whoami`: momentaner Benutzer
 - ( `finger`: Informationen zu lokalen und remote Nutzern)
 - `id`: Benutzer-ID und die Gruppenmitgliedschaften des momentanen Benutzers

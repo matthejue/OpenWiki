@@ -95,6 +95,16 @@ style: |
 
 ---
 
+- Mikro besorgen, QR Code Scanner, Probeweise Kontrollen
+- die eine Übungsaufgabe c-1
+- SP, FMP, codeseemgnt, prozess mit heap und stack
+- RETI Befehle from to usw.
+- die Sache mit & und | und xor, vielleicht Zweierkomplement udn Einerkomplement noch
+- Quiz: 22Bit
+- Linux timsharing multiprogramm, gui und netzwerk
+
+---
+
 # Vielen Dank für eure Aufmerksamkeit!
 # :penguin:
 
