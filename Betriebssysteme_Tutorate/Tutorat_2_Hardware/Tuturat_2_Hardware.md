@@ -58,27 +58,30 @@ style: |
 ---
 
 ## Korrektur
-### Häufige Fehler
+### Häufige Fehler und Interessantes
 
-- last -s today oder last -s 0:00
-- mit `hostname` hostname einstellen
-- find -iname "*.pdf"
-- etwas penibel mit "Pfad", I-Node System
-- Datien und Order bei ls
-- cd /usr/share/doc
-- versteckte Dateien mit .file und .folder
+- `last -s today` oder `last -s 0:00`
+- `find -iname "*.pdf"` for insensitive
+- `pwd` "Pfad" (I-Node System)
+- "Datein und Ordner" bei ls
+  - im I-Node System sind Verzeichnisse ebenfalls Dateien
+- `cd /usr/share/doc` statt `cd /; cd usr; cd share; cd doc`
+- versteckte Dateien und Verzeichnisse (`.file` und `.folder`)
 - cp -r und mv -r?, mkdir -r, rm -r, alias
-- date +"Datum: %F, Zeit: %T" nicht %X
-- Viele hatten Probleme mit dieser Aufgabe mit der Befehlsfolge von Befeheln:
-  problem waren:
-- ls Dateien und Verzeichnisse
-- cd zu ~ /home/<user>
-- pwd Pfad
-- / ist Root Directory, und ~ ist User Space, anderer Besitzer und Rechte
-- cp /pfad/datei /pfad
-  - preserve ownership
-- mv /pfad/datei /pfad/datei /pfad
-  - umbennen mv /pfad/datei /pfad/datei
+- `date +"Datum: %F`, Zeit: `%T` nicht `%X`
+- `cd` zu `/home/<user>` bzw. `~`
+- `/` gehört Root, und `~` gehört User
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Korrektur
+### Häufige Fehler und Interessantes
+
+- `cp /pfad/datei /pfad/datei /pfad`
+- `mv /pfad/datei /pfad/datei /pfad`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -95,8 +98,6 @@ style: |
 
 ---
 
-- Mikro besorgen, QR Code Scanner, Probeweise Kontrollen
-- die eine Übungsaufgabe c-1
 - SP, FMP, codeseemgnt, prozess mit heap und stack
 - RETI Befehle from to usw.
 - die Sache mit & und | und xor, vielleicht Zweierkomplement udn Einerkomplement noch
