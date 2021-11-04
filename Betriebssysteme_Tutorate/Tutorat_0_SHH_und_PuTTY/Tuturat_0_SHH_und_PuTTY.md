@@ -186,12 +186,12 @@ style: |
   Host github.com
     Hostname github.com
     User git
-    IdentityFile /home/areo/.ssh/id_rsa
+    IdentityFile /home/<user>/.ssh/id_rsa
 
   Host github.com-2
     Hostname github.com
     User git
-    IdentityFile /home/areo/.ssh/id_rsa_2
+    IdentityFile /home/<user>/.ssh/id_rsa_2
   ```
   - **für zweiten Github Account:**
     - `git clone git@github.com-2:<username>/<repository-name>.git`
@@ -248,7 +248,7 @@ style: |
 - **private key (id_rsa):** 600 (`-rw-------`)
 - **home directory:** at most 755 (`drwxr-xr-x`)
   - should not be writeable by the group or others
-- and the home folder's user and group should be it's user and the user's group (`sudo chown areo:users ./Documents -R`)
+- and the home folder's user and group should be it's user and the user's group (`sudo chown <username>:users ./Documents -R`)
 - (`config` and `know_hosts` are both `-r--------`)
 
 <!--small-->

@@ -1571,12 +1571,12 @@ code {
 <li><code>~/.ssh/config</code>:<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Host github.com
   Hostname github.com
   User git
-  IdentityFile /home/areo/.ssh/id_rsa
+  IdentityFile /home/&lt;user&gt;/.ssh/id_rsa
 
 Host github.com-2
   Hostname github.com
   User git
-  IdentityFile /home/areo/.ssh/id_rsa_2
+  IdentityFile /home/&lt;user&gt;/.ssh/id_rsa_2
 </span></span></foreignObject></svg></code></pre>
 <ul>
 <li><strong>für zweiten Github Account:</strong>
@@ -2165,7 +2165,7 @@ code {
 <li>should not be writeable by the group or others</li>
 </ul>
 </li>
-<li>and the home folder's user and group should be it's user and the user's group (<code>sudo chown areo:users ./Documents -R</code>)</li>
+<li>and the home folder's user and group should be it's user and the user's group (<code>sudo chown &lt;username&gt;:users ./Documents -R</code>)</li>
 <li>(<code>config</code> and <code>know_hosts</code> are both <code>-r--------</code>)</li>
 </ul>
 <footer>Betriebssysteme, Tutorat 0, Gruppe 6, <a href="juertmatth@gmail.com">juergmatth@gmail.com</a>, Universität Freiburg Technische Fakultät</footer>
