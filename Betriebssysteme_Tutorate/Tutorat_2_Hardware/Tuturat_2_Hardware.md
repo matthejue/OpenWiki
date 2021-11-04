@@ -12,7 +12,7 @@ style: |
   strong { color: #fbad50; }
   footer { color: #fbad50; font-size: 20px; text-align: center; }
   ul { color: #252a2f; list-style: none; font-size: 25px; margin-bottom: 0px; }
-  p { color: #252a2f; list-style: none;  font-size: 25px; }
+  p { color: #252a2f; list-style: none;  font-size: 25px; text-align: center; margin-top: 0px; }
   ul li::before {
     content: "\1F784";
     color: #fbad50;
@@ -202,6 +202,67 @@ style: |
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+
+```c
+#include <stdio.h>
+int main(void) {
+  int value;
+  FILE *fptr = fopen("myfile.txt","w");
+  for(int i = 0; i < 2500; i++) {
+    fprintf(fptr,"%d ",i);
+  }
+  fclose(fptr);
+```
+
+`...`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+
+```c
+  fptr = fopen("myfile.txt", "r");
+  for(int j = 0; j < 2500; j++)
+  {
+    fscanf(fptr, "%d ", &value);
+  }
+  fclose(fptr);
+  return 42;
+}
+```
+
+- `fprintf();`
+- `fscanf(fp, "%s %s %s %d", str1, str2, str3, &year);`
+  - '%d': Decimal integer, `%s`: String of character
+- Kontextwechsel, Systemaufruf, Bibliotheksfunktionen, Kernelmodus, Instruction Set, Wrapper --> Wikipediartikel
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Quellen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Quellen
+### Wissenquellen
+
+- https://de.wikipedia.org/wiki/Systemaufruf
+- https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
 
 ---
 
