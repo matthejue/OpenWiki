@@ -167,7 +167,7 @@ style: |
   SUBI SP 1
   ```
 
-![](_resources/_2021-11-04-03-36-47.png)
+#### ![img](_resources/_2021-11-04-03-37-28.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -178,17 +178,27 @@ style: |
 ### Aufgabe 2
 - **pop:**
   ```
-  LOADIN SP ACC 1
-  ADDI SP 1
+  LOADIN SP ACC 1        ODER        ADDI SP 1
+  ADDI SP 1                          LOADIN SP ACC 0
   ```
-  **oder:**
-  ```
-  ADDI SP 1
-  LOADIN SP ACC 0
-  ```
+
+#### ![img](_resources/_2021-11-04-03-42-43.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2
+> Wozu INT i und RTI einführen? Warum nicht mit restlichen Befehlssatz das gleiche umsetzbar?
+- **Software-Interrupt:**
+  - mit Nummer `i` aus **Interruptvektortabelle IVT** Anfangsadresse von Routine auslesen
+  - Stand des PCs auf dem Stack zwischenspeichern
+  - Sprung an Adresse $IVT[i]$ ($PC := IVT[i]$)
+  - Wechsel in **Systemmodus**
+  - Rückkehr mit `RTI` als letzter Befehl der Betriebssystemroutine
+- `PC` soll nach der Wiederherstellung nach dem Sichern auf dem Stack nicht in das unter `INT i` implementierte Programm zeigen. Aber `PC` muss sich ändern, damit man das neue Programm unter `INT i` ausführen kann, daher muss man den `PC` sichern.
 
 ---
 
