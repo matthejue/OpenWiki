@@ -167,6 +167,8 @@ style: |
   SUBI SP 1
   ```
 
+![](_resources/_2021-11-04-03-36-47.png)
+
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
 
