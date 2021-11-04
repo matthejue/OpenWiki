@@ -11,7 +11,7 @@ style: |
   a { color: #377e50; }
   strong { color: #fbad50; }
   footer { color: #fbad50; font-size: 20px; text-align: center; }
-  ul { color: #252a2f; list-style: none; font-size: 25px; }
+  ul { color: #252a2f; list-style: none; font-size: 25px; margin-bottom: 0px; }
   p { color: #252a2f; list-style: none;  font-size: 25px; }
   ul li::before {
     content: "\1F784";
@@ -21,6 +21,7 @@ style: |
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+    margin-bottom: 0px;
   }
   section::after {
       color: #fbad50;
@@ -61,15 +62,14 @@ style: |
 ### Häufige Fehler und Interessantes
 
 - `last -s today` oder `last -s 0:00`
-- `find -iname "*.pdf"` for insensitive
-- `pwd` "Pfad" (I-Node System)
+- `find -iname "*.pdf"` for insensitive (lange Schreibweise `-i -name`, das selbe bei `ls -alh` bzw. `ls -a -l -h`)
 - "Datein und Ordner" bei ls
-  - im I-Node System sind Verzeichnisse quasi Dateien
+  - im **I-Node System** sind **Verzeichnisse** quasi **Dateien**
 - `cd /usr/share/doc` statt `cd /; cd usr; cd share; cd doc`
-- versteckte Dateien und Verzeichnisse (`.file` und `.folder`)
-- cp -r und mv -r?, mkdir -r, rm -r, alias
+- **versteckte Dateien** und Verzeichnisse (`.file` und `.folder`)
 - `date +"Datum: %F`, Zeit: `%T` nicht `%X`
-- `cd` zu `/home/<user>` bzw. `~`
+- `cd` führt zu `/home/<user>` bzw. `~`
+  - `cd ./pfad/verzeichnis` oder auch `cd pfad/verzeichnis`
 - `/` gehört Root, und `~` gehört User
 
 <!--small-->
@@ -79,11 +79,11 @@ style: |
 
 ## Korrektur
 ### Häufige Fehler und Interessantes
-- `cp /pfad/datei_1 ./pfad/datei_2 /pfad_2`: kopieren
-  - `cp /pfad/datei ./pfad/datei_2`: kopieren und umbenennen
+- `cp /pfad/datei_oder_verzeichnis_1 ./pfad/datei_oder_verzeichnis_2 /pfad_2`: kopieren
+  - `cp /pfad/datei_oder_verzeichnis ./pfad/file_or_directoy`: kopieren und umbenennen
   - `-r`: copy directories recursively (Inhalte von nichtleeren Ordnern werden mitkopiert)
-- `mv /pfad/datei_1 ./pfad/datei_2 ./pfad_2`: verschieben
-  - `mv /pfad/datei /pfad/datei_2`: umbenennen
+- `mv /pfad/datei_oder_verzeichnis_1 ./pfad/datei_oder_verzeichnis_2 ./pfad_2`: verschieben
+  - `mv /pfad/datei_oder_verzeichnis /pfad/file_or_directoy`: umbenennen
 - `rm /pfad/datei`: remove
   - `-r`: remove directories recursively (nichtleere Ordner löschen)
 
@@ -95,7 +95,7 @@ style: |
 ## Korrektur
 ### Aufgabe c) - 1
 
-![height:450px](_resources/_2021-10-31-13-34-35.png)![height:450px](_resources/_2021-11-04-02-06-14.png)
+![height:450px](_resources/_2021-10-31-13-34-35.png)![height:450px](_resources/_2021-11-04-12-51-59.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -112,9 +112,10 @@ style: |
 ## Übungsblatt
 ### Aufgabe 1
 - `STOREIN ACC SP i`: M(<ACC>+[i]) := SP
+- `<i>` ist **unsigned** und `[i]` ist **signed** (letztes Bit ist Zweierkomplement oder Einerkomplement **➞** negative Zahlen möglich)
 
-#### ![height:370px](_resources/_2021-11-04-02-35-44.png)
-#### Die erweiterte RETI
+#### ![height:360px](_resources/_2021-11-04-02-35-44.png)
+<!-- #### Die erweiterte RETI -->
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -166,8 +167,8 @@ style: |
   STOREIN SP ACC 0
   SUBI SP 1
   ```
-
 #### ![img](_resources/_2021-11-04-03-37-28.png)
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -193,8 +194,8 @@ style: |
 ### Aufgabe 2
 > Wozu INT i und RTI einführen? Warum nicht mit restlichen Befehlssatz das gleiche umsetzbar?
 - **Software-Interrupt:**
-  - mit Nummer `i` aus **Interruptvektortabelle IVT** Anfangsadresse von Routine auslesen
   - Stand des PCs auf dem Stack zwischenspeichern
+  - mit Nummer `i` aus **Interruptvektortabelle IVT** Anfangsadresse von Routine auslesen
   - Sprung an Adresse $IVT[i]$ ($PC := IVT[i]$)
   - Wechsel in **Systemmodus**
   - Rückkehr mit `RTI` als letzter Befehl der Betriebssystemroutine
