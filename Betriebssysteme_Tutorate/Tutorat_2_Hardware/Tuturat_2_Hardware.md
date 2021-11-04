@@ -198,7 +198,9 @@ style: |
   - Sprung an Adresse $IVT[i]$ ($PC := IVT[i]$)
   - Wechsel in **Systemmodus**
   - Rückkehr mit `RTI` als letzter Befehl der Betriebssystemroutine
-- `PC` soll nach der Wiederherstellung nach dem Sichern auf dem Stack nicht in das unter `INT i` implementierte Programm zeigen. Aber `PC` muss sich ändern, damit man das neue Programm unter `INT i` ausführen kann, daher muss man den `PC` sichern.
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
 
 ---
 
