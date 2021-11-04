@@ -33,7 +33,7 @@ style: |
   }
   :root {
     --color-background: #ffffff;
-    --color-foreground: #d9829f;
+    --color-foreground: #cabe6a;
     --color-highlight: #F96;
     --color-dimmed: #888;
   }
@@ -64,7 +64,7 @@ style: |
 - `find -iname "*.pdf"` for insensitive
 - `pwd` "Pfad" (I-Node System)
 - "Datein und Ordner" bei ls
-  - im I-Node System sind Verzeichnisse ebenfalls Dateien
+  - im I-Node System sind Verzeichnisse quasi Dateien
 - `cd /usr/share/doc` statt `cd /; cd usr; cd share; cd doc`
 - versteckte Dateien und Verzeichnisse (`.file` und `.folder`)
 - cp -r und mv -r?, mkdir -r, rm -r, alias
@@ -79,9 +79,13 @@ style: |
 
 ## Korrektur
 ### Häufige Fehler und Interessantes
-
-- `cp /pfad/datei /pfad/datei /pfad`
-- `mv /pfad/datei /pfad/datei /pfad`
+- `cp /pfad/datei_1 ./pfad/datei_2 /pfad_2`: kopieren
+  - `cp /pfad/datei ./pfad/datei_2`: kopieren und umbenennen
+  - `-r`: copy directories recursively (Inhalte von nichtleeren Ordnern werden mitkopiert)
+- `mv /pfad/datei_1 ./pfad/datei_2 ./pfad_2`: verschieben
+  - `mv /pfad/datei /pfad/datei_2`: umbenennen
+- `rm /pfad/datei`: remove
+  - `-r`: remove directories recursively (nichtleere Ordner löschen)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -91,18 +95,98 @@ style: |
 ## Korrektur
 ### Aufgabe c) - 1
 
-![height:450px](_resources/_2021-10-31-13-34-35.png)
+![height:450px](_resources/_2021-10-31-13-34-35.png)![height:450px](_resources/_2021-11-04-02-06-14.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
 
 ---
 
-- SP, FMP, codeseemgnt, prozess mit heap und stack
-- RETI Befehle from to usw.
-- die Sache mit & und | und xor, vielleicht Zweierkomplement udn Einerkomplement noch
-- Quiz: 22Bit
-- Linux timsharing multiprogramm, gui und netzwerk
+# Übungsblatt
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+## Übungsblatt
+### Aufgabe 1
+- `STOREIN ACC SP i`: M(<ACC>+[i]) := SP
+
+#### ![height:370px](_resources/_2021-11-04-02-35-44.png)
+#### Die erweiterte RETI
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+- `MOVE IN2 ACC`: ACC := IN2
+
+#### ![height:370px](_resources/_2021-11-04-02-44-57.png)
+#### Die erweiterte RETI
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+- `ADD ACC IN1`: ACC := ACC + IN1
+
+#### ![height:370px](_resources/_2021-11-04-02-51-18.png)
+#### Die erweiterte RETI
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+- **0 auf dem linken Operanden-Bus:** `LOADI ACC i` (ACC := 0^10i)
+
+#### ![height:370px](_resources/_2021-11-04-02-59-05.png)
+
+#### Die erweiterte RETI
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2
+- **subtrahieren** $\hat =$ Speicher allokieren, **addieren** $\hat =$ Speicher freigeben
+- **push:**
+  ```
+  STOREIN SP ACC 0
+  SUBI SP 1
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2
+- **pop:**
+  ```
+  LOADIN SP ACC 1
+  ADDI SP 1
+  ```
+  **oder:**
+  ```
+  ADDI SP 1
+  LOADIN SP ACC 0
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
 
 ---
 
