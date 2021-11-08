@@ -168,8 +168,8 @@ style: |
   STOREIN SP ACC 0
   SUBI SP 1
   ```
-#### ![img](_resources/_2021-11-04-03-37-28.png)
 
+#### ![img](_resources/_2021-11-04-03-37-28.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -200,6 +200,18 @@ style: |
   - Sprung an Adresse $IVT[i]$ ($PC := IVT[i]$)
   - Wechsel in **Systemmodus**
   - Rückkehr mit `RTI` als letzter Befehl der Betriebssystemroutine
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2
+
+- MOVE SP ACC
+- STOREIN SP ACC 1
+- SUBI
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
