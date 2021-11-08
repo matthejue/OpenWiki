@@ -208,17 +208,12 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 2
-
-- MOVE SP ACC
-- STOREIN SP ACC 1
-- SUBI
+> Wozu INT i und RTI einführen? ~~Warum nicht~~ Wie mit restlichen Befehlssatz das gleiche umsetzbar?
+####
+![height:350](_resources/_2021-11-08-12-16-00.png)![height:350](_resources/_2021-11-08-12-01-55.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
-
----
-
-
 
 ---
 
@@ -269,8 +264,8 @@ int main(void) {
 ## Übungsblatt
 ### Aufgabe 3
 - **Kontextwechsel:** Prozess gibt Kontrolle über CPU an *Kernel* ab. Nach dem *Systemaufruf* gibt der Kernel die CPU wieder an den Prozess im *Benutzer-Modus* ab und führt den Programmcode an der Stelle fort, an der der Kontextwechsel zuvor gefordert wurde.
-- **Kernelmodus:** Privilegierter Modus für Zugriff auf *Ein- und Ausgabegeräte* und Verändern von *Speicherschutz*. (Häufig damit einhergehend: Zugriff auf den kompletten Befehlssatz der CPU und den gesamten Speicherbereich)
-- **Benutzer-Modus:** Modus in dem *Benutzerprogramme* ausgeführt werden. Teilt dem Kernel über *Systemaufrufe* mit, wenn er spezielle (*höher privilegierte*) Dienste des *Kernels* nutzen will. (Häufig damit einhergehend: Benutzerprozesse *weniger privilegiert* mit weniger zu Verfügung stehenden Instructions der CPU. Dadurch soll sichergestellt werden, dass nicht andere Prozesse oder die Stabilität des Kernels gefährdet werden)
+- **Kernelmodus:** Privilegierter Modus für Zugriff auf *Ein- und Ausgabegeräte* und Verändern von *Speicherschutz*. (Häufig damit einhergehend: Zugriff auf den kompletten Befehlssatz der CPU und den gesamten Speicherbereich).
+- **Benutzer-Modus:** Modus in dem *Benutzerprogramme* ausgeführt werden. Teilt dem Kernel über *Systemaufrufe* mit, wenn er spezielle (*höher privilegierte*) Dienste des *Kernels* nutzen will. (Häufig damit einhergehend: Benutzerprozesse *weniger privilegiert* mit weniger zu Verfügung stehenden Instructions der CPU. Dadurch soll sichergestellt werden, dass nicht andere Prozesse oder die Stabilität des Kernels gefährdet werden).
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -294,6 +289,7 @@ int main(void) {
 - **Gate-Treiber:** Elektronisches Bauteil, dass man sich wie eine Art *Wasserhahn* vorstellen kann, der entweder Signale auf einen *Bus* lässt oder Signale davon abhält auf einen Bus zu kommen.
 - **Busprotokolle:** Regeln die *Lese-/Schreibvorgänge* auf *Bus*.
 - **I/O-Protokolle** Regeln die *Kommunikation* zwischen *CPU* und *I/O-Einheit* (Bsp.: Handshake zwischen CPU und Peripherie-Gerät). Eine Hierarchiestufe *höher* als *Busprotokolle*.
+- **Interrupt-Routine:** Aktueller Programmablauf wird unterbrochen durch einen *Software-Interupt* (`INT i`) oder *Hardware-Interrupt*.
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
