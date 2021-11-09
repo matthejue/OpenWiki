@@ -56,7 +56,6 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- transition: reveal -->
 
 ---
 
@@ -79,7 +78,6 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- transition: cover -->
 
 ---
 
@@ -122,7 +120,7 @@ style: |
     ___`00011011 10000100 10110100 10011010`
     - **Unterschiede** werden hervorgehoben
     - `1` ist **controlling value** zum **Negieren** von `0` zu `1` bzw. `1` zu `0`
-    - `0` ist **non-controlling value** zum **Unverändert beibehalten**
+    - `0` ist **non-controlling value** zum **unverändert Beibehalten**
 - **Test auf Gleichheit:**
   - **Bits, die gleich sind rauswerfen :**
   - mit `JUMP= i` testen, ob zwei Register gleiche Bitworte haben. Dazu `ACC` $=$ `REG1` $\oplus$ `REG2` und dann: `<PC> + [i]` *gdw.* `ACC` $=$ `00000000` *gdw.* `REG1` $=$ `REG2`
@@ -137,7 +135,6 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- transition: implode -->
 
 ---
 
@@ -190,19 +187,20 @@ style: |
 
 - **C-Code:**
   ```c
-  uart_selektieren()
-  while (empfangsregister_befuehlt == 0) {  // R2[1] == 0
-    // warten, denn die UART ist noch beim Fühlen des Registers, die UART
-    // wird sobald sie fertig ist R2[1] = 0; auf 1 setzen
+  polling_loop(int new_instruction) {
+    uart_selektieren()
+    while (empfangsregister_befuehlt == 0) {  // R2[1] == 0
+      // warten, denn die UART ist noch beim Fühlen des Registers, die UART
+      // wird sobald sie fertig ist R2[1] = 0; auf 1 setzen
+    }
+    new_instruction[7:0] = R1;  // IN1[7:0] = R1
+    R2[1] = 0;
   }
-  read_data(R1);
-  R2[1] = 0;
   ```
 - `while (1) {if (empfangsregister_befuehlt == 1) { }}`
-  **➞** `while (!(empfangsregister_befuehlt == 1)) { }`
   **➞** `while (empfangsregister_befuehlt == 0) { }`
 - **Adresse im EPROM:** `r = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
-  - **passender Konstante:** `SRAM[r] = 01000000 00000000 00000000 00000000`
+  - **UART Konstante:** `EPROM[r] = 01000000 00000000 00000000 00000000`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -222,13 +220,32 @@ style: |
   // while (empfangsregister_befuehlt == 0) { }
   ANDI ACC 00000000 00000000 00000010
   JUMP= -2 // Jump backward wenn Bit 1 (b1) von R2 immernoch 0
-  // read_data(R1);
+  // new_instruction[7:0] = R1;  // IN1[7:0] = R1
   Load ACC 1 // Zwischenspeichere R1 in ACC
   OR IN1 ACC // verändere nur die ersten 8 Bits  // für 1b) wichtig
   // R2[1] = 0;
   LOAD ACC 2 // Lade R2
-  ANDI ACC 11111101
+  ANDI ACC 11111101 11111111 11111101
   STORE ACC 2 // speichere verändertes Bitwort wieder zurück in R2
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1b)
+- **C-Code:**
+  ```c
+  void instruction_loop(int new_instruction) {  // IN1 = 0
+    int counter = 4;  // IN2 = 4
+    while (counter > 0) {
+      new_instruction << 8;  // IN1 << 8
+      polling_loop(&new_instruction) // Code aus Teil a)
+      counter--;  // IN2 - 1
+    }
+  }
   ```
 
 <!--small-->
@@ -257,8 +274,47 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1c)
+- **C-Code:**
+  ```c
+  void load_code(int free_address) {
+    while (new_instruction != last_command) {
+      instruction_loop(&new_instruction)  // Code aus Teil b)
+      SRAM[free_address] = new_instruction;  // IN1
+      free_address++;
+    }
+  }
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1c)
+- **Adresse `a`, um im SRAM nächste Instruction abzulegen:**
+  `a = XXXXXXXX XXXXXXXX XXXXXXXX`
+- **Adresse im EPROM:** `s = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
+  - **SRAM Konstante:** `EPROM[s] = 10000000 00000000 00000000 00000000`
+- **DS:** `00000000 00000000 00000000 00000000` **➞** `10000000 00000000 00000000 00000000`
 - **RETI-Assembler-Code:**
   ```
+  Instruction-Loop  // Code aus Teil b)
+
+  // zu SRAM wechseln
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1c)
+- **RETI-Assembler-Code:**
+  ```
+  Instruction-Loop  // Code aus Teil b)
+  // zu SRAM wechseln
   ```
 
 <!--small-->
@@ -271,7 +327,6 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- transition: explode -->
 
 ---
 
