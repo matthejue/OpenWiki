@@ -122,8 +122,23 @@ style: |
     - `1` ist **controlling value** zum **Negieren** von `0` zu `1` bzw. `1` zu `0`
     - `0` ist **non-controlling value** zum **unverändert Beibehalten**
 - **Test auf Gleichheit:**
-  - **Bits, die gleich sind rauswerfen :**
+  - **Bits, die gleich sind rauswerfen:**
   - mit `JUMP= i` testen, ob zwei Register gleiche Bitworte haben. Dazu `ACC` $=$ `REG1` $\oplus$ `REG2` und dann: `<PC> + [i]` *gdw.* `ACC` $=$ `00000000` *gdw.* `REG1` $=$ `REG2`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Bitweise Logiktricks
+- **Bitshiften :**
+  - Shiften um **3** Stellen nach **links**
+    - `10110 x 1000 = 10110000`
+  - Shiften um **3** Stellen nach **rechts**
+    - `10110000 / 1000 = 10110`
+  - Zahl finden, die **Modulo 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (**3** `0`en)
+    - `8 % 2 = 3`, also hat **3** `0`en **➞** passt
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -140,8 +155,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1
-
-- **Adressebus der RETI:** `01000000 00000000 00000000 00000XXX`
+- **auf verschiedene Register der UART zugreifen:** `00000000 00000000 00000XXX`
 - **UART:**
   - **R0:** `XXXXXXXX`, Senderegister (Senden an Peripheriegerät)
   - **R1:** `XXXXXXXX`, Empfangsregister (Empfangen vom Peripheriegerät)
@@ -149,6 +163,44 @@ style: |
     - `R2[0] = b0`: `senderegister_befuehlbar`
     - `R2[1] = b1`: `empfangsregister_befuehlt`
   - **R3-7:** `XXXXXXXX`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+- **Vorgefertige Adressen im EPROM:** `r/s/t = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
+  - **UART Konstante:** `EPROM[r] = 01000000 00000000 00000000 00000000`
+  - **SRAM Konstante:** `EPROM[s] = 10000000 00000000 00000000 00000000`
+  - **`LOADI PC 0` als Konstante:** `EPROM[t] = 01110000 00000000 00000000 00000000`
+
+![height:300px](_resources/_2021-11-09-15-13-58.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+
+- **zu UART wechseln:**
+  ```
+  LOADI DS 01000000 00000000 00000000
+  MULTI DS 00000000 00000001 00000000
+  ```
+- **zu SRAM wechseln:**
+  ```
+  LOADI DS 10000000 00000000 00000000
+  MULTI DS 00000000 00000001 00000000
+  ```
+- **zu EPROM wechseln:**
+  ```
+  LOADI DS 00000000 00000000 00000000
+  MULTI DS 00000000 00000001 00000000
+  ```
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -198,9 +250,8 @@ style: |
   }
   ```
 - `while (1) {if (empfangsregister_befuehlt == 1) { }}`
+  **➞** `while (!(empfangsregister_befuehlt == 1)) { }`
   **➞** `while (empfangsregister_befuehlt == 0) { }`
-- **Adresse im EPROM:** `r = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
-  - **UART Konstante:** `EPROM[r] = 01000000 00000000 00000000 00000000`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -210,23 +261,22 @@ style: |
 ## Übungsblatt
 ### Aufgabe 1a)
 
-- **DS:** `00000000 00000000 00000000 00000000` **➞** `01000000 00000000 00000000 00000000`
 - **RETI-Assembler-Code:**
   ```
-  LOADI IN1 0 // IN1 auf 0 setzen (hier kann spaeter Inhalt aus R1 addiert werden)
-  LOADI DS 00000000 00000000 00000000 // Zugriff auf Daten im EPROM
-  LOAD DS r // Konstante 010...0 in DS laden --> Zugriff auf UART
-  LOAD ACC 2 // Statusregister R2 in Akkumulator laden.
-  // while (empfangsregister_befuehlt == 0) { }
+  # POLLING-LOOP
+  LOADI DS 01000000 00000000 00000000  # zu UART switchen
+  MULTI DS 00000000 00000001 00000000
+  LOAD ACC 2  # R2 laden.
+  # while (empfangsregister_befuehlt == 0) { }
   ANDI ACC 00000000 00000000 00000010
-  JUMP= -2 // Jump backward wenn Bit 1 (b1) von R2 immernoch 0
-  // new_instruction[7:0] = R1;  // IN1[7:0] = R1
-  Load ACC 1 // Zwischenspeichere R1 in ACC
-  OR IN1 ACC // verändere nur die ersten 8 Bits  // für 1b) wichtig
-  // R2[1] = 0;
-  LOAD ACC 2 // Lade R2
-  ANDI ACC 11111101 11111111 11111101
-  STORE ACC 2 // speichere verändertes Bitwort wieder zurück in R2
+  JUMP= -2  # Jump backward wenn das Peripheriegerät mitteilt, dass es noch nicht fertig ist
+  # new_instruction[7:0] = R1;  # IN1[7:0] = R1
+  LOAD ACC 1  # R1 in ACC zwischenspeichern
+  OR IN1 ACC  # Verändere nur die ersten 8 Bits, für 1b) wichtig
+  # R2[1] = 0;
+  LOAD ACC 2  # R2 laden
+  ANDI ACC 11111101 11111111 11111101  # 2tes Bit auf 0 setzen
+  STORE ACC 2  # Bitwort mit 2tem Bit auf 0 gesetzt wieder zurück in R2
   ```
 
 <!--small-->
@@ -257,11 +307,12 @@ style: |
 ### Aufgabe 1b)
 - **RETI-Assembler-Code:**
   ```
-  LOADI IN2  4 // Benutze IN2 als Schleifenzaehler
-  LOADI IN1 0
+  # INSTRUCTION-LOOP
+  LOADI IN2 4  # Benutze IN2 als Temporary für einen Schleifenzaehler
+  LOADI IN1 0  # Intruction soll in ein mit 0en überschriebenes Register abgelegt werden
   # l1
-  MULTI IN1 00000000 00000001 00000000
-  POLLING-LOOP // Code aus Teil a)
+  MULTI IN1 00000000 00000001 00000000 # um 8 Stellen nach links shiften
+  POLLING-LOOP  # Code aus Teil a)
   SUBI IN2 1
   MOV IN2 ACC
   JUMP> -{Lines between this jump and comment l1}
@@ -274,35 +325,20 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1c)
-- **C-Code:**
+- **Adresse `a`, um im SRAM nächste Instruction abzulegen:**
+  `a = 00000000 XXXXXXXX XXXXXXXX` (16 Bit)
+- `final_command` ist die Instruction `01110000 00000000 00000000 00000000` mit dem die Übertragung endet
+- **C-Pseudo-Code:**
   ```c
-  void load_code(int free_address) {
-    while (new_instruction != last_command) {
+  void load_code(int free_address, int final_command) {  // Adresse a
+    while (new_instruction != final_command) {
       instruction_loop(&new_instruction)  // Code aus Teil b)
-      SRAM[free_address] = new_instruction;  // IN1
-      free_address++;
+      SRAM[free_address] = new_instruction;  // M(<a>) := IN1
+      free_address++;  // a + 1
     }
   }
   ```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Übungsblatt
-### Aufgabe 1c)
-- **Adresse `a`, um im SRAM nächste Instruction abzulegen:**
-  `a = XXXXXXXX XXXXXXXX XXXXXXXX`
-- **Adresse im EPROM:** `s = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
-  - **SRAM Konstante:** `EPROM[s] = 10000000 00000000 00000000 00000000`
-- **DS:** `00000000 00000000 00000000 00000000` **➞** `10000000 00000000 00000000 00000000`
-- **RETI-Assembler-Code:**
-  ```
-  Instruction-Loop  // Code aus Teil b)
-
-  // zu SRAM wechseln
-  ```
+- es sind nicht mehr genug **freie Register** da, daher muss die Variable `free_address` mit der Adresse `a` auf dem **Stack** gespeichert werden
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -313,8 +349,25 @@ style: |
 ### Aufgabe 1c)
 - **RETI-Assembler-Code:**
   ```
-  Instruction-Loop  // Code aus Teil b)
-  // zu SRAM wechseln
+  # LOAD-CODE
+  LOADI IN2 a
+  # l2
+  STOREIN SP IN2 0  # Startadresse a auf Stack zwischenspeichern
+  SUBI SP 1
+  INSTRUCTION-LOOP  # Code aus Teil b)
+  LOADI DS 10000000 00000000 00000000  # zu SRAM wechseln
+  MULTI DS 00000000 00000001 00000000
+  # SRAM[free_address] = new_instruction, M(<a>) := IN1
+  STOREIN IN2 IN1 0
+  # free_address++, a + 1
+  LOADIN SP IN2 1
+  ADDI SP 1
+  ADDI IN2 1  # nächste Adresse
+  # while (new_instruction != final_command) { /*...*/ }
+  LOADI ACC 01110000 00000000 00000000  # final_command erzeugen
+  MULTI ACC 00000000 00000001 00000000
+  OPLUSI ACC IN1  # auf Unterschiede testen
+  JUMP<> -{Lines between this jump and comment l2}
   ```
 
 <!--small-->
