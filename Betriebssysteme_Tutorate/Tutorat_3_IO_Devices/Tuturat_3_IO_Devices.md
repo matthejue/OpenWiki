@@ -2,6 +2,7 @@
 theme: gaia
 paginate: true
 backgroundColor: #ffffff
+transition: fade
 footer: Betriebssysteme, Tutorat 3, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
 style: |
   h1 { color: #622640; font-size: 80px; text-align: center;}
@@ -55,6 +56,7 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
+<!-- transition: reveal -->
 
 ---
 
@@ -77,19 +79,53 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
+<!-- transition: cover -->
 
 ---
 
 ## Vorbereitung
 ### Bitweise Logiktricks
-- **Herausfinden, ob ein bestimmes Bit 1 ist:**
+- **Bestimmte Bits auf `0` setzen u. alle anderen unverändert lassen (_Maskieren_):**
   - ___`10100111 00101101 10010100 00000100`
-  `&` `00000000 00000000 00000000 00000100`
+  `&` `00000000 00000000 00000000 11111111`
   ___`00000000 00000000 00000000 00000100`
-- **Herausfinden, ob ein bestimmes Bit 0 ist:**
-  - ___`01011000 11010010 01101011 11111011`
-  `|` `11111111 11111111 11111111 11111011`
-  ___`00000000 00000000 00000000 00000100`
+  - `0` ist **controlling value** zum mit **`0`en überschreiben**
+  - **Herleitung über Decision Tree:**
+  ![height:220px](_resources/_2021-11-08-22-29-21.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Bitweise Logiktricks
+- **Bestimmte Bits auf `1` setzen u. alle anderen unverändert lassen (_Maskieren_):**
+  - ___`10100111 00101101 10010100 01100101`
+  `|` `00000000 00000000 00000000 11111111`
+  ___`10100111 00101101 10010100 11111111`
+  - `1` ist **controlling value** zum mit **`1`en überschreiben**
+- **Test auf bestimmten Bitwert:**
+  - **non-controlling value** von `&` bzw. `|` nutzen, um ein bestimmtes Bit **unverändert beizubehalten** und dann aus diesem bzw. dessen Negation zu schlussfolgern, dass da eine `1` bzw. `0` steht
+  - mit `JUMP<> i` testen, ob z.B. **Bit 3** von `REG` `1` bzw. `0` ist. Dazu `ACC = REG & 00000100` bzw. `ACC = ~(REG | 11111011)` und dann: `<PC> + [i]` *gdw.* `ACC` $\ne$ `00000000` *gdw.* **Bit 3** ist `1` bzw. `0`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Bitweise Logiktricks
+- **Bestimmte Bits negieren und alle anderen unverändert lassen (_Differenz_):**
+    - ___`10100111 00101101 10110100 01100101`
+    `⊕` `10111100 10101001 00000000 11111111`
+    ___`00011011 10000100 10110100 10011010`
+    - **Unterschiede** werden hervorgehoben
+    - `1` ist **controlling value** zum **Negieren** von `0` zu `1` bzw. `1` zu `0`
+    - `0` ist **non-controlling value** zum **Unverändert beibehalten**
+- **Test auf Gleichheit:**
+  - **Bits, die gleich sind rauswerfen :**
+  - mit `JUMP= i` testen, ob zwei Register gleiche Bitworte haben. Dazu `ACC` $=$ `REG1` $\oplus$ `REG2` und dann: `<PC> + [i]` *gdw.* `ACC` $=$ `00000000` *gdw.* `REG1` $=$ `REG2`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -101,6 +137,7 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
+<!-- transition: implode -->
 
 ---
 
@@ -176,16 +213,22 @@ style: |
 ### Aufgabe 1a)
 
 - **DS:** `00000000 00000000 00000000 00000000` **➞** `01000000 00000000 00000000 00000000`
-- **RETI-Assembler-Code (UART selektieren):**
-  ```assembler
-  LOADI IN1 0 // IN1 auf 0 setzen (hier kann später Inhalt aus R1 addiert werden).
+- **RETI-Assembler-Code:**
+  ```
+  LOADI IN1 0 // IN1 auf 0 setzen (hier kann spaeter Inhalt aus R1 addiert werden)
+  LOADI DS 00000000 00000000 00000000 // Zugriff auf Daten im EPROM
   LOAD DS r // Konstante 010...0 in DS laden --> Zugriff auf UART
   LOAD ACC 2 // Statusregister R2 in Akkumulator laden.
   // while (empfangsregister_befuehlt == 0) { }
-  ANDI ACC 00000000 00000000 00000000 00000010  // Berechne R2 && 0b10 (2). Wenn b1=1, steht im ACC jetzt eine 2, ansonsten 0.
-  JUMP= -2 // JUMP EQUAL. Wenn Bit 1 (b1) von R2 immernoch 0
-  read_data(R1);
-  R2[1] = 0;
+  ANDI ACC 00000000 00000000 00000010
+  JUMP= -2 // Jump backward wenn Bit 1 (b1) von R2 immernoch 0
+  // read_data(R1);
+  Load ACC 1 // Zwischenspeichere R1 in ACC
+  OR IN1 ACC // verändere nur die ersten 8 Bits  // für 1b) wichtig
+  // R2[1] = 0;
+  LOAD ACC 2 // Lade R2
+  ANDI ACC 11111101
+  STORE ACC 2 // speichere verändertes Bitwort wieder zurück in R2
   ```
 
 <!--small-->
@@ -194,16 +237,28 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 1a)
+### Aufgabe 1b)
 - **RETI-Assembler-Code:**
-  ```assembler
-  LOADI IN1 0 // IN1 auf 0 setzen (hier kann später Inhalt aus R1 addiert werden).
-  LOADI DS 0 // Zugriff auf Daten im EPROM
-  LOAD DS r // Konstante 010...0 in DS laden --> Zugriff auf UART
-  LOAD ACC 2 // Statusregister R2 in Akkumulator laden.
-  #####
-  read_data(R1);
-  R2[1] = 0;
+  ```
+  LOADI IN2  4 // Benutze IN2 als Schleifenzaehler
+  LOADI IN1 0
+  # l1
+  MULTI IN1 00000000 00000001 00000000
+  POLLING-LOOP // Code aus Teil a)
+  SUBI IN2 1
+  MOV IN2 ACC
+  JUMP> -{Lines between this jump and comment l1}
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1c)
+- **RETI-Assembler-Code:**
+  ```
   ```
 
 <!--small-->
@@ -216,13 +271,18 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
+<!-- transition: explode -->
 
 ---
 
 ## Ergänzungen
-### Trick mit Codierung von Jump Condition
+### Tipps zu `JUMP`'s
 
-![height:300px](_resources/_2021-11-08-17-36-02.png)![height:250px](_resources/_2021-11-08-17-36-33.png)
+- **Tipp bzgl. JUMP:** mache `JUMP< i` *gdw.* $3 < 4$ *gdw.* $3 - 4 < 0$
+
+![height:250px](_resources/_2021-11-08-17-36-02.png)![height:250px](_resources/_2021-11-08-17-36-33.png)
+![height:100px](_resources/_2021-11-08-23-05-03.png)
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
