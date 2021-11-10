@@ -64,9 +64,10 @@ style: |
 - ein paar Fehler bei der **RETI Treiberaufgabe**
 - viele kleinere Fehler bei der **push und pop** Aufgabe
 - **Aufgabe 3** haben sich viele gespart
-- **Usermodus** und **Kernelmodus**
+- **Usermodus** und **Kernelmodus** hatten einige Fragen
 - **Terminal** Bedienung
 - die Sache mit `<SP>` und `[SP]`
+- **kein Feedback:** https://forms.gle/2tGvF4ao5hAVNeRs5
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -99,7 +100,7 @@ style: |
 ### Bitweise Logiktricks
 - **Bestimmte Bits auf `0` setzen u. alle anderen unverändert lassen (_Maskieren_):**
   - ___`10100111 00101101 10010100 00000100`
-  `&` `00000000 00000000 00000000 11111111`
+  `&` `00000000 00000000 00000000 11111111` (**_Maske_**)
   ___`00000000 00000000 00000000 00000100`
   - `0` ist **controlling value** zum mit **`0`en überschreiben**
   - **Herleitung über Decision Tree:**
@@ -112,7 +113,7 @@ style: |
 
 ## Vorbereitung
 ### Bitweise Logiktricks
-- **Bestimmte Bits auf `1` setzen u. alle anderen unverändert lassen (_Maskieren_):**
+- **Bestimmte Bits auf `1` setzen u. alle anderen unverändert lassen (_Union_):**
   - ___`10100111 00101101 10010100 01100101`
   `|` `00000000 00000000 00000000 11111111`
   ___`10100111 00101101 10010100 11111111`
@@ -309,19 +310,18 @@ style: |
 - **RETI-Assembler-Code:**
   ```
   # POLLING-LOOP
-  LOADI DS 01000000 00000000 00000000  # zu UART switchen
+  LOADI DS 01000000 00000000 00000000  # Zu UART switchen
   MULTI DS 00000000 00000001 00000000
-  LOAD ACC 2  # R2 laden.
+  LOAD ACC 2  # Statusregister R2 laden
   # while (empfangsregister_befuehlt == 0) { }
-  ANDI ACC 00000000 00000000 00000010
-  JUMP= -2  # Jump backward wenn das Peripheriegerät mitteilt, dass es noch nicht fertig ist
-  # new_instruction[7:0] = R1;  # IN1[7:0] = R1
-  LOAD ACC 1  # R1 in ACC zwischenspeichern
-  OR IN1 ACC  # Verändere nur die ersten 8 Bits, für 1b) wichtig
+  ANDI ACC 00000000 00000000 00000010  # Prüfen, ob R2 mitteilt, dass Peripherigerät fertig ist
+  JUMP= -2  # Zurückjumpen, wenn Peripheriegerät noch nicht fertig ist
+  # new_instruction[7:0] = R1;
+  OR IN1 1  # Non-Controlling Value von Or nutzen, um neuen Inhalt des Empfangsregisters R1 zu laden
   # R2[1] = 0;
-  LOAD ACC 2  # R2 laden
+  LOAD ACC 2  # Statusregister R2 laden
   ANDI ACC 11111101 11111111 11111101  # 2tes Bit auf 0 setzen
-  STORE ACC 2  # Bitwort mit 2tem Bit auf 0 gesetzt wieder zurück in R2
+  STORE ACC 2  # Bitvektor mit 2tem Bit auf 0 gesetzt wieder zurück ins Statusregister R2 schreiben
   ```
 
 <!--small-->
@@ -353,14 +353,14 @@ style: |
 - **RETI-Assembler-Code:**
   ```
   # INSTRUCTION-LOOP
-  LOADI IN2 4  # Benutze IN2 als Temporary für einen Schleifenzaehler
-  LOADI IN1 0  # Intruction soll in ein mit 0en überschriebenes Register abgelegt werden
+  LOADI IN2 4  # Benutze IN2 als Schleifenzähler
+  LOADI IN1 00000000 00000000 00000000  # Rückstände aus vorheriger Iteration clearen
   # l1
-  MULTI IN1 00000000 00000001 00000000 # um 8 Stellen nach links shiften
+  MULTI IN1 00000000 00000001 00000000  # Um 8 Stellen nach links shiften
   POLLING-LOOP  # Code aus Teil a)
-  SUBI IN2 1
-  MOV IN2 ACC
-  JUMP> -{Lines between this jump and comment l1}
+  SUBI IN2 1  # Schleifenzähler dekrementieren
+  MOV IN2 ACC  # Schleifenzähler muss für den Vergleich beim Jump auf dem ACC stehen
+  JUMP> -{Lines between this jump and comment l1}  # Zurückjumpen, wenn Schleifenzähler größer 0 ist
   ```
 
 <!--small-->
@@ -372,7 +372,7 @@ style: |
 ### Aufgabe 1c)
 - **Adresse `a`, um im SRAM nächste Instruction abzulegen:**
   `a = 00000000 XXXXXXXX XXXXXXXX` (16 Bit)
-- `final_command` ist die Instruction `01110000 00000000 00000000 00000000` mit dem die Übertragung endet
+- `final_command` ist die Instruction `01110000 00000000 00000000 00000000` mit der die Übertragung endet
 - **C-Pseudo-Code:**
   ```c
   void load_code(int free_address, int final_command) {  // Adresse a
@@ -395,25 +395,67 @@ style: |
 - **RETI-Assembler-Code:**
   ```
   # LOAD-CODE
-  LOADI IN2 a
-  # l2
-  STOREIN SP IN2 0  # Startadresse a auf Stack zwischenspeichern
-  SUBI SP 1
-  INSTRUCTION-LOOP  # Code aus Teil b)
-  LOADI DS 10000000 00000000 00000000  # zu SRAM wechseln
+  LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen
   MULTI DS 00000000 00000001 00000000
-  # SRAM[free_address] = new_instruction, M(<a>) := IN1
-  STOREIN IN2 IN1 0
-  # free_address++, a + 1
-  LOADIN SP IN2 1
+  LOADI ACC a  # Startadresse a wählen
+  # l2
+  STOREIN SP ACC 0  # Adresse a auf Stack pushen
+  SUBI SP 1
+  INSTRUCTION-LOOP  # Code aus Teil c)
+  LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen
+  MULTI DS 00000000 00000001 00000000
+  LOADIN SP ACC 1  # Adresse a vom Stack popen
   ADDI SP 1
-  ADDI IN2 1  # nächste Adresse
-  # while (new_instruction != final_command) { /*...*/ }
-  LOADI ACC 01110000 00000000 00000000  # final_command erzeugen
-  MULTI ACC 00000000 00000001 00000000
-  OPLUSI ACC IN1  # auf Unterschiede testen
-  JUMP<> -{Lines between this jump and comment l2}
+  # SRAM[free_address] = new_instruction (M(<a>) := IN1)
+  STOREIN ACC IN1 0
   ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1c)
+- **RETI-Assembler-Code:**
+  ```
+  # free_address++ (a + 1)
+  ADDI ACC 1  # zu Adresse für nächste Instruction wechseln
+  STOREIN SP ACC 0  # Adresse a auf Stack pushen
+  SUBI SP 1
+  # while (new_instruction != final_command) { /*...*/ }
+  LOADI ACC 01110000 00000000 00000000  # final_command für Vergleich erzeugen
+  MULTI ACC 00000000 00000001 00000000
+  OPLUSI ACC IN1  # Testen, ob die neu geschriebene Instruction der final_command ist
+  JUMP<> -{Lines between this jump and comment l2}  # Zurückjumpen, wenn neu geschriebene
+  # Instruction nicht der final_command ist
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Ergänzungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Ergänzungen
+### Packages installieren mit `apt`
+
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Ergänzungen
+### Packages installieren mit `pacman`
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
