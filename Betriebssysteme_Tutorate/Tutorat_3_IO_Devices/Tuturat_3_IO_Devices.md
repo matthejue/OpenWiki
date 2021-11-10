@@ -60,6 +60,19 @@ style: |
 ---
 
 ## Korrektur
+### Interessantes und häufige Fehler
+
+- einige Fehler bei der RETI Treiberaufgabe
+- viele kleinere Fehler bei der push pop Aufgabe
+- Aufgabe 3 haben sich so gut wie alle gespart, da sie auch nicht wirklich relevant für die Klausur ist n_n
+- die Sache mit `[SP]` und `<SP>`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Korrektur
 ### Korrektursystem
 
 - **Punkte** sind nur zum Vergleich untereinander
@@ -139,6 +152,37 @@ style: |
     - `10110000 / 1000 = 10110`
   - Zahl finden, die **Modulo 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (**3** `0`en)
     - `8 % 2 = 3`, also hat **3** `0`en **➞** passt
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Merkhilfe RETI Befehlssatz
+- **to** `X` = **from** `X`
+- **Compute:** *calc* `D` `OP` `S` *to* `D`,  *calc* `D` `OP` `M(<i>)` *to* `D`, *calc* `D` `OP` `[i]` *to* `D`
+- **Load:**
+  - `LOAD` *to* `D` *from* `M(<S>)` und `LOADI` *to* `D` *directly from* `i`
+  - `LOADIN` *from* `M(<S>+[i])` *to* `D`
+- **Store:**
+  - `Store` *from* `D` *to* `M(<S>)` und `move` *from* `D` *directly to* `S`
+    - es gibt kein `STOREI`, da die erweiterte RETI und vor allem der **SRAM** nicht dazu konzepiert sind, dass **zwei Argumente** beide auf den Speicher zugreifen (die RETI ist eine **Register-Memory Architektur**, aber keine **Register plus Memory Architektur**)
+  - `STOREIN` *to* `M(<S>+[i])` *from* `D`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Merkhilfe RETI Befehlssatz
+- **Jump:** `JUMPc i` *gdw.* `ACC` `c` `0`
+  - mache `JUMPc i` *gdw.* `3` `<` `4` *gdw.* `3 - 4` `<` `0`
+- **Kodierung der Condition:**
+![height:250px](_resources/_2021-11-08-17-36-02.png)![height:250px](_resources/_2021-11-08-17-36-33.png)
+![height:100px](_resources/_2021-11-08-23-05-03.png)
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -375,7 +419,7 @@ style: |
 
 ---
 
-# Ergänzungen
+# Quellen
 
 <!--_class: lead-->
 <!--big-->
@@ -383,14 +427,10 @@ style: |
 
 ---
 
-## Ergänzungen
-### Tipps zu `JUMP`'s
+## Quellen
+### Wissenquellen
 
-- **Tipp bzgl. JUMP:** mache `JUMP< i` *gdw.* $3 < 4$ *gdw.* $3 - 4 < 0$
-
-![height:250px](_resources/_2021-11-08-17-36-02.png)![height:250px](_resources/_2021-11-08-17-36-33.png)
-![height:100px](_resources/_2021-11-08-23-05-03.png)
-
+- https://en.wikipedia.org/wiki/Register%E2%80%93memory_architecture
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
