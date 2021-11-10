@@ -1,23 +1,26 @@
 # LOAD-CODE Begin,,DS:
 LOADI IN2 a,,IN2:
 # l2,,IN1:
-# INSTRUCTION-LOOP Begin,,ACC:
-LOADI IN2 4
-LOADI IN1 0
-# l1
-MULTI IN1 00000000 00000001 00000000
-# POLLING-LOOP Begin
-LOADI DS 01000000 00000000 00000000
+LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen,,ACC:
 MULTI DS 00000000 00000001 00000000
-LOAD ACC 2
+STOREIN SP IN2 0  # Startadresse a auf Stack speichern
+SUBI SP 1
+# INSTRUCTION-LOOP Begin
+LOADI IN2 4  # Benutze IN2 als Schleifenzähler
+LOADI IN1 00000000 00000000 00000000  # Rückstände aus vorheriger Iteration clearen
+# l1
+MULTI IN1 00000000 00000001 00000000  # Um 8 Stellen nach links shiften
+# POLLING-LOOP Begin
+LOADI DS 01000000 00000000 00000000  # Zu UART switchen
+MULTI DS 00000000 00000001 00000000
+LOAD ACC 2  # Statusregister R2 laden
 # while (empfangsregister_befuehlt == 0) { }
-ANDI ACC 00000000 00000000 00000010
-JUMP= -2
+"ANDI ACC 00000000 00000000 00000010  # Prüfen, ob R2 mitteilt, dass Peripherigerät fertig ist"
+"JUMP= -2  # Zurückjumpen, wenn Peripheriegerät noch nicht fertig ist"
 # new_instruction[7:0] = R1;
-LOAD ACC 1
-OR IN1 ACC
+"OR IN1 1  # Non-Controlling Value von Or nutzen, um neuen Inhalt des Empfangsregisters R1 zu laden "
 # R2[1] = 0;
-LOAD ACC 2
+LOAD ACC 2  # Statusregister R2 laden
 ANDI ACC 11111101 11111111 11111101
 STORE ACC 2
 # POLLING-LOOP End

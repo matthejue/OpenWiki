@@ -61,11 +61,12 @@ style: |
 
 ## Korrektur
 ### Interessantes und häufige Fehler
-
-- einige Fehler bei der RETI Treiberaufgabe
-- viele kleinere Fehler bei der push pop Aufgabe
-- Aufgabe 3 haben sich so gut wie alle gespart, da sie auch nicht wirklich relevant für die Klausur ist n_n
-- die Sache mit `[SP]` und `<SP>`
+- ein paar Fehler bei der **RETI Treiberaufgabe**
+- viele kleinere Fehler bei der **push und pop** Aufgabe
+- **Aufgabe 3** haben sich viele gespart
+- **Usermodus** und **Kernelmodus**
+- **Terminal** Bedienung
+- die Sache mit `<SP>` und `[SP]`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -150,7 +151,7 @@ style: |
     - `10110 x 1000 = 10110000`
   - Shiften um **3** Stellen nach **rechts**
     - `10110000 / 1000 = 10110`
-  - Zahl finden, die **Modulo 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (**3** `0`en)
+  - Zahl finden, die **Modulo 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (hier: **3** `0`en)
     - `8 % 2 = 3`, also hat **3** `0`en **➞** passt
 
 <!--small-->
@@ -167,7 +168,7 @@ style: |
   - `LOADIN` *from* `M(<S>+[i])` *to* `D`
 - **Store:**
   - `Store` *from* `D` *to* `M(<S>)` und `move` *from* `D` *directly to* `S`
-    - es gibt kein `STOREI`, da die erweiterte RETI und vor allem der **SRAM** nicht dazu konzepiert sind, dass **zwei Argumente** beide auf den Speicher zugreifen (die RETI ist eine **Register-Memory Architektur**, aber keine **Register plus Memory Architektur**)
+    - es gibt kein `STOREI`, da die erweiterte RETI und vor allem der **SRAM** nicht dazu konzepiert sind, dass **zwei Argumente** beide auf den Speicher zugreifen
   - `STOREIN` *to* `M(<S>+[i])` *from* `D`
 
 <!--small-->
@@ -220,7 +221,7 @@ style: |
   - **SRAM Konstante:** `EPROM[s] = 10000000 00000000 00000000 00000000`
   - **`LOADI PC 0` als Konstante:** `EPROM[t] = 01110000 00000000 00000000 00000000`
 
-![height:300px](_resources/_2021-11-09-15-13-58.png)
+![height:300px](_resources/_2021-11-09-15-13-58.png)![height:300px](_resources/_2021-11-10-22-25-39.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
