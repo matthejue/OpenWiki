@@ -1,0 +1,52 @@
+# Begin Interruptvektortabelle,,,ACC:,---
+8.00
+10.00
+13.00
+20.00
+...
+# End Interruptvektortabelle
+
+
+
+
+
+# Begin Interrupt Service Routine 3
+SOME-PROCEDURE-CODE
+...
+LOADIN SP ACC 1,,# RTI replacement code
+ADDI SP 1
+ADDI ACC 3 
+MOVE ACC PC
+# End Interrupt Service Routine 3
+
+
+
+
+
+
+
+
+
+# Begin Prozess x
+# Begin Codesegment below
+SOME-PROCEDURE-CODE,<--CS
+...,<--PC
+STOREIN SP PC 0,,# INT i replacement code
+SUBI SP 1
+STORE PC 3
+...
+# END Codesegment
+# Begin Datensegment below
+PERMANENT-DATA,<--DS
+# Heap
+...
+
+
+
+
+,<--SP
+...
+TEMPORARY-STACK-DATA,<--BAF
+# Begin Stack
+# END Datensegment
+# End Prozess x

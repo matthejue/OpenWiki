@@ -52,6 +52,23 @@ style: |
 
 ---
 
+# Einstieg
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Einstieg
+### Ascii-Image-Converter
+- https://github.com/TheZoraiz/ascii-image-converter
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Korrektur
 
 <!--_class: lead-->
@@ -82,7 +99,7 @@ style: |
 - **Punkte** sind nur zum Vergleich untereinander
 - **Ampelsystem:**
   - ![height:54](_resources/_2021-11-08-12-56-04.png): Sehr gut, damit ist man für die Klausur auf der sicheren Seite
-  - ![height:50](_resources/_2021-11-08-12-56-29.png): Ausreichend, aber bezüglich Klausur sollte man dann zumindest im Tutorat gut aufpassen
+  - ![height:50](_resources/_2021-11-08-12-56-29.png): Nur ein Hinweis darauf, dass da einige klausurrelevante Sachen vielleicht nochmal vielleicht über das Tutorat nachvollzogen werden sollten
   - ![height:50](_resources/_2021-11-08-12-57-10.png): Nicht ausreichend. Leider zu wenig Arbeitsaufwand investiert
 
 <!--small-->
@@ -139,7 +156,6 @@ style: |
     - `1` ist **controlling value** zum **Negieren** von `0` zu `1` bzw. `1` zu `0`
     - `0` ist **non-controlling value** zum **unverändert Beibehalten**
 - **Test auf Gleichheit:**
-  - **Bits, die gleich sind rauswerfen:**
   - mit `JUMP= i` testen, ob zwei Register gleiche Bitworte haben. Dazu `ACC` $=$ `REG1` $\oplus$ `REG2` und dann: `<PC> + [i]` *gdw.* `ACC` $=$ `00000000` *gdw.* `REG1` $=$ `REG2`
 
 <!--small-->
@@ -154,8 +170,8 @@ style: |
     - `10110 x 1000 = 10110000`
   - Shiften um **3** Stellen nach **rechts**
     - `10110000 / 1000 = 10110`
-  - Zahl finden, die **Modulo 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (hier: **3** `0`en)
-    - `8 % 2 = 3`, also hat **3** `0`en **➞** passt
+  - Zahl finden, die **Logarithmus 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (hier: **3** `0`en)
+    - `log2(8) = 3`, also hat **3** `0`en **➞** passt
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -205,9 +221,9 @@ style: |
 ### Aufgabe 1
 - **auf verschiedene Register der UART zugreifen:** `00000000 00000000 00000XXX`
 - **UART:**
-  - **R0:** `XXXXXXXX`, Senderegister (Senden an Peripheriegerät)
-  - **R1:** `XXXXXXXX`, Empfangsregister (Empfangen vom Peripheriegerät)
-  - **R2:** `b0,b1,X,X,X,X,X,X`, Statusregister
+  - **R0:** `XXXXXXXX`, Senderegister (**Senden** an Peripheriegerät)
+  - **R1:** `XXXXXXXX`, Empfangsregister (**Empfangen** vom Peripheriegerät)
+  - **R2:** `X,X,X,X,X,X,b1,b0`, Statusregister (**Big Endian**)
     - `R2[0] = b0`: `senderegister_befuehlbar`
     - `R2[1] = b1`: `empfangsregister_befuehlt`
   - **R3-7:** `XXXXXXXX`
@@ -400,9 +416,9 @@ style: |
   LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen
   MULTI DS 00000000 00000001 00000000
   LOADI ACC a  # Startadresse a wählen
-  # l2
   STOREIN SP ACC 0  # Adresse a auf Stack pushen
   SUBI SP 1
+  # l2
   INSTRUCTION-LOOP  # Code aus Teil c)
   LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen
   MULTI DS 00000000 00000001 00000000
@@ -422,7 +438,7 @@ style: |
 - **RETI-Assembler-Code:**
   ```
   # free_address++ (a + 1)
-  ADDI ACC 1  # zu Adresse für nächste Instruction wechseln
+  ADDI ACC 1  # zur Adresse zum Storen der nächsten Instruction gehen
   STOREIN SP ACC 0  # Adresse a auf Stack pushen
   SUBI SP 1
   # while (new_instruction != final_command) { /*...*/ }

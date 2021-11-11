@@ -2,9 +2,9 @@
 LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen,IN2:,---
 MULTI DS 00000000 00000001 00000000,IN1:,---
 LOADI ACC a  # Startadresse a wählen,ACC:,---
-# l2
 STOREIN SP ACC 0  # Adresse a auf Stack pushen
 SUBI SP 1
+# l2
 # INSTRUCTION-LOOP Begin
 LOADI IN2 4  # Benutze IN2 als Schleifenzähler
 LOADI IN1 00000000 00000000 00000000  # Rückstände aus vorheriger Iteration clearen
@@ -35,7 +35,7 @@ ADDI SP 1
 # SRAM[free_address] = new_instruction (M(<a>) := IN1)
 STOREIN ACC IN1 0
 # free_address++ (a + 1)
-ADDI ACC 1  # zu Adresse für nächste Instruction wechseln
+ADDI ACC 1  # zur Adresse zum Storen der nächsten Instruction gehen
 STOREIN SP ACC 0  # Adresse a auf Stack pushen
 SUBI SP 1
 # while (new_instruction != final_command) { /*...*/ }
