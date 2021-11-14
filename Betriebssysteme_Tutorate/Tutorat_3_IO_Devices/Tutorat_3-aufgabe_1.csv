@@ -1,15 +1,16 @@
 # LOAD-CODE Begin,DS:,---
-LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen,IN2:,---
-MULTI DS 00000000 00000001 00000000,IN1:,---
+LOADI DS __100000 00000000 00000000  # Zu SRAM switchen,IN2:,---
+MULTI DS __000000 00000100 00000000,IN1:,---
 LOADI ACC a  # Startadresse a wählen,ACC:,---
 STOREIN SP ACC 0  # Adresse a auf Stack pushen
 SUBI SP 1
 # l2
 # INSTRUCTION-LOOP Begin
 LOADI IN2 4  # Benutze IN2 als Schleifenzähler
-LOADI IN1 00000000 00000000 00000000  # Rückstände aus vorheriger Iteration clearen
+LOADI IN1 __000000 00000000 00000000  # Rückstände aus vorheriger Iteration clearen
+MULTI IN1 __000000 00000000 00000100  # Um 2 Stellen nach links shiften
 # l1
-MULTI IN1 00000000 00000001 00000000  # Um 8 Stellen nach links shiften
+MULTI IN1 __000000 00000001 00000000  # Um 8 Stellen nach links shiften
 # POLLING-LOOP Begin
 LOADI DS 01000000 00000000 00000000  # Zu UART switchen
 MULTI DS 00000000 00000001 00000000
