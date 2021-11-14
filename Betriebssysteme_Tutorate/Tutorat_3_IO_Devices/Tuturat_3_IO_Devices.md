@@ -389,7 +389,7 @@ style: |
 ## Übungsblatt
 ### Aufgabe 1c)
 - **Adresse `a`, um im SRAM nächste Instruction abzulegen:**
-  `a = 00000000 XXXXXXXX XXXXXXXX` (16 Bit)
+  `a = __000000 XXXXXXXX XXXXXXXX` (SRAM hat nur **16 Bit** zur Adressierung)
 - `final_command` ist die Instruction `01110000 00000000 00000000 00000000` mit der die Übertragung endet
 - **C-Pseudo-Code:**
   ```c
