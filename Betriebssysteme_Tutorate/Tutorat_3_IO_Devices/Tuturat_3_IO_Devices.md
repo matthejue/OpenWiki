@@ -335,31 +335,6 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 1a)
-
-- **RETI-Assembler-Code:**
-  ```
-  # POLLING-LOOP
-  LOADI DS 01000000 00000000 00000000  # Zu UART switchen
-  MULTI DS 00000000 00000001 00000000
-  LOAD ACC 2  # Statusregister R2 laden
-  # while (empfangsregister_befuehlt == 0) { }
-  ANDI ACC 00000000 00000000 00000010  # Prüfen, ob R2 mitteilt, dass Peripherigerät fertig ist
-  JUMP= -2  # Zurückjumpen, wenn Peripheriegerät noch nicht fertig ist
-  # new_instruction[7:0] = R1;
-  OR IN1 1  # Non-Controlling Value von Or nutzen, um neuen Inhalt des Empfangsregisters R1 zu laden
-  # R2[1] = 0;
-  LOAD ACC 2  # Statusregister R2 laden
-  ANDI ACC 11111101 11111111 11111101  # 2tes Bit auf 0 setzen
-  STORE ACC 2  # Bitvektor mit 2tem Bit auf 0 gesetzt wieder zurück ins Statusregister R2 schreiben
-  ```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Übungsblatt
 ### Aufgabe 1b)
 - **C-Code:**
   ```c
@@ -371,26 +346,6 @@ style: |
       counter--;  // IN2 - 1
     }
   }
-  ```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Übungsblatt
-### Aufgabe 1b)
-- **RETI-Assembler-Code:**
-  ```
-  # INSTRUCTION-LOOP
-  LOADI IN2 4  # Benutze IN2 als Schleifenzähler
-  LOADI IN1 00000000 00000000 00000000  # Rückstände aus vorheriger Iteration clearen
-  # l1
-  MULTI IN1 00000000 00000001 00000000  # Um 8 Stellen nach links shiften
-  POLLING-LOOP  # Code aus Teil a)
-  SUBI IN2 1  # Schleifenzähler dekrementieren
-  MOV IN2 ACC  # Schleifenzähler muss für den Vergleich beim Jump auf dem ACC stehen
-  JUMP> -{Lines between this jump and comment l1}  # Zurückjumpen, wenn Schleifenzähler größer 0 ist
   ```
 
 <!--small-->
@@ -414,52 +369,6 @@ style: |
   }
   ```
 - es sind nicht mehr genug **freie Register** da, daher muss die Variable `free_address` mit der Adresse `a` auf dem **Stack** gespeichert werden
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Übungsblatt
-### Aufgabe 1c)
-- **RETI-Assembler-Code:**
-  ```
-  # LOAD-CODE
-  LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen
-  MULTI DS 00000000 00000001 00000000
-  LOADI ACC a  # Startadresse a wählen
-  STOREIN SP ACC 0  # Adresse a auf Stack pushen
-  SUBI SP 1
-  # l2
-  INSTRUCTION-LOOP  # Code aus Teil c)
-  LOADI DS 10000000 00000000 00000000  # Zu SRAM switchen
-  MULTI DS 00000000 00000001 00000000
-  LOADIN SP ACC 1  # Adresse a vom Stack popen
-  ADDI SP 1
-  # SRAM[free_address] = new_instruction (M(<a>) := IN1)
-  STOREIN ACC IN1 0
-  ```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Übungsblatt
-### Aufgabe 1c)
-- **RETI-Assembler-Code:**
-  ```
-  # free_address++ (a + 1)
-  ADDI ACC 1  # zur Adresse zum Storen der nächsten Instruction gehen
-  STOREIN SP ACC 0  # Adresse a auf Stack pushen
-  SUBI SP 1
-  # while (new_instruction != final_command) { /*...*/ }
-  LOADI ACC 01110000 00000000 00000000  # final_command für Vergleich erzeugen
-  MULTI ACC 00000000 00000001 00000000
-  OPLUSI ACC IN1  # Testen, ob die neu geschriebene Instruction der final_command ist
-  JUMP<> -{Lines between this jump and comment l2}  # Zurückjumpen, wenn neu geschriebene
-  # Instruction nicht der final_command ist
-  ```
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
