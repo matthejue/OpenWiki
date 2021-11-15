@@ -179,6 +179,15 @@ style: |
 ---
 
 ## Vorbereitung
+### Bitweise Logiktricks
+- **Signextension:**
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
 ### Merkhilfe RETI Befehlssatz
 - **to** `X` = **from** `X`
 - **Compute:** *calc* `D` `OP` `S` *to* `D`,  *calc* `D` `OP` `M(<i>)` *to* `D`, *calc* `D` `OP` `[i]` *to* `D`
@@ -242,7 +251,7 @@ style: |
 - **Adressbus bekommt:** `DSDSDSDS DSIIIIII IIIIIIII IIIIIIII`
 - **Kontrollogik bekommt:** `IIIIIIII II______ ________ ________`
 - **Rechter Datenbus bekommt:** `SSSSSSSS SSIIIIII IIIIIIII IIIIIIII`
-  - *Signextension* `S`, *Instruktionsregister* `I`, *Datensegmentregister* `I`
+  - *Signextension* `S`, *Instruktionsregister* `I`, *Datensegmentregister* `DS`
 ![height:300px](_resources/_2021-11-15-01-48-23.png)![height:300px](_resources/_2021-11-10-22-25-39.png)
 
 <!--small-->
