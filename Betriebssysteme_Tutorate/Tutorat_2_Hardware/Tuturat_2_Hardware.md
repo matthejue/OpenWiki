@@ -51,6 +51,23 @@ style: |
 
 ---
 
+# Einstieg
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Einstieg
+### Ascii-Image-Converter
+- https://github.com/TheZoraiz/ascii-image-converter
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Korrektur
 
 <!--_class: lead-->

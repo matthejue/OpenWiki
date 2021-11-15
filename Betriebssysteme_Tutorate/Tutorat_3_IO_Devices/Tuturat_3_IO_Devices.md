@@ -61,8 +61,8 @@ style: |
 ---
 
 ## Einstieg
-### Ascii-Image-Converter
-- https://github.com/TheZoraiz/ascii-image-converter
+### Fakeupdate
+- https://fakeupdate.net/
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -219,14 +219,17 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1
-- **auf verschiedene Register der UART zugreifen:** `00000000 00000000 00000XXX`
-- **UART:**
+- **auf verschiedene Register der UART zugreifen:** `__000000 00000000 00000XXX`
   - **R0:** `XXXXXXXX`, Senderegister (**Senden** an Peripheriegerät)
   - **R1:** `XXXXXXXX`, Empfangsregister (**Empfangen** vom Peripheriegerät)
   - **R2:** `X,X,X,X,X,X,b1,b0`, Statusregister (**Big Endian**)
     - `R2[0] = b0`: `senderegister_befuehlbar`
     - `R2[1] = b1`: `empfangsregister_befuehlt`
   - **R3-7:** `XXXXXXXX`
+- **Vorgefertige Adressen im EPROM:** `r/s/t = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
+  - **UART Konstante:** `EPROM[r] = 01000000 00000000 00000000 00000000`
+  - **SRAM Konstante:** `EPROM[s] = 10000000 00000000 00000000 00000000`
+  - **`LOADI PC 0` als Konstante:** `EPROM[t] = 01110000 00000000 00000000 00000000`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -235,11 +238,8 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1
-- **Vorgefertige Adressen im EPROM:** `r/s/t = 00XXXXXX XXXXXXXX XXXXXXXX XXXXXXXX`
-  - **UART Konstante:** `EPROM[r] = 01000000 00000000 00000000 00000000`
-  - **SRAM Konstante:** `EPROM[s] = 10000000 00000000 00000000 00000000`
-  - **`LOADI PC 0` als Konstante:** `EPROM[t] = 01110000 00000000 00000000 00000000`
 
+-  
 ![height:300px](_resources/_2021-11-09-15-13-58.png)![height:300px](_resources/_2021-11-10-22-25-39.png)
 
 <!--small-->
