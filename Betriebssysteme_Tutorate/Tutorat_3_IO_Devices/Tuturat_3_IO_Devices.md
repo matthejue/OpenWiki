@@ -239,8 +239,11 @@ style: |
 ## Übungsblatt
 ### Aufgabe 1
 
--  
-![height:300px](_resources/_2021-11-09-15-13-58.png)![height:300px](_resources/_2021-11-10-22-25-39.png)
+- **Adressbus bekommt:** `DSDSDSDS DSIIIIII IIIIIIII IIIIIIII`
+- **Kontrollogik bekommt:** `IIIIIIII II______ ________ ________`
+- **Rechter Datenbus bekommt:** `SSSSSSSS SSIIIIII IIIIIIII IIIIIIII`
+  - *Signextension* `S`, *Instruktionsregister* `I`, *Datensegmentregister* `I`
+![height:300px](_resources/_2021-11-09-15-13-58_2.png)![height:300px](_resources/_2021-11-10-22-25-39.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
