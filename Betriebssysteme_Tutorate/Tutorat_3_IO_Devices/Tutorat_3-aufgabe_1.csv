@@ -1,13 +1,15 @@
-# LOAD-CODE Begin,DS:,---
-LOADI DS __100000 00000000 00000000  # Zu SRAM switchen,IN2:,---
-MULTI DS __000000 00000100 00000000,IN1:,---
-"LOADI ACC a  # Startadresse a wählen, a ist 22Bit Teiladresse ohne Präfix für SRAM",ACC:,---
-STOREIN SP ACC 0  # Adresse a auf Stack pushen
-SUBI SP 1
-# I2
-# INSTRUCTION-LOOP Begin
-LOADI IN2 4  # Benutze IN2 als Schleifenzähler
-# Rückstände aus vorherigem Schleifendurchlauf I2 clearen sich automatisch durch 4-maliges um 8-Bit nach rechts shiften
+# LOAD-CODE Begin,ACC:,---
+LOADI DS __100000 00000000 00000000  # Zu SRAM switchen,IN1:,---
+MULTI DS __000000 00000100 00000000,IN2:,---
+"# Startadresse mit passendem Präfix 1* für SRAM erzeugen, wo die Instructions des zu ladenden Programs nacheinander abgelegt werden",DS:,---
+MOV DS ACC  # Präfix 1* für SRAM wiederverwenden aus dem DS Register
+"ORI ACC a  # Startadresse a=__000000 IIIIIIII IIIIIIII wählen, Rest von a durch Signextension mit 0en aufgefüllt",,,"# Man könnte hier noch eine Speicherzelle sparen indem man direkt ORI DS a macht, denn nur die letzten 10 Bit von DS sind entscheidend ^_^"
+STOREIN SP ACC 0  # Startadresse a auf Stack pushen,,,# Dann muss der Code wie folgt angepasst werden:
+SUBI SP 1,,,# MOV DS ACC wird rausgelöscht
+# I2,,,"ORI DS a  # Startadresse a=__000000 IIIIIIII IIIIIIII wählen, Rest von a durch Signextension mit 0en aufgefüllt"
+# INSTRUCTION-LOOP Begin,,,STOREIN DS ACC 0  # Startadresse a auf Stack pushen
+LOADI IN2 4  # Benutze IN2 als Schleifenzähler,,,SUBI SP 1
+# Rückstände aus vorherigem Schleifendurchlauf I2 in IN1 clearen sich automatisch durch 4-maliges um 8-Bit nach rechts shiften
 # I1
 MULTI IN1 __000000 00000001 00000000  # Um 8 Stellen nach links shiften
 # POLLING-LOOP Begin
@@ -20,7 +22,7 @@ LOAD ACC 2  # Statusregister R2 laden
 # new_instruction[7:0] = R1;
 "OR IN1 1  # Non-Controlling Value von Or nutzen, um neuen Inhalt des Empfangsregisters R1 zu laden "
 # R2[1] = 0;
-LOAD ACC 2  # Statusregister R2 laden
+"LOAD ACC 2  # Statusregister R2 erneut laden, da ACC von zwischenzeitlich überschrieben wurde"
 "ANDI ACC __111111 11111111 11111101  # 2tes Bit auf 0 setzen, Signextension füllt den Rest mit 1en"
 STORE ACC 2  # Bitvektor mit 2tem Bit auf 0 gesetzt wieder zurück ins Statusregister R2 schreiben
 # POLLING-LOOP End
@@ -33,9 +35,9 @@ MULTI DS __000000 00000100 00000000
 LOADIN SP ACC 1  # Adresse a vom Stack popen
 ADDI SP 1
 # SRAM[free_address] = new_instruction (M(<a>) := IN1)
-STOREIN ACC IN1 0
+STOREIN ACC IN1 0  # Instruction in Adresse a speichern
 # free_address++ (a + 1)
-ADDI ACC 1  # zur Adresse zum Storen der nächsten Instruction gehen
+ADDI ACC 1  # zur darauffolgenden Adresse zum Storen der nächsten Instruction gehen
 STOREIN SP ACC 0  # Adresse a auf Stack pushen
 SUBI SP 1
 # while (new_instruction != final_command) { /*...*/ }
@@ -43,5 +45,9 @@ LOADI ACC __011100 00000000 00000000  # final_command für Vergleich erzeugen
 MULTI ACC __000000 00000100 00000000
 "OPLUS ACC IN1  # Testen, ob die neu geschriebene Instruction der final_command ist"
 "JUMP<> -{Lines between this jump and comment I2}  # Zurückjumpen, wenn neu geschriebene Instruction nicht der final_command ist"
+"# Erneut Startadresse mit passendem Präfix 1* für SRAM erzeugen, um an diese Adresse zu springen"
+LOADI ACC __100000 00000000 00000000  # Präfix 1* für SRAM erzeugen
+MULTI ACC __000000 00000100 00000000
+"ORI ACC a  # Startadresse a=__000000 IIIIIIII IIIIIIII wählen, Rest von a durch Signextension mit 0en aufgefüllt"
+MOVE ACC PC  # zum Start vom geladenen Programm springen
 # LOAD-CODE End
-LOADI PC a  # zu Start von geladenem Programm springen
