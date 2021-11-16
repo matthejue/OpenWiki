@@ -44,8 +44,4 @@ MULTI ACC __000000 00000100 00000000
 "OPLUS ACC IN1  # Testen, ob die neu geschriebene Instruction der final_command ist"
 "JUMP<> -{Lines between this jump and comment I2}  # Zurückjumpen, wenn neu geschriebene Instruction nicht der final_command ist"
 # LOAD-CODE End
-<<<<<<< HEAD
-LOADI PC a  # zu Programmstart springen
-=======
 LOADI PC a  # zu Start von geladenem Programm springen
->>>>>>> f16b118e9c286784487fce05fb6e6552d15917e7
