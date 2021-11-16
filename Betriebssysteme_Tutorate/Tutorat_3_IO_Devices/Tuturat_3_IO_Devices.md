@@ -277,7 +277,7 @@ style: |
   LOADI DS __000000 00000000 00000000
   MULTI DS __000000 00000100 00000000
   ```
-- **Signextension** bei SRAM, aber wird sowieso weggeshiftet
+- **Signextension** mit `1` bei SRAM, aber wird sowieso weggeshiftet
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
