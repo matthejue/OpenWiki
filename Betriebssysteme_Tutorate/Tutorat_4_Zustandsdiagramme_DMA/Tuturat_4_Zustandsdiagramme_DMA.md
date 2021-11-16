@@ -93,17 +93,12 @@ Aber korrekt, wenn man es weiter ausführt, mit dem MULTI Befehl
 kann man quasi nen Bitshift durchführen
 und die Bits an die passende Stelle shiften, z.B. für das IN1 und IN2 Register. So muss man das Register DS garnicht anrühren.
 - (0b00000100 // 0b00000010 = 1)
-- Der Trick liegt darin die passenden 32Bit Konstanten in Registern IN1 und IN2 zu speichern mittels Bitshiftung durch MULTI oder laden der passenden Konstante in die Register aus dem EPROM und dann über LOADIN IN1 ACC 1 oder z.B. STOREIN IN2 ACC 1 Adressen im UART oder SRAM anzusteuern.
 Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Register direkt die Memory Map über die Bits 31 und 30 über den Adressbus ansteuert.
-<<<<<<< HEAD
-
 Der Trick liegt darin die passenden 32Bit Konstanten in Registern IN1 und IN2 zu speichern mittels Bitshiftung durch MULTI oder laden der passenden Konstante in die Register aus dem EPROM und dann über LOADIN IN1 ACC 1 oder z.B. STOREIN IN2 ACC 1 Adressen im UART oder SRAM anzusteuern.
 Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Register direkt die Memory Map über die Bits 31 und 30 über den Adressbus ansteuert. (0b00000100 // 0b00000010 = 1)
 - der EPROM ist READONLY -> hat keinen Stack
 - andere Flags des Statusregister
-=======
 - Damit tut ihr aber im letzten Durchlauf 8 0en reinshiften und geladenen Instructions haben 8 0en am Anfang und sind um 8 Stellen zu viel gehiftet
->>>>>>> f16b118e9c286784487fce05fb6e6552d15917e7
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
