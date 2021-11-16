@@ -1,7 +1,7 @@
 # LOAD-CODE Begin,DS:,---
 LOADI DS __100000 00000000 00000000  # Zu SRAM switchen,IN2:,---
 MULTI DS __000000 00000100 00000000,IN1:,---
-LOADI ACC a  # Startadresse a wählen,ACC:,---
+"LOADI ACC a  # Startadresse a wählen, a ist 22Bit Teiladresse ohne Präfix für SRAM",ACC:,---
 STOREIN SP ACC 0  # Adresse a auf Stack pushen
 SUBI SP 1
 # I2
@@ -44,3 +44,4 @@ MULTI ACC __000000 00000100 00000000
 "OPLUS ACC IN1  # Testen, ob die neu geschriebene Instruction der final_command ist"
 "JUMP<> -{Lines between this jump and comment I2}  # Zurückjumpen, wenn neu geschriebene Instruction nicht der final_command ist"
 # LOAD-CODE End
+LOADI PC a  # zu Programmstart springen

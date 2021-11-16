@@ -98,6 +98,8 @@ Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Reg
 
 Der Trick liegt darin die passenden 32Bit Konstanten in Registern IN1 und IN2 zu speichern mittels Bitshiftung durch MULTI oder laden der passenden Konstante in die Register aus dem EPROM und dann über LOADIN IN1 ACC 1 oder z.B. STOREIN IN2 ACC 1 Adressen im UART oder SRAM anzusteuern.
 Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Register direkt die Memory Map über die Bits 31 und 30 über den Adressbus ansteuert. (0b00000100 // 0b00000010 = 1)
+- der EPROM ist READONLY -> hat keinen Stack
+- andere Flags des Statusregister
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
