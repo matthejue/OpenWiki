@@ -99,6 +99,16 @@ Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Reg
 - der EPROM ist READONLY -> hat keinen Stack
 - andere Flags des Statusregister
 - Damit tut ihr aber im letzten Durchlauf 8 0en reinshiften und geladenen Instructions haben 8 0en am Anfang und sind um 8 Stellen zu viel gehiftet
+- EPROM ist das einzige Register, dass immer erreichbar ist über:
+LOADI DS 0, da wegen Signextensions dann bei 30 und 31 zwei 0en stehen und so kann man die beiden Konstanten für UART und SRAM im EPROM erreichen
+- Solange im DS die Bits 30 und 31 mit 01 besetzt sind musst du nichts machen.
+Sie können nur durch LOADI DS 0 z.B. mit 0en überschrieben werden wegen der Signextension oder
+wenn du ne 22Bit Konstante mit Multiplikation dahinshiftest oder wenn du den DS mit einem anderen Register oder SRAM Inhalt überschreibst.
+Da muss auf jeden Fall iwoe DS in der Instruction enthalten sein, keine Sorge n_n
+- Bitshiften, Multipliatkion
+- Sinextension
+- Zweierkomplement, größte und kleinste
+- Jump
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
