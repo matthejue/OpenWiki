@@ -172,6 +172,7 @@ style: |
     - `10110000 / 1000 = 10110`
   - Zahl finden, die **Logarithmus 2** den passenden Wert (hier: **3**) hat bzw. entsprechende Anzahl `0`en hat (hier: **3** `0`en)
     - `log2(8) = 3`, also hat **3** `0`en **➞** passt
+>- Kann man auch als eine Art "**Signextension**" nach links vom **niedrigstelligsten** Bit aus ansehen
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -266,9 +267,8 @@ style: |
 - **zu EPROM wechseln:**
   ```
   LOADI DS __000000 00000000 00000000
-  MULTI DS __000000 00000100 00000000
   ```
-- **Signextension** mit `1` bei SRAM, aber wird sowieso weggeshiftet
+- `LOADI DS 0` füllt wegen **Signextension** die ersten 10 Bits autoamtisch mit `0`en auf, daher braucht man nur einem einzigen Befehl für den **EPROM**
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -373,12 +373,13 @@ style: |
 LOAD IN1 a // an Adresse a ist 010...0 (32 Bit) gespeichert
 LOAD IN2 b // an Adresse b ist 10...0 (32 Bit) gespeichert
 ```
--
-
+- Oder mit `MULTI` kann man einen **Bitshift** durchführen und die Bits im IN1 und IN2 Register an die passenden Stellen für den gewünschten **Präfix** shiften
 ```
 LOADIN IN1 ACC 1 // Adresse 1 im UART ansteuern
 LOADIN IN2 ACC 1 // Adresse 1 im SRAM ansteuern
 ```
+- **EPROM** bildet eine Schlüsselstelle, weil man mit `LOADI DS 0` immer reinkommt
+- funktioniert aufgrund der **Memory Map**, die nur durch Bits `31-30` auf dem **Adressbus** bestimmt wird und nicht ausschließlich vom `DS`
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)

@@ -81,28 +81,13 @@ style: |
 ## Korrektur
 ### Interessantes und häufige Fehler
 - überschreiben der Daten, die in der b) nach links geshiftet wurden. `OR IN1 1`, **Non-Controlling** Bit `0`
+- ~~nach dem **Polling erst shiften~~ **➞** am Ende um 8 Stellen zu viel gehiftet
 - `SUBI ACC 2` um `b1` `0` zu setzen
   - einfach `0` setzen geht nicht, weil die anderen **Flags** des **Statusregisters** erhalten bleiben sollen
 - neuen 8Bitvektor dranfügen aus **Empfangsregister** `ADD IN1 1`
-- LOADI DS 0 für EPROM weil dann alles da mit 0en ist bei den ersten 10 Bits
-- etwas ganuer sollte es noch sein.
-Aber korrekt, wenn man es weiter ausführt, mit dem MULTI Befehl
-kann man quasi nen Bitshift durchführen
-und die Bits an die passende Stelle shiften, z.B. für das IN1 und IN2 Register. So muss man das Register DS garnicht anrühren.
-- (0b00000100 // 0b00000010 = 1)
-Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Register direkt die Memory Map über die Bits 31 und 30 über den Adressbus ansteuert.
-Der Trick liegt darin die passenden 32Bit Konstanten in Registern IN1 und IN2 zu speichern mittels Bitshiftung durch MULTI oder laden der passenden Konstante in die Register aus dem EPROM und dann über LOADIN IN1 ACC 1 oder z.B. STOREIN IN2 ACC 1 Adressen im UART oder SRAM anzusteuern.
-Da ganze umgeht quasi das Datensegmentregister, indem es die über die 32Bit Register direkt die Memory Map über die Bits 31 und 30 über den Adressbus ansteuert. (0b00000100 // 0b00000010 = 1)
-- der EPROM ist READONLY -> hat keinen Stack
-- andere Flags des Statusregister
-- Damit tut ihr aber im letzten Durchlauf 8 0en reinshiften und geladenen Instructions haben 8 0en am Anfang und sind um 8 Stellen zu viel gehiftet
-- EPROM ist das einzige Register, dass immer erreichbar ist über:
-LOADI DS 0, da wegen Signextensions dann bei 30 und 31 zwei 0en stehen und so kann man die beiden Konstanten für UART und SRAM im EPROM erreichen
-- Solange im DS die Bits 30 und 31 mit 01 besetzt sind musst du nichts machen.
-Sie können nur durch LOADI DS 0 z.B. mit 0en überschrieben werden wegen der Signextension oder
-wenn du ne 22Bit Konstante mit Multiplikation dahinshiftest oder wenn du den DS mit einem anderen Register oder SRAM Inhalt überschreibst.
-Da muss auf jeden Fall iwoe DS in der Instruction enthalten sein, keine Sorge n_n
-- Jump
+- der **EPROM** ist **READONLY** **➞** hat keinen Stack
+- andere **Flags** des **Statusregister** nicht überschreiben, nur das Bit, was geändert werden soll
+- bei `JUMPc i` beschreibt das `i`, wie oft man die Speicherzelle wechselt, und zwar von der Speicherzelle, wo das `JUMPc i` steht aus (wie `<count>j` in **(Neo-)Vim**)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
