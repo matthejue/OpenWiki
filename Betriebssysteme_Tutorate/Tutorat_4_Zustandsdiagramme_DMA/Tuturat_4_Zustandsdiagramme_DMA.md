@@ -57,13 +57,12 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #7b738f; -->
 
 ---
 
 ## Einstieg
-### asdf
-- `asdf`
+### Fakeupdate
+- https://fakeupdate.net/
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -81,13 +80,11 @@ style: |
 
 ## Korrektur
 ### Interessantes und häufige Fehler
-- -0.25 Ihr überschreibt so aber die Daten, dir ihr in der b) nach links shiftet. OR IN1 1 kann dafür genutzer werden, wegen seinem Non-Controlling Bit 0
-   00000000 00000000 00000000 10110101
-OR 00000000 00000000 10101110 00000000
-   00000000 00000000 10101110 10110101
-![_2021-11-15-23-23-10](_resources/_2021-11-15-23-23-10.png)
+- überschreiben der Daten, die in der b) nach links geshiftet wurden. `OR IN1 1`, **Non-Controlling** Bit `0`
+- `SUBI ACC 2` um `b1` `0` zu setzen
+  - einfach `0` setzen geht nicht, weil die anderen **Flags** des **Statusregisters** erhalten bleiben sollen
+- neuen 8Bitvektor dranfügen aus **Empfangsregister** `ADD IN1 1`
 - LOADI DS 0 für EPROM weil dann alles da mit 0en ist bei den ersten 10 Bits
-- ![[_2021-11-16-01-12-01](_2021-11-16-01-12-01)](_resources/_2021-11-16-01-12-01.png)
 - etwas ganuer sollte es noch sein.
 Aber korrekt, wenn man es weiter ausführt, mit dem MULTI Befehl
 kann man quasi nen Bitshift durchführen
@@ -105,10 +102,64 @@ LOADI DS 0, da wegen Signextensions dann bei 30 und 31 zwei 0en stehen und so ka
 Sie können nur durch LOADI DS 0 z.B. mit 0en überschrieben werden wegen der Signextension oder
 wenn du ne 22Bit Konstante mit Multiplikation dahinshiftest oder wenn du den DS mit einem anderen Register oder SRAM Inhalt überschreibst.
 Da muss auf jeden Fall iwoe DS in der Instruction enthalten sein, keine Sorge n_n
-- Bitshiften, Multipliatkion
-- Sinextension
-- Zweierkomplement, größte und kleinste
 - Jump
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Vertiefungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Vertiefungen
+### Binäre Multiplikation
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vertiefungen
+### 2er Komplement und 1er Komplement
+- größte und kleinste darstellbare Zahl usw.
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vertiefungen
+### Signextension
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vertiefungen
+### Datensegmentregister
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Linux Background Knowledge
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
+## Linux Background Knowledge
+### Desktopenvironment aufsetzen
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)

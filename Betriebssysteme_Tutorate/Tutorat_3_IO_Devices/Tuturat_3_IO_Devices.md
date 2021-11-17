@@ -179,15 +179,6 @@ style: |
 ---
 
 ## Vorbereitung
-### Bitweise Logiktricks
-- **Signextension:**
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vorbereitung
 ### Merkhilfe RETI Befehlssatz
 - **to** `X` = **from** `X`
 - **Compute:** *calc* `D` `OP` `S` *to* `D`,  *calc* `D` `OP` `M(<i>)` *to* `D`, *calc* `D` `OP` `[i]` *to* `D`
@@ -370,6 +361,24 @@ style: |
   }
   ```
 - es sind nicht mehr genug **freie Register** da, daher muss die Variable `free_address` mit der Adresse `a` auf dem **Stack** gespeichert werden
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2
+```
+LOAD IN1 a // an Adresse a ist 010...0 (32 Bit) gespeichert
+LOAD IN2 b // an Adresse b ist 10...0 (32 Bit) gespeichert
+```
+-
+
+```
+LOADIN IN1 ACC 1 // Adresse 1 im UART ansteuern
+LOADIN IN2 ACC 1 // Adresse 1 im SRAM ansteuern
+```
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
