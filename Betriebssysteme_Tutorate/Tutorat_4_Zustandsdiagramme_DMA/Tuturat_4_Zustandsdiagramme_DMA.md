@@ -360,22 +360,6 @@ $$
 
 ---
 
-# Linux Background Knowledge
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-
----
-
-## Linux Background Knowledge
-### Desktopenvironment aufsetzen
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
 # Quellen
 
 <!--_class: lead-->
