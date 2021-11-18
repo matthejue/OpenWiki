@@ -6,8 +6,8 @@ LOADI ACC __100000 00000000 00000000  # Präfix 1* für SRAM erzeugen
 MULTI ACC __000000 00000100 00000000
 "ORI ACC a  # Startadresse a=__000000 IIIIIIII IIIIIIII wählen, Rest von a durch Signextension mit 0en aufgefüllt",,# Anmerkung zu ORI ACC a
 STOREIN SP ACC 0  # Startadresse a auf Stack pushen,,00000000 00000000 00000000 10110101
-SUBI SP 1,OR,00000000 10111011 10101110 10110101
-# I2,,00000000 10111011 10101110 00000000
+SUBI SP 1,OR,00000000 10111011 10101110 00000000
+# I2,,00000000 10111011 10101110 10110101
 # INSTRUCTION-LOOP Begin
 LOADI IN2 4  # Benutze IN2 als Schleifenzähler
 # Rückstände aus vorherigem Schleifendurchlauf I2 in IN1 clearen sich automatisch durch 4-maliges um 8-Bit nach rechts shiften

@@ -223,7 +223,7 @@ style: |
 - **auf verschiedene Register der UART zugreifen:** `__000000 00000000 00000XXX`
   - **R0:** `XXXXXXXX`, Senderegister (**Senden** an Peripheriegerät)
   - **R1:** `XXXXXXXX`, Empfangsregister (**Empfangen** vom Peripheriegerät)
-  - **R2:** `X,X,X,X,X,X,b1,b0`, Statusregister (**Big Endian**)
+  - **R2:** `X,X,X,X,X,X,b1,b0`, Statusregister (**Little Endian**)
     - `R2[0] = b0`: `senderegister_befuehlbar`
     - `R2[1] = b1`: `empfangsregister_befuehlt`
   - **R3-7:** `XXXXXXXX`
