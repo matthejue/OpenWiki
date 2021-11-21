@@ -360,6 +360,25 @@ $$
 
 ---
 
+# Übungsblatt
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #7b738f; -->
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+
+![img](_resources/_2021-11-21-13-02-44.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Quellen
 
 <!--_class: lead-->
