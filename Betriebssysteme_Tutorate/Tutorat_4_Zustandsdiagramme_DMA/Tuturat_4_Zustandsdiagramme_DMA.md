@@ -122,13 +122,31 @@ style: |
 ## Vorbereitung
 ### Binärepräfixe
 
+- Speicher wird in **Byte** = $8$ **Bit** angegeben
+- **Dezimalpräfixe:** Kilobyte [kB], Megabyte [MB], Gigabyte [GB], Terabyte [TB], Petabyte [PB], Exabyte [EB]
+- **Binärpräfixe:** Kibibyte [KiB], Mebibyte [MiB], Gibibyte [GiB], Tebibyte [TiB], Pebibyte [PiB], Exbibyte [EiB]
+- **Maßeinheit umrechnen:**
+`1 000 000 000 kB` $\xLeftarrow{\cdot 1000}$ `1 000 000 MB` $\xLeftarrow{\cdot 10^3}$ `1 000 GB` $\xLeftarrow{\cdot 10^3}$ `1 TB`
+$\Downarrow \cdot 10^3$
+`1 000 000 000 000 B`
+$\Downarrow \operatorname{:} 2^{10}$
+`976 562 500 KiB` $\xRightarrow{\operatorname{:} 1024}$ `953 674,32 MiB` $\xRightarrow{\operatorname{:} 2^{10}}$ `931,32 GiB` $\xRightarrow{\operatorname{:} 2^{10}}$ `0,91 TiB`
+
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
 
 ---
 
 ## Vorbereitung
-### DMA
+### Binärepräfixe
+
+- $1\cdot2^{10}B=1KiB$, $1\cdot2^{20}=1MiB$, $1\cdot2^{30}=1GiB$ etc.
+- $1\cdot10^3B=1KB$, $1\cdot10^{6}B=1MB$, $1\cdot10^{9}B=1GB$ etc.
+- **Windows** verwendet $GiB$, schreibt aber $GB$ hin, einige **Linux Distributionen** auch, der **Manjaro Installer** aber z.B. $GiB$
+- wird von **Festplattenherstellern** genutzt, um $100GB$ draufzuschreiben, was viele fälschlicherweise als $GiB$ interpretieren, aber nur $(100 \cdot 1000 \cdot 1000 \cdot 1000) / 1024 / 1024 / 1024 \approx 93.13GiB$ tatsächlich zu liefern
+- **Unterschied** wird immer größer, z.B. zwischen GB und GiB sind es $7,4\%$
+- bei **SD-Karten** wird in GiB angegeben (512GiB)
+- **Arbeitsspeicher** wird in GiB angegebn (8 GiB Arbeitsspeicher)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -174,6 +192,7 @@ style: |
 ### Aufgabe 1
 
 ![height:400px](_resources/_2021-11-22-15-04-52.png) ![height:200px](_resources/_2021-11-22-15-04-13.png)
+- $mreq$ bedeutet, dass das Eingangssignal $/mreq = 0$ entspricht
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
