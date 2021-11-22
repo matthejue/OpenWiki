@@ -52,6 +52,89 @@ style: |
 
 ---
 
+# Vorbereitung
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #7b738f; -->
+
+---
+
+## Vorbereitung
+### Mealy und Moore
+
+#### ![height:400px](_resources/_2021-11-22-14-17-21.png) ![height:200px](_resources/_2021-11-22-15-00-42.png) ![height:200px](_resources/_2021-11-22-15-01-15.png)
+#### **Source:** https://earth.informatik.uni-freiburg.de/uploads/es-2122/03_finitestate.html
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Mealy und Moore
+
+- **Primäre Eingänge:** Bekommen Werte *„von außen“*.
+- **Primäre Ausgänge:** Liefern Werte *„nach außen“*.
+- **Sekundäre Eingänge:** Sind mit den Datenausgängen der Flipflops im Register verbunden. Auf diese Weise kann der aktuelle Zustand des Schaltkreises in den *Übergangs- und Ausgabefunktionen* berücksichtigt werden.
+- **Sekundäre Ausgänge:** Sind mit den Dateneingängen der Flipflops verbunden. Durch sie wird der *nächste Zustand* des Schaltkreises spezifiziert.
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Mealy und Moore
+
+##### Beispiel Erweiterte RETI (Aufgabe 1 Übungsblatt)
+- **Eingabevektor:** $i = (/mreg, /mw, a31)$ (*= Primäre Eingänge*)
+- **Ausgabevektor:** $o = (/SMack, /SDdoe, /SMw)$ (*= Primäre Ausgänge*)
+- **Zustandsvektor:** $z = (z_0, z_1, z_2)$
+- **Übergangsfunktion:** $\delta: Z \times I \rightarrow Z$
+- **Ausgabefunktion (Mealy):** $\lambda: Z \times I \rightarrow O$
+  - auf den Kanten stehen *Inputsymbole* und *Outputsymbole*, dafür stehen in den Zuständen nur die Zustandsbezeichnungen
+- **Ausgabefunktion (Moore):** $\lambda: Z \rightarrow O$
+  - auf den Kanten stehen *Inputsymbole*, dafür stehen in den Zuständen *Zustandsbezeichnungen* und *Outputsymbole*
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Maxterme und Minterme, Klauseln, Literale
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### DNF und KNF
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Binärepräfixe
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### DMA
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -64,7 +147,11 @@ style: |
 ## Übungsblatt
 ### Aufgabe 1
 
-<!-- ![img](_resources/_2021-11-21-13-02-44.png) -->
+##### Vorgehen für Übergangsfunktion
+- für $z_x$ schaue, wo $z_x$ in der Spalte $1$ ist und notiere diese *Zustände* des Zustandsdiagrams
+- gehe zu diesen *notierten Zuständen* $z_x$ und notiere die *Conditions* und die *adjazenten Vorgängerzustände* $z_x'$, die auf den *eingehenden Kanten* stehen bzw. über sie erreichbar sind
+- bilde *Disjunktive Normalform* für *nächsten Zustand* $z_x'$ durch jeweils *Verunden* von *einzelnen Inputsignalen in den Conditions* und *der Kodierung der adjazenten Vorgängerzustände* $(z_0, ~z_1, ~z_2)$ für einen der *Vorgängerzustände* und durch *Vorodern* der gebildeten *Klauseln* aus den *Vorgängerzuständen*
+- (*Minimieren*)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -72,13 +159,51 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 2a)
+### Aufgabe 1
+
+##### Vorgehen für Moore Ausgabefunktion
+- schaue welche *Zustände* $z_x$ das *Outputsignal* $/S_i$ haben und notiere diese *Zustände* des Zustandsdiagrams
+- bilde *Disjunktive Normalform* für Outputsignal $/S_i$ durch *Vorunden* der *Kodierung dieser Vorgängerzustände* $(\~z_0, z_1, z_2)$ und *Vorodern* der gebildeten *Klauseln* für jeden dieser *notierten Zustände*
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+
+![height:400px](_resources/_2021-11-22-15-04-52.png) ![height:200px](_resources/_2021-11-22-15-04-13.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+
+- $z_{0}^{\prime}=\left(z_{0} \wedge \neg z_{1} \wedge \neg z_{2} \wedge / m r e q\right) \vee\left(z_{0} \wedge \neg z_{1} \wedge \neg z_{2} \wedge / a 31\right) \vee\left(\neg z_{0} \wedge \neg z_{1} \wedge z_{2} \wedge / m r e q\right) \vee\left(\neg z_{0} \wedge z_{1} \wedge z_{2} \wedge / m r e q\right)$
+- $z_{1}^{\prime}=\left(z_{0} \wedge \neg z_{1} \wedge \neg z_{2} \wedge m r e q \wedge m w \wedge a 31\right) \vee\left(\neg z_{0} \wedge z_{1} \wedge \neg z_{2}\right) \vee\left(\neg z_{0} \wedge z_{1} \wedge z_{2} \wedge m r e q\right)$
+- $z_{2}^{\prime}=\left(\neg z_{0} \wedge \neg z_{1} \wedge \neg z_{2}\right) \vee\left(\neg z_{0} \wedge z_{1} \wedge \neg z_{2}\right) \vee\left(\neg z_{0} \wedge \neg z_{1} \wedge z_{2} \wedge m r e q\right) \vee\left(\neg z_{0} \wedge z_{1} \wedge z_{2} \wedge m r e q\right)$
+- $/ S M a c k=\neg\left(\left(\neg z_{0} \wedge \neg z_{1} \wedge \neg z_{2}\right) \vee\left(\neg z_{0} \wedge z_{1} \wedge \neg z_{2}\right)\right)$
+- $/ S D d o e=\neg\left(\left(\neg z_{0} \wedge \neg z_{1} \wedge \neg z_{2}\right) \vee\left(\neg z_{0} \wedge \neg z_{1} \wedge z_{2}\right)\right)$
+- $/ S M w=\neg\left(\neg z_{0} \wedge z_{1} \wedge \neg z_{2}\right)$
+- Weil die **Ausgangssignale** alle **active-low** sind, müssen deren **DNF** die zu $1$ führen komplett **negiert** werden
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a) - Umsetzung mit Interrupt
 - Taktrate des Prozessors = $8\cdot 10^{8}\dfrac{1}{s}$
-- Datenübertragungsrate der Festplatte = $8\cdot 10^{6}\dfrac{B}{s}$
+- Datenübertragungsrate der Festplatte = $8\cdot 2^{20}\dfrac{B}{s}$
 ```
-|8*32Bit=32Byte|1000Takte____|__________|Aktionen
-|4*10^(-6)s____|1,25*10^(-6)s|__________|einzelne Zeitdauern
-|8*10^(-5)s_____________________________|Gesamtdauer
+|8*32Bit=32Byte|1000Takte____|___________|eine Übertragung
+|1*2^(-18)s____|1,25*10^(-6)s|___________|einzelne Zeitdauern
+|20*2^(-18)s_____________________________|Gesamtdauer
 ```
 
 <!--small-->
@@ -87,19 +212,19 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 2a)
+### Aufgabe 2a) - Umsetzung mit Interrupt
 
 ##### Zeit der Festplatte (Dauer der 32Byte Übertragung)
 
-$1s\overset{\wedge}{=}800\cdot10^{6}B$
-$\Downarrow \cdot 4\cdot10^{-6}$
-$4\cdot10^{-6}s\overset{\wedge}{=}32B$
+$1s\overset{\wedge}{=}8 \cdot2^{20}B$
+$\Downarrow \cdot2^{-18}$
+$1\cdot 2^{-18}s\overset{\wedge}{=}8 \cdot2^{2}B = 32B$
 
 ##### Gesamtdauer
 
-$4\cdot 10^{-6}s\overset{\wedge}{=}5\%$
+$1\cdot 2^{-18}s\overset{\wedge}{=}5\%$
 $\Downarrow \cdot 20$
-$8\cdot 10^{-5}s\overset{\wedge}{=} 100\%$
+$20\cdot 2^{-18}s\overset{\wedge}{=} 100\%$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -107,7 +232,7 @@ $8\cdot 10^{-5}s\overset{\wedge}{=} 100\%$
 ---
 
 ## Übungsblatt
-### Aufgabe 2a)
+### Aufgabe 2a) - Umsetzung mit Interrupt
 
 ##### Zeit des Prozessors (Dauer der 1000 Takte)
 
@@ -117,7 +242,10 @@ $1,25\cdot 10^{-6}s\overset{\wedge}{=}1000 Takte$
 
 ##### Anteil der CPU-Zeit
 
-$\dfrac{1,25\cdot 10^{-6}s}{8\cdot 10^{-5}s}=0.0156=1,56\%$
+$\dfrac{1,25\cdot 10^{-6}s}{20\cdot 2^{-18}s}=0.01638\approx1,64\%$
+
+##### Musterlösung
+$\displaystyle0.05 \cdot \frac{2^{18} \cdot \frac{1}{800000} \mathrm{~s}}{1 \mathrm{~s}}=\frac{2^{18}}{16000000}=0.016384$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -125,14 +253,14 @@ $\dfrac{1,25\cdot 10^{-6}s}{8\cdot 10^{-5}s}=0.0156=1,56\%$
 ---
 
 ## Übungsblatt
-### Aufgabe 2b)
+### Aufgabe 2b) - Umsetzung mit DMA
 - Taktrate des Prozessors = $8\cdot 10^{8}\dfrac{1}{s}$
-- Datenübertragungsrate der Festplatte = $8\cdot 10^{6}\dfrac{B}{s}$
+- Datenübertragungsrate der Festplatte = $8\cdot 2^{20}\dfrac{B}{s}$
 ```
-|1500Takte|16KB|500Takte______|_________|Aktionen
-|1500+500Takte_____|16KB______|_________|Aktionen zusammengefasst
-|2,5*10^(-6)s______|2*10^(-3)s|_________|einzelne Zeitdauern
-|4*10^(-2)s_____________________________|Gesamtdauer
+|1500Takte|16KB|500Takte______|_________|eine Übertratung
+|1500+500Takte_____|16KiB_____|_________|eine Übertratung zusammengefasst
+|0.25*10^(-5)s_____|1*2^(-9)s_|_________|einzelne Zeitdauern
+|20*2^(-9)s_____________________________|Gesamtdauer
 ```
 
 <!--small-->
@@ -141,19 +269,19 @@ $\dfrac{1,25\cdot 10^{-6}s}{8\cdot 10^{-5}s}=0.0156=1,56\%$
 ---
 
 ## Übungsblatt
-### Aufgabe 2b)
+### Aufgabe 2b) - Umsetzung mit DMA
 
-##### Zeit der Festplatte (Dauer des 16KB Block)
+##### Zeit der Festplatte (Dauer des 16KiB Block)
 
-$1s\overset{\wedge}{=}8\cdot 10^{6}B$
-$\Downarrow \cdot 2\cdot 10^{-3}$
-$2\cdot 10^{-3}s\overset{\wedge}{=}16\cdot 10^{3}B$
+$1s\overset{\wedge}{=}8\cdot 2^{20}B$
+$\Downarrow \cdot 2^{-9}$
+$1\cdot 2^{-9}s\overset{\wedge}{=}8\cdot 2^{11}B = 16KiB$
 
 ##### Gesamtdauer
 
-$2\cdot 10^{-3}s\overset{\wedge}{=}5\%$
+$1\cdot 2^{-9}s\overset{\wedge}{=}5\%$
 $\Downarrow \cdot 20$
-$4\cdot 10^{-2}s\overset{\wedge}{=}100\%$
+$20\cdot 2^{-9}s\overset{\wedge}{=}100\%$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -161,17 +289,20 @@ $4\cdot 10^{-2}s\overset{\wedge}{=}100\%$
 ---
 
 ## Übungsblatt
-### Aufgabe 2b)
+### Aufgabe 2b) - Umsetzung mit DMA
 
-##### Zeit des Prozessors (Dauer der 2000 Takte
+##### Zeit des Prozessors (Dauer der 2000 Takte)
 
 $1s\overset{\wedge}{=}8\cdot 10^{8}Takte$
-$\Downarrow \cdot 2,5\cdot 10^{-6}$
-$2,5\cdot 10^{-6}s\overset{\wedge}{=}2\cdot 10^{3}Takte$
+$\Downarrow \cdot 0,25\cdot 10^{-5}$
+$0,25\cdot 10^{-5}s\overset{\wedge}{=}2\cdot 10^{3}Takte$
 
 ##### Anteil der CPU-Zeit
 
-$\dfrac{2,5\cdot 10^{-2}s}{0.04s}=6,25\cdot 10^{-5}=0.0000625=0.00625\%$
+$\dfrac{0,25\cdot 10^{-5}s}{20\cdot 2^{-9}s}=0.000064=0.0064\%$
+
+##### Musterlösung
+$\displaystyle0.05 \cdot \frac{2^{9} \cdot \frac{1}{400000} \mathrm{~s}}{1 \mathrm{~s}}=\frac{2^{9}}{8000000}=0.000064$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
