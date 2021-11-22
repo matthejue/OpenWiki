@@ -52,314 +52,6 @@ style: |
 
 ---
 
-# Einstieg
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #7b738f; -->
-
----
-
-## Einstieg
-### Fakeupdate
-- https://fakeupdate.net/
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-# Korrektur
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #7b738f; -->
-
----
-
-## Korrektur
-### Interessantes und häufige Fehler
-- überschreiben der Daten, die in der b) nach links geshiftet wurden. `OR IN1 1`, **Non-Controlling** Bit `0`
-- ~~nach dem **Polling erst shiften~~ **➞** am Ende um 8 Stellen zu viel gehiftet
-- `SUBI ACC 2` um `b1` `0` zu setzen
-  - einfach `0` setzen geht nicht, weil die anderen **Flags** des **Statusregisters** erhalten bleiben sollen
-- neuen 8Bitvektor dranfügen aus **Empfangsregister** `ADD IN1 1`
-- der **EPROM** ist **READONLY** **➞** hat keinen Stack
-- andere **Flags** des **Statusregister** nicht überschreiben, nur das Bit, was geändert werden soll
-- bei `JUMPc i` beschreibt das `i`, wie oft man die Speicherzelle wechselt, und zwar von der Speicherzelle, wo das `JUMPc i` steht aus (wie `<count>j` in **(Neo-)Vim**)
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-# Vertiefungen
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #7b738f; -->
-
----
-
-## Vertiefungen
-### Datensegmentregister
-- Solange im `DS` die Bits `30` und `31` mit dem gewollten **Präfix** besesetzt sind muss man sich keine Sorgen machen
-- **Verändern kann man die beiden Bits durch:**
-  - durch `LOADI DS 0` z.B. mit `0`en überschrieben durch **Signextension**
-  - wenn man durch **Multiplikation** andere Bitwerte an Stelle `31` und `30` shiftet
-  - oder wenn man den `DS` mit einem anderen **Register** oder **SRAM Inhalt** überschreibt, die `32`Bit lang sind
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Signed (2er Komplement oder 1er Komplement) und Unsigned
-##### Unsigned (oder Betrag mit Vorzeichen)
-- $<x>=x_{n-1} 2^{n-1}+x_{n-2} 2^{n-2}+\cdots+x_{1} 2^{1}+x_{0} 2^{0}$
-- $[x]_{B V}=(-1)^{x_{n-1}}\cdot(x_{n-2} 2^{n-2}+\cdots+x_{1} 2^{1}+x_{0} 2^{0})$
-- **Bereich:** 0 bis $+2^{n}-1$ oder $-2^{n-1}+1$ bis $+2^{n-1}-1$
-
-##### Signed (2er Komplement)
-- $[x]_{2}=-x_{n-1} 2^{n-1}+x_{n-2} 2^{n-2}+\cdots+x_{1} 2^{1}+x_{0} 2^{0}$ (weil `1000` - `1` = `111`)
-- **Bereich:** $-2^{n-1}$ bis $+2^{n-1}-1$ (die $0$ muss auch iwo hin)
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Signed (2er Komplement oder 1er Komplement) und Unsigned
-##### Signed (1er Komplement)
-- $[x]_{1}=-x_{n-1} (2^{n-1}-1)+x_{n-2} 2^{n-2}+\cdots+x_{1} 2^{1}+x_{0} 2^{0}$
-- **Bereich:** $-2^{n-1}+1$ bis $+2^{n-1}-1$ (es gibt **2** Kodierungen für die `0`)
-
-##### Vergleich Kodierung von Unsigned, Signed im 1er und 2er Komplement
-
-$$
-\begin{array}{l|cccccccc}
-x & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 \\
-\hline[x]_{B V} & 0 & 1 & 2 & 3 & 0 & -1 & -2 & -3 \\
-{[x]_{2}} & 0 & 1 & 2 & 3 & -4 & -3 & -2 & -1 \\
-{[x]_{1}} & 0 & 1 & 2 & 3 & -3 & -2 & -1 & 0
-\end{array}
-$$
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Signed (2er Komplement oder 1er Komplement) und Unsigned
-
-##### Kodierung Bedeutungen
-- **Höchstwertiges** Bit ist **Sign Bit**, `1` für **negativ**, `0` für **positiv**
-- `<i>` **unsigned** und `[i]` **signed**
-- **Little Endian**=niedrigstwertiges Bit zuerst, **Big Endian**=höchstwertiges Bit zuerst
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Signed (2er Komplement oder 1er Komplement) und Unsigned
-
-
-##### Interessante Zahlen für 2er Komplement
-- `_0`: `0000 0000 ... 0000`
-- `–1`: `1111 1111 ... 1111`
-- **Negativste Zahl:** `1000 0000 ... 0000`
-- **Positivste Zahl:** `0111 1111 ... 1111`
-
-##### Signed Negation (2er Komplement)
-- $\bar{x}+1=-x$ (1er Komplement Negation + 1, da $x+\bar{x}=1111 \ldots 111_{2}=-1$)
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Signextension
-- **von 8 Bit auf 16 Bit:**
-  - `+2`: 0`000 0010 => 0000 0000` 0`000 0010`
-  - `–2`: 1`111 1110 => 1111 1111` 1`111 1110`
-- **unsigned** wird mit `0`en extendet
-- das **Sign Bit** wird nach **links** dupliziert
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Addition binär und dezimal
-```text
-  011011 (27)            17718
-+ 011101 (29)          +  6524
-  11111                  11 1
-  ======                ======
-  111000 (56)            24242
-```
-```
-00 + 00 = 00               00 + 00 (+ 01) = 01
-00 + 01 = 01               00 + 01 (+ 01) = 10
-01 + 00 = 01               01 + 00 (+ 01) = 10
-01 + 01 = 10               01 + 01 (+ 01) = 11
-```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Subtraktion binär und dezimal (nicht empfohlen, dient Vergleich mit nächster Folie)
-```text
-(1)
-  0111000 (56)         24242
-- 0011011 (27)       - 17718
-   11111               11 1
-  =======             ======
-  0011101 (29)          6524
-```
-```
-10 - 00 = 10                10 - 00 (- 01) = 01
-10 - 01 = 01                10 - 01 (- 01) = 00
-11 - 00 = 11                11 - 00 (- 01) = 10
-11 - 01 = 10                11 - 01 (- 01) = 01
-```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Subtraktion  binär und dezimal (funktioniert immer, egal was für Vorzeichen Zahlen haben)
-```text
-(2)
-   0111000 (56)
- + 1100101 (27) (0011011 negiert und +1)
-  11
-   =======
-   0011101 (29)
-```
-- **Zweierkomplement Negation:** `11011 -> 011011 -> 100100 -> 100101`
-  - `0`en hinzufügen bis **Minuend** und **Subtrahend** beide gleiche Länge haben und Platz für ihr **Vorzeichenbit** ist und dieses korrekt gesetzt ist
-  - **1er Komplement Negation** und `+1` nicht vergessen für den **Subtrahenden**
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Multiplikation binär und dezimal
-```text
-1101 x 1001 (13 * 9)          1304 x 12
-       1101                          48
-      0000                       +   0
-     0000                        + 36
-    1101                         +12
-   ========                      ======
-    1110101 (117)                 15648
-```
-- **Verschiebung** ist aufgrund der `0`en, die hier ausgelassen sind
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Division binär
-```text
-  1110101 / 1011 (117 : 11) = 1010 (10) Rest: 111 (7)
-- 1011|||
- =====|||
-    111||
--     0||
-   ====||
-    1110|
--   1011|
-   =====|
-      111
--       0
-     ====
-      111
-```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Division dezimal
-```text
-15658 / 12 = 1304,833...
-12|||
-==|||
- 36||
- 36||
- ==||
-  05|
-   0|
-  ==|
-   58
-   48
-   ...
-```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Division dezimal
-```text
-   ==
-   10|0  oder Rest: 10
-    9 6
-    ===
-      40
-      36
-      ==
-       40
-       36
-       ==
-        4...
-```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Vertiefungen
-### Division binär
-- bei **binärer Division** gibt es nur **2 Zustände** (`1` oder `0`), dementsprechend wird entweder die Zahl so übernommen (Zahl $\cdot$ `1`) oder die Zahl ist `0` (Zahl $\cdot$ `0`)
-
-### Division allgemein
-- nach jeder Addition ein Zahl runterholen, bis keine mehr runtergeholt werden kann $\to$ dann Ende (bei **ganzzahliger Division**). Was unten stehen bleibt ist der **Rest**
-- bei Division mit Nachkommastellen, 0en runterbringen, bis einmal **kein Rest** mehr rauskommt oder Grenze setzen bis zu der man weiter macht $\to$ dann Ende
-- ist der **Dividend** trotz runtergebrachter weiter Stelle (weil einmal kein Rest übrig blieb) immernoch kleiner als der **Divisor**, so ist der **Quotient** $0$, weil nur durch $\cdot 0$ rechnen kann der **Divisor** noch kleiner sein als der **Dividend**
-
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
 # Übungsblatt
 
 <!--_class: lead-->
@@ -372,7 +64,122 @@ $$
 ## Übungsblatt
 ### Aufgabe 1
 
-![img](_resources/_2021-11-21-13-02-44.png)
+<!-- ![img](_resources/_2021-11-21-13-02-44.png) -->
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a)
+- Taktrate des Prozessors = $8\cdot 10^{8}\dfrac{1}{s}$
+- Datenübertragungsrate der Festplatte = $8\cdot 10^{6}\dfrac{B}{s}$
+```
+|8*32Bit=32Byte|1000Takte____|__________|Aktionen
+|4*10^(-6)s____|1,25*10^(-6)s|__________|einzelne Zeitdauern
+|8*10^(-5)s_____________________________|Gesamtdauer
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a)
+
+##### Zeit der Festplatte (Dauer der 32Byte Übertragung)
+
+$1s\overset{\wedge}{=}800\cdot10^{6}B$
+$\Downarrow \cdot 4\cdot10^{-6}$
+$4\cdot10^{-6}s\overset{\wedge}{=}32B$
+
+##### Gesamtdauer
+
+$4\cdot 10^{-6}s\overset{\wedge}{=}5\%$
+$\Downarrow \cdot 20$
+$8\cdot 10^{-5}s\overset{\wedge}{=} 100\%$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a)
+
+##### Zeit des Prozessors (Dauer der 1000 Takte)
+
+$1s\overset{\wedge}{=}8\cdot 10^{8} Takte$
+$\Downarrow \cdot 1,25\cdot 10^{-6}$
+$1,25\cdot 10^{-6}s\overset{\wedge}{=}1000 Takte$
+
+##### Anteil der CPU-Zeit
+
+$\dfrac{1,25\cdot 10^{-6}s}{8\cdot 10^{-5}s}=0.0156=1,56\%$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2b)
+- Taktrate des Prozessors = $8\cdot 10^{8}\dfrac{1}{s}$
+- Datenübertragungsrate der Festplatte = $8\cdot 10^{6}\dfrac{B}{s}$
+```
+|1500Takte|16KB|500Takte______|_________|Aktionen
+|1500+500Takte_____|16KB______|_________|Aktionen zusammengefasst
+|2,5*10^(-6)s______|2*10^(-3)s|_________|einzelne Zeitdauern
+|4*10^(-2)s_____________________________|Gesamtdauer
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2b)
+
+##### Zeit der Festplatte (Dauer des 16KB Block)
+
+$1s\overset{\wedge}{=}8\cdot 10^{6}B$
+$\Downarrow \cdot 2\cdot 10^{-3}$
+$2\cdot 10^{-3}s\overset{\wedge}{=}16\cdot 10^{3}B$
+
+##### Gesamtdauer
+
+$2\cdot 10^{-3}s\overset{\wedge}{=}5\%$
+$\Downarrow \cdot 20$
+$4\cdot 10^{-2}s\overset{\wedge}{=}100\%$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2b)
+
+##### Zeit des Prozessors (Dauer der 2000 Takte
+
+$1s\overset{\wedge}{=}8\cdot 10^{8}Takte$
+$\Downarrow \cdot 2,5\cdot 10^{-6}$
+$2,5\cdot 10^{-6}s\overset{\wedge}{=}2\cdot 10^{3}Takte$
+
+##### Anteil der CPU-Zeit
+
+$\dfrac{2,5\cdot 10^{-2}s}{0.04s}=6,25\cdot 10^{-5}=0.0000625=0.00625\%$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
