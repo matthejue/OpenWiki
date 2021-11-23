@@ -239,6 +239,19 @@ $\Downarrow \operatorname{:} 2^{10}$
 
 ---
 
+## Vorbereitung
+### DMA (Direct Memory Access)
+
+![height:200px](_resources/_2021-11-23-14-07-18.png)
+- direkt ohne **Umweg** über **CPU**
+- Funktioniert nur, wenn CPU Daten im **Cache** findet. Wenn sie an den **Hauptspeicher** gehen muss, dann gibts **Buskonflikt**
+- Bevor eine **Adresse** über **Adressbus** an **Hauptspeicher** geht, geht Adresse zunächst an den **Cache**. Cache meldet zurück, es gibt nen **Cache Hit** **🠒** man kann direkt liefern
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -254,7 +267,7 @@ $\Downarrow \operatorname{:} 2^{10}$
 ##### Vorgehen für Übergangsfunktion
 - für $z_x$ schaue, wo $z_x$ in der Spalte $1$ ist und notiere diese *Zustände* des Zustandsdiagrams
 - gehe zu diesen *notierten Zuständen* $z_x$ und notiere die *Conditions* und die *adjazenten Vorgängerzustände* $z_x'$, die auf den *eingehenden Kanten* stehen bzw. über sie erreichbar sind
-- bilde *Disjunktive Normalform* für *nächsten Zustand* $z_x'$ durch jeweils *Verunden* von *einzelnen Inputsignalen in den Conditions* und *der Kodierung der adjazenten Vorgängerzustände* $(z_0, ~z_1, ~z_2)$ für einen der *Vorgängerzustände* und durch *Vorodern* der gebildeten *Klauseln* aus den *Vorgängerzuständen*
+- bilde *Disjunktive Normalform* für *nächsten Zustand* $z_x'$ aus *Conditions* und *der Kodierung der adjazenten Vorgängerzustände* $(z_0, \~z_1, \~z_2)$
 - (*Minimieren*)
 
 <!--small-->
@@ -267,7 +280,7 @@ $\Downarrow \operatorname{:} 2^{10}$
 
 ##### Vorgehen für Moore Ausgabefunktion
 - schaue welche *Zustände* $z_x$ das *Outputsignal* $/S_i$ haben und notiere diese *Zustände* des Zustandsdiagrams
-- bilde *Disjunktive Normalform* für Outputsignal $/S_i$ durch *Vorunden* der *Kodierung dieser Vorgängerzustände* $(\~z_0, z_1, z_2)$ und *Vorodern* der gebildeten *Klauseln* für jeden dieser *notierten Zustände*
+- bilde *Disjunktive Normalform* für Outputsignal $/S_i$ aus der *Kodierung der notierten Zustände* $(\~z_0, z_1, z_2)$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
