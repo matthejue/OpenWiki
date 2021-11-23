@@ -106,8 +106,8 @@ style: |
 ## Vorbereitung
 ### Anzahl Formeln
 - **Anzahl Modelle / Zeilen in Wahrheitstabelle:** $2^{\text{\# Variablen}}$
-- **Anzahl Aussagenlogische Formeln:** $2^{\text{\#Modelle}} = 2^{2^{\text{\#Variablen}}}$
-  - bei 3 **Aussagenlogischen Variablen** gibt es $2^3=8$ **Modelle** / Zeilen in der Wahrheitstabelle und damit $2^{(2^3)}=256$ verschiedenen Aussagenlogische Formeln, da man diese $2^3$ Zeilen auch nochmal auf **exponentiell** $2^{\text{\#Modelle}}$ viele verschiedene Arten belegen kann
+- **Anzahl Aussagenlogische Formeln:** $2^{\text{\#Zeilen}} = 2^{2^{\text{\#Variablen}}}$
+  - bei 3 **Aussagenlogischen Variablen** gibt es $2^3=8$ Zeilen in der Wahrheitstabelle und damit $2^{(2^3)}=256$ verschiedenen Aussagenlogische Formeln, da man diese $2^3$ Zeilen auch nochmal auf **exponentiell** $2^{\text{\#Zeilen}}$ viele verschiedene Arten belegen kann
 
 ![_2021-11-22-18-46-04](_resources/_2021-11-22-18-46-04.png)
 
@@ -137,7 +137,7 @@ style: |
 - **Vergleich:**
   $
   \begin{array}{|c|c||c|c|}
-  \hline a & b & ¬a \cdot b & ¬a + b\\
+  \hline a & b & ¬a \cdot b & a + ¬b\\
   \hline 0 & 0 & 0 & 1\\
   0 & 1 & 1 & 0 \\
   1 & 0 & 0 & 1 \\
@@ -211,7 +211,7 @@ $f(a, b)=(f(0,0)+a+b) \cdot(f(0,1)+a+\bar{b}) \cdot(f(1,0)+\bar{a}+b) \cdot(f(1,
 - Speicher wird in **Byte** = $8$ **Bit** angegeben
 - **Dezimalpräfixe:** Kilobyte [kB], Megabyte [MB], Gigabyte [GB], Terabyte [TB], Petabyte [PB], Exabyte [EB]
 - **Binärpräfixe:** Kibibyte [KiB], Mebibyte [MiB], Gibibyte [GiB], Tebibyte [TiB], Pebibyte [PiB], Exbibyte [EiB]
-- **Maßeinheit umrechnen:**
+- **Einheit umrechnen:**
 `1 000 000 000 kB` $\xLeftarrow{\cdot 1000}$ `1 000 000 MB` $\xLeftarrow{\cdot 10^3}$ `1 000 GB` $\xLeftarrow{\cdot 10^3}$ `1 TB`
 $\Downarrow \cdot 10^3$
 `1 000 000 000 000 B`

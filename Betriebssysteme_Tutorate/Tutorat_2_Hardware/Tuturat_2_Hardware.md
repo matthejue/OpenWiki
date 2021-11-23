@@ -416,6 +416,9 @@ exit_group(42)
 - https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm
 - https://de.wikipedia.org/wiki/Systemaufruf
 
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
 ---
 
 # Vielen Dank für eure Aufmerksamkeit!
