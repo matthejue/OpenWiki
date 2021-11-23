@@ -104,7 +104,49 @@ style: |
 ---
 
 ## Vorbereitung
-### Maxterme und Minterme, Klauseln, Literale
+### Anzahl Formeln
+- **Anzahl Modelle / Zeilen in Wahrheitstabelle:** $2^{\text{\# Variablen}}$
+- **Anzahl Aussagenlogische Formeln:** $2^{\text{\#Modelle}} = 2^{2^{\text{\#Variablen}}}$
+  - bei 3 **Aussagenlogischen Variablen** gibt es $2^3=8$ **Modelle** / Zeilen in der Wahrheitstabelle und damit $2^{(2^3)}=256$ verschiedenen Aussagenlogische Formeln, da man diese $2^3$ Zeilen auch nochmal auf **exponentiell** $2^{\text{\#Modelle}}$ viele verschiedene Arten belegen kann
+
+![_2021-11-22-18-46-04](_resources/_2021-11-22-18-46-04.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Minterme und Maxterme
+- **16 mögliche Logikfunktionen für 2 Aussagenlosche Variablen:**
+  ![_2021-11-22-18-01-18](_resources/_2021-11-22-18-01-18.png)
+- $f1$, $f2$, $f4$ und $f8$ sind **Minterme** (für genau eine *Variation* der Eingabewerte den Wert $1$)
+- $f7$, $f11$, $f13$ und $f14$ sind **Maxterme** (für genau eine *Variation* der Eingabewerte den Wert $0$)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Minterme und Maxterme
+- die 4 **Minterme** können als **Konjunktionen** dargestellt werden:
+  $m_{0}(a, b)=\bar{a} \cdot \bar{b}, m_{1}(a, b)=\bar{a} \cdot b, m_{2}(a, b)=a \cdot \bar{b}, m_{3}(a, b)=a \cdot b$
+- die 4 **Maxterme** können als **Disjunktionen** dargestellt werden:
+  $M_{0}(a, b)=\bar{a} + \bar{b}, M_{1}(a, b)=\bar{a} + b, M_{2}(a, b)=a + \bar{b}, M_{3}(a, b)=a + b$
+- **Vergleich:**
+  $
+  \begin{array}{|c|c||c|c|}
+  \hline a & b & ¬a \cdot b & ¬a + b\\
+  \hline 0 & 0 & 0 & 1\\
+  0 & 1 & 1 & 0 \\
+  1 & 0 & 0 & 1 \\
+  1 & 1 & 0 & 1 \\
+  \hline
+  \end{array}
+  $
+- $¬(¬a \wedge b) = a \vee ¬b$: "alles außer" $¬a \wedge b$ ist $1$ **➞** ($a=0, b=1$) ist als einziges $0$
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -113,6 +155,50 @@ style: |
 
 ## Vorbereitung
 ### DNF und KNF
+
+- aus drei **Basistypen** (Disjunktion, Konjunktion oder Negation) lassen sich alle anderen **Logikfunktion** erzeugen
+- Jede Logikfunktion $f: B^{2} \rightarrow B$ lässt sich in **disjunktiver Normalform (DNF):**
+$f(a, b)=f(0,0) \cdot \bar{a} \cdot \bar{b}+f(0,1) \cdot \bar{a} \cdot b+f(1,0) \cdot a \cdot \bar{b}+f(1,1) \cdot a \cdot b$
+- Und auch in **konjunktiver Normalform (KNF):**
+$f(a, b)=(f(0,0)+a+b) \cdot(f(0,1)+a+\bar{b}) \cdot(f(1,0)+\bar{a}+b) \cdot(f(1,1)+\bar{a}+\bar{b})$
+- man möchte **Logische Funktion** (Wertetabelle) mit möglichst wenig Schaltelementen realisieren **➞** schauen, ob **DNF** oder **KNF** kürzer ist, je nachdem, ob die Logische Funktion (Menge an Formeln) mehr oder weniger **Modelle** besitzt, also mehr oder weniger Variationen aus Aussagenlogischen Variablen besitzt, die $1$ ergeben
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### DNF und KNF
+![height:400px](_resources/_2021-11-22-21-07-17.png)
+#### https://de.wikipedia.org/wiki/Disjunktive_Normalform#/media/Datei:Knf+dnf.svg
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### DNF und KNF
+- **Beispiel:** "**höchstens** 2 wahre aussagenlogische Variablen"
+  - **DNF:** $(¬a\cdot ¬b\cdot ¬c)+(¬a\cdot ¬b\cdot c)+(¬a\cdot b\cdot ¬c)+(¬a\cdot b\cdot c)+(a\cdot ¬b\cdot ¬c)+(a\cdot ¬b\cdot c)+(a\cdot b\cdot ¬c)$
+  - **KNF:** $(¬a+¬b+¬c)$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitung
+### Klauseln, Literale, Klausel Normalform
+
+- **Atom:** *Atomare Formel* (=Formel, die nur aus einer einzigen *Aussagenlogischen Variable* besteht)
+- **Literal:** (möglicherweise *negierte*) *atomare Formel*
+- **Klausel:** *Disjunktion* von *Literalen*
+- **Klausel Normalform:** Formel in *konjunktiver Normalform (KNF)*, bei der die *Konjunktionen* jeweils in *Mengenschreibweise* zusammengefasst sind
+  - $((a \vee b) \wedge(b \vee c) \wedge(a \vee \neg d \vee \neg e) \wedge d)$
+ **➞** $\{\{a, b\},\{b, c\},\{a, \neg d, \neg e\},\{d\}\}$
+  - $\{\neg(P \vee(\neg(P \wedge Q) \wedge \neg R))\}$ **➞** $\{\{\neg P\},\{\neg(\neg(P \wedge Q) \wedge \neg R)\}\}$ **➞** $\{\{\neg P\},\{\neg \neg(P \wedge Q), \neg \neg R\}\}$ **➞** $\{\{\neg P\},\{(P \wedge Q), R\}\}$ **➞** $\{\{\neg P\},\{P, R\},\{Q, R\}\}$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -330,6 +416,73 @@ $\displaystyle0.05 \cdot \frac{2^{9} \cdot \frac{1}{400000} \mathrm{~s}}{1 \math
 
 ## Übungsblatt
 ### Aufgabe 3
+- Interrupts mit **verschiedenen Prioritäten**
+- Verwendung **Interrupt Controller**
+- Signal $Int$ **🠒** Interrupt Controller **signalisiert** dem Prozessor, dass **Interrupt anliegt**, der Prozessor **unterbrechen** darf
+  - wenn **keine ISR** auf Prozessor **aktiv** ist
+  - wenn an Interrupt-Controller anliegender Interrupt **höhere Priorität** hat als aktuell auf Prozessor laufende ISR
+- Signal $/INTA$ **🠒** nach **Abarbeiten von Interrupt** signalisiert Prozessor dem Interrupt Controller, dass ISR **beendet** wurde
+- max. 255 **Hardware Interrupts** mit Prioritäten $0$ bis $254$
+- Solange Interrupt $INT_j$ **nicht verarbeitet** darf I/O-Gerät $j$ **keinen** weiteren Interrupt auslösen
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3a)
+> Methode überlegen, wie **Interrupt Controller** feststellen kann, ob auf dem Prozessor aktuell gerade **keine ISR** läuft
+- **8-Bit-Zähler**
+  - Signale **up** und **down**, (up=1, down=0) **🠒** Zähler zählt bei steigender Flanke **hoch**, (up=0, down=1) **🠒** Zähler zählt bei steigender Flanke **runter**
+
+##### Lösungsweg
+- mit $/reset$ Signal **Zähler** mit $0$ initiliasieren
+- $INT$ **➞** Zähler **inkrementieren**
+- $/INTA$ (Interrupt Acknowledge) **➞**  Zähler **dekrementieren**
+- wenn $\text{Zähler} = 0$ **➞** **Controller** weiß, dass **keine** ISR auf der CPU läuft
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3b)
+> Ausreichend, um **Interrupt Controller** zu implementieren? Lösung entwerfen, wo Interrupt Controller **Signal** $INT$ **immer korrekt** setzt.
+
+- Interrupt Controller hat Internen Speicherbereich mit $256$ **Speicherzellen**
+  - über 8-Bit **Adressen** angesprochen, **Speicherzellen** mit **8-Bit Wortbreite**
+- **8-Bit Zähler** aus a) weiterverwendbar
+- **Interrupt-Controller** speichert **Nummer** des anliegenden **Interrupts** mit der **höchsten Priorität** in Register `IVN` und **Priorität** in einem Register `PR` (also **Priorität** des Interrupts, der der CPU übergeben wird)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3b)
+##### Lösungsweg
+- **Szenario:**
+  - mehr als ein **Interrupt** ($\text{Zähler} > 1$) gleichzeitig in **ISR** **angefangen** ($INT_i$ von $INT_j$ mit **höherer Priorität** unterbrochen)
+  - vor Eintreffen von $INT_k$ min. eine **ISR** ($INT_j$) **beendet** (und $INT_i$ fortgesetzt **🠒** sobald $INT_k$ eintrifft, weiß Controller **nicht**, ob aktuell ausgeführte ISR **höhere Priorität** hat)
+- **Idee:** Speicher als Stack für Historie über die übergebenen Interrupts
+  - oben auf dem Stack liegt immer die **Priorität** des aktuell in der CPU abgearbeiteten Interrupts, welche immer die **höchste Priorität** aller **schon gestarteten** aber noch **nicht beendeten** ISR hat
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3b)
+##### Lösungsweg
+- bei **Senden** von $INT$ **🠒** Inhalt von Register `PR` auf Stack des Controllers
+   - **Stack** des **Controllers** ist nicht der **Stack** der **CPU**!
+- bei **Empfangen** von $/INTA$ **🠒** oberster Eintrag vom Stack **entfernt**
+- durch **Vergleich** von **PR** mit **obersten Eintrag des Stacks** wird bestimmt, ob ankommender $INT_l$ an CPU weitergeleitet wird
+  - **Zähler** aus a) für die **Adressierung des Stacks** genutzt, da **kein** eigenes Stackpointer Register gegeben
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -347,6 +500,18 @@ $\displaystyle0.05 \cdot \frac{2^{9} \cdot \frac{1}{400000} \mathrm{~s}}{1 \math
 
 ## Quellen
 ### Wissenquellen
+
+- https://de.wikipedia.org/wiki/Klausel-Normalform
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Quellen
+### Bildquellen
+
+- Von WikiBasti 21:12, 21. Jan. 2011 (CET) und JensKohl - Datei:KNF+DNF.png, CC-by-sa 2.0/de, https://de.wikipedia.org/w/index.php?curid=5947670
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
