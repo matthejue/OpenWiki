@@ -105,8 +105,8 @@ style: |
 
 ## Vorbereitung
 ### Anzahl Formeln
-- **Anzahl Modelle / Zeilen in Wahrheitstabelle:** $2^{\text{\# Variablen}}$
-- **Anzahl Aussagenlogische Formeln:** $2^{\text{\#Zeilen}} = 2^{2^{\text{\#Variablen}}}$
+- **Anzahl Zeilen in Wahrheitstabelle:** $2^{\text{\# Variablen}}$
+- **Anzahl Aussagenlogische Formeln:** $2^{\text{\#Zeilen}} = 2^{\left(2^{\text{\#Variablen}}\right)}$
   - bei 3 **Aussagenlogischen Variablen** gibt es $2^3=8$ Zeilen in der Wahrheitstabelle und damit $2^{(2^3)}=256$ verschiedenen Aussagenlogische Formeln, da man diese $2^3$ Zeilen auch nochmal auf **exponentiell** $2^{\text{\#Zeilen}}$ viele verschiedene Arten belegen kann
 
 ![_2021-11-22-18-46-04](_resources/_2021-11-22-18-46-04.png)
