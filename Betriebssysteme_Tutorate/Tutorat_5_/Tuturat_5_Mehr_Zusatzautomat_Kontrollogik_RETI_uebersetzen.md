@@ -3,7 +3,7 @@ theme: gaia
 paginate: true
 <!-- backgroundColor: #ffffff -->
 transition: fade
-footer: Betriebssysteme, Tutorat 5, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
+footer: Betriebssysteme, Tutorat 4, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
 style: |
   h1 { color: #b37650; font-size: 80px; text-align: center; }
   h2 { color: #b37650; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
@@ -43,48 +43,12 @@ style: |
 
 ---
 
-# Tutorat 5 <!--fit-->
+# Tutorat 4 <!--fit-->
 ### Zustandsdiagramme, DMA <!--fit-->
 
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-
----
-
-# Einstieg
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #7b738f; -->
-
----
-
-## Einstieg
-### Fakeupdate
-- asdf
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-# Korrektur
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #7b738f; -->
-
----
-
-## Korrektur
-### Interessantes und häufige Fehler
-- asdf
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
 
 ---
 
@@ -98,24 +62,16 @@ style: |
 ---
 
 ## Vorbereitung
-### asdf
-- asdf
+### Mealy und Moore
 
-<!--small-->
-![bg right:10%](_resources/background_2.png)
+- Das was du auschreibst ist ist quasi so ne richtig lange Bedingung dafür, wann das Signal SPckenPre den Wert 1, also true annimst.
+Und es soll genau dann true sein, also akitv sein in der bestimmten Phase von Execute (E ~s0 s1) im Normalbetrieb wenn die Befehle ...  kodiert an die
+Kontrollogoik vom Instruktionsregister weitergegeben werden und ggf. im Zusatzautomat in den Zuständen ...
+*1: es soll da der Wert stehen, der in der Symboltabelle als value eintragen ist für diesen
+Identifier, also 5. Hast du korrekt gemacht n_n
+*2: Ja die Compilerpattern sind nicht effizient, es werden alle Variablen auf dem Stack gespeichert. Echte Compiler versuchen allerdings mittels Graph Coloring möglichst viele Variablen Registern zuzuweisen, was nicht immer so einfach ist, weil man erst die liveness  (von wo bis wo eine Variable verwendet wird und ab wann ihr Wert nicht mehr gebrachtw wird) jeder einzelnen Variable herausfinden muss und schauen muss, wo sich Varaiblen überschneiden, also nicht dem gleichen Register zugewiesen werden können usw.
 
----
-
-# Linux Background Knowledge
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-
----
-
-## Linux Background Knowledge
-### Desktopenvironment aufsetzen
+![_2021-12-01-17-26-39](_resources/_2021-12-01-17-26-39.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -133,6 +89,18 @@ style: |
 
 ## Quellen
 ### Wissenquellen
+
+- https://de.wikipedia.org/wiki/Klausel-Normalform
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Quellen
+### Bildquellen
+
+- Von WikiBasti 21:12, 21. Jan. 2011 (CET) und JensKohl - Datei:KNF+DNF.png, CC-by-sa 2.0/de, https://de.wikipedia.org/w/index.php?curid=5947670
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
