@@ -92,7 +92,7 @@ style: |
 - ist **true** *gdw.* $\#$`1`en **ungerade** ist:
   - `1` ist **controllling value** und switcht `1` **🠒** `0` und `0` **🠒** `1`
   - `0` ist **non-controllling value** und belässt es so wie es ist
-  - **Bsp. `01011`:** 0 $\overset{1}{\rightarrow}$ 1 $\overset{0}{\rightarrow}$ 1$\overset{1}{\rightarrow}$ 0 $\overset{0}{\rightarrow}$ 0 $\overset{1}{\rightarrow}$ 1 $\overset{1}{\rightarrow}$ 0
+  - **Bsp. `01011`:** 0 $\overset{1}{\rightarrow}$ 1 $\overset{0}{\rightarrow}$ 0 $\overset{1}{\rightarrow}$ 1 $\overset{1}{\rightarrow}$ 0
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
