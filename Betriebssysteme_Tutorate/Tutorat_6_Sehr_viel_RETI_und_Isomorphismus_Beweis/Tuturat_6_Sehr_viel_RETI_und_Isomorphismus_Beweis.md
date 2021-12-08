@@ -286,7 +286,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 2
-- **Lösung** wird später auf **Nextcloud** Server hochgeladen
+- **Lösung** von **Emre** und **Taha** wird später auf **Nextcloud** Server hochgeladen
 ```
 void main() {
   int x = 42;
@@ -324,14 +324,8 @@ void main() {
 
 ## Übungsblatt
 ### Aufgabe 3
-$
-\begin{aligned}
-\operatorname{ind}\left(h_{1}, \ldots, h_{n}\right)-\operatorname{ind}\left(k_{1}, \ldots, k_{n}\right) &=\\
- \sum_{i=0}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) + \sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) + a - a &\geq \\
-\sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) &\geq \\
-\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(h_{i}-k_{i}\right) &\geq \\
-\end{aligned}
-$
+- Beweis durch **Kontraposition**
+- Funtkion ist **bijektiv** *gdw.* Funktion **linkseindeutig** (*injektiv*) und **rechtstotal** (*surjektiv*)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -340,14 +334,34 @@ $
 
 ## Übungsblatt
 ### Aufgabe 3
-$
+##### Beweis der Linkseindeutigkeit (Injektivität)
+$$
+\begin{aligned}
+\operatorname{ind}\left(h_{1}, \ldots, h_{n}\right)-\operatorname{ind}\left(k_{1}, \ldots, k_{n}\right) &=\\
+ \sum_{i=1}^{l-1}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\underbrace{\left(h_{i}-k_{i}\right)}_{0} + \sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) + \underbrace{a - a}_{0} &\geq \\
+\sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) &\geq \\
+\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(h_{i}-k_{i}\right) &\geq \\
+\end{aligned}
+$$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+$$
 \begin{aligned}
 \prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(-s_{i}+1\right)+\left(-s_{n}\right) \left.s_{j}\right)\left(-s_{i}+1\right) &> \\
 \prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n-2}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(-s_{i}+1\right)+\left(-s_{n-1}\right) s_{n} &= \\
 \ldots&=\\
 0
 \end{aligned}
-$
+$$
+
+##### Beweis der Rechtstotalität (Surjektivität)
+- asdf
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
