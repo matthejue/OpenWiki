@@ -287,11 +287,19 @@ void main()
 ### Aufgabe 3 b)
 
 ```
-LOADI ACC 3  // Variablenbezeichner y, Adresse 129
-STORE ACC 129
+SUBI SP 1;  // Variablenbezeichner y, Adresse 129
+LOADI ACC 3;
+STOREIN SP ACC 1;
+LOADIN SP ACC 1;  // Zuweisung
+ADDI SP 1;
+STORE ACC 129;
 
-LOADI ACC 2   // Variablenbezeichner x, Adresse 128
-STORE ACC 128
+SUBI SP 1;  // Variablenbezeichner x, Adresse 128
+LOADI ACC 2;
+STOREIN SP ACC 1;
+LOADIN SP ACC 1;  // Zuweisung
+ADDI SP 1;
+STORE ACC 128;
 ```
 
 <!--small-->
@@ -355,6 +363,20 @@ LOADIN SP IN2 1 // IN2:= 25
 ADD ACC IN2 // ACC:= 2+25=27
 STOREIN SP ACC 2 // 27 auf den Stack (zweitoberste Stack-Zelle)
 ADDI SP 1
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 b)
+
+```
+LOADIN SP ACC 1;  // Variable x zuweisen
+ADDI SP 1;
+STORE ACC 128;
 ```
 
 <!--small-->

@@ -81,7 +81,7 @@ style: |
 ## Klarstellung
 ### Übungsblatt 5 Aufgabe 3 Korrektur
 
-- siehe **korrigierter** Foliensatz
+- siehe **korrigierte** Foliensatz
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -416,7 +416,7 @@ $f(x)=y\Leftrightarrow\text{Funktion}(\text{Funktionsargument/unabhängige Varia
 
 ## Vorbereitungen
 ### Beweisarten
-- **Beweis durch Kontraposition / Indirekter Beweis**, $\mathcal{F}\Rightarrow\mathcal{G}\Leftrightarrow¬\mathcal{F}\vee\mathcal{G}\Leftrightarrow¬¬\mathcal{G}\vee¬\mathcal{F}\Leftrightarrow¬\mathcal{G}\Rightarrow¬\mathcal{F}$
+- **Beweis durch Kontraposition**, $\mathcal{F}\Rightarrow\mathcal{G}\Leftrightarrow¬\mathcal{F}\vee\mathcal{G}\Leftrightarrow¬¬\mathcal{G}\vee¬\mathcal{F}\Leftrightarrow¬\mathcal{G}\Rightarrow¬\mathcal{F}$
   ![_2021-12-09-00-45-49](_resources/_2021-12-09-00-45-49.png)
 - **Widerspruchsbeweis**, $V\Rightarrow B\Leftrightarrow ¬V\vee B\Leftrightarrow¬(V\wedge ¬B)\Leftrightarrow(V\wedge¬B\Rightarrow\bot)$
 ![_2021-12-09-00-46-14](_resources/_2021-12-09-00-46-14.png)
