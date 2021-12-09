@@ -100,6 +100,7 @@ style: |
 ## Vorbereitungen
 ### Funktionen
 ##### Definition
+- auch **Abbildung**
 - ordnet jedem Element $x$ einer **Definitionsmenge / Defintionsbereich** $D$ (Menge, auf der eine Funktion "definierbar" ist) genau ein Element $y$ einer **Zielmenge / Wertemenge / Wertebereich** $Z$ zu.
   - **Umkehrung gilt nicht:** Ein Element der Zielmenge kann genau einem, mehreren, aber auch keinem Element der Definitionsmenge zugeordnet sein
 - für das dem Element $x\in D$ zugeordnete **Element der Zielmenge** schreibt man im Allgemeinen $f(x)$
@@ -116,6 +117,7 @@ style: |
 - $f:D\to Z$ ist Teil**menge** $f\subset D\times Z$, d. h. $f$ ist somit eine spezielle **Relation** zwischen $D$ und $Z$, die die folgenden Eigenschaften hat:
     - $f$ ist **[linkstotal](Relationen_injektiv_surjektiv_bijektiv.md)**: für jedes Element $x$ aus der **Definitionsmenge** $D$ existiert **mindestens** einen Funktionswert $y$ in $Z$
     - $f$ ist **[rechtseindeutig](Relationen_injektiv_surjektiv_bijektiv.md)**: zu jedem Element $x$ von der **Definitionsmenge** $D$ gibt es **höchstens** ein Element $y$ von $Z$
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -302,7 +304,7 @@ $f(x)=y\Leftrightarrow\text{Funktion}(\text{Funktionsargument/unabhängige Varia
 
 - auch "zeigen" oder "nachweisen", statt "beweisen"
 - $A\Rightarrow B$ ist meist nur eine kurzschreibweise für $\forall x\in M: A(x)\Rightarrow B(x)$
-- **Voraussetzungen** und Konklusion, (in Form einer **Behauptung**) (wo man $Z\hspace{-0.25em}\raisebox{-0.25em}Z:$ davor schreibt) sind gegeben
+- **Voraussetzungen** und **Konklusion**, in Form einer **Behauptung** (wo man $Z\hspace{-0.25em}\raisebox{-0.25em}Z:$ davor schreibt) sind gegeben
   - es gibt neben **expliziten Voraussetzungen** auch **implizite Voraussetzungen**, die nicht ausdrücklich genannt werden (Rechenregeln und Standard-Definitionen)
   - in der **Behauptung** steht immer eine wahre Aussage. Hat man eine Aussage, die nicht wahr ist, muss man sie negiert in die Behauptung schreiben
 
@@ -374,11 +376,10 @@ $f(x)=y\Leftrightarrow\text{Funktion}(\text{Funktionsargument/unabhängige Varia
 
 - **Deduktive Kette** (Beweis durch "Ausrechnen")
   - Behauptung ist Gleichung
-  - kann zu **Deuktivem Netz** werden
-- **Allbeweis**, $\forall x\;\mathcal{F}(x)$
-  ![_2021-12-09-00-40-33](_resources/_2021-12-09-00-40-33.png)
-  - Beweis durch **Fallunterschiedung**, $((A \rightarrow B) \wedge(\neg A \rightarrow B)) \rightarrow B$
-  - Beweis durch **Vollständige Induktion**
+  - kann zu **Deuktivem Netz** werden:
+  ![_2021-12-09-01-51-34](_resources/_2021-12-09-01-51-34.png)
+- **Implikationsbeweis**, $\mathcal{F}\Rightarrow\mathcal{G}$
+  ![_2021-12-09-00-41-45](_resources/_2021-12-09-00-41-45.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -387,13 +388,14 @@ $f(x)=y\Leftrightarrow\text{Funktion}(\text{Funktionsargument/unabhängige Varia
 
 ## Vorbereitungen
 ### Beweisarten
-
+- **Allbeweis**, $\forall x\;\mathcal{F}(x)$
+  ![_2021-12-09-00-40-33](_resources/_2021-12-09-00-40-33.png)
+  - Beweis durch **Fallunterschiedung**, $((A \rightarrow B) \wedge(\neg A \rightarrow B)) \rightarrow B$
+  - Beweis durch **Vollständige Induktion**
 - **Existenzbeweis**
   - ohne $\forall$-Vorspann: $\exists x\;\mathcal{F}(x)$
   - mit $\forall$-Vorspann: $\forall x\exists y\;\mathcal{F}(x, y)$
   - *konstruktiv* oder *nicht-konstruktiv*
-- **Implikationsbeweis**, $\mathcal{F}\Rightarrow\mathcal{G}$
-  ![_2021-12-09-00-41-45](_resources/_2021-12-09-00-41-45.png)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -674,13 +676,31 @@ void main() {
 
 ## Übungsblatt
 ### Aufgabe 3
-##### Beweis der Linkseindeutigkeit (Injektivität)
+
+- **Isomorphismus** $F: \left(k_{1}, \ldots, k_{n}\right) \mapsto a+\sum_{i=1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot k_{i}$ von Struktur $\mathcal{A}=(\N^n, 0^{\mathcal{A}}, +^{\mathcal{A}})$ nach $\mathcal{B}=(\N, 0^{\mathcal{B}}, +^{\mathcal{B}})$
+- **Deduktives Netz:** Funktion **bijektiv** gdw. **injektiv** und **surjektiv**
+- Beweis der Injektivität durch **Beweis durch Kontraposition:**
+  - $f(x)=f(y) \Rightarrow x=y$ wird umgeformt zu $x \neq y \Rightarrow f(x) \neq f(y)$
+  - $f(x) \neq f(y)$ wird umgeformt zu $f(x) - f(y) \neq 0$ bzw. $f(x) - f(y) > 0$
+- **Voraussetzungen:**
+  - $\text { Sei } l \text { minimal mit } k_{l} \neq h_{l} . \text { O.B.d.A. gelte } k_{l}<h_{l} \text { und } k_{1}=h_{1}, \ldots, k_{l-1}=h_{l-1}$
+- **Behauptung:**
+  - $Z\hspace{-0.25em}\raisebox{-0.25em}Z:$ $\left(k_{1}, \ldots, k_{n}\right) \neq\left(h_{1}, \ldots, h_{n}\right) \Rightarrow \left(k_{1}, \ldots, k_{n}\right) \neq \operatorname{ind}\left(h_{1}, \ldots, h_{n}\right)$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+##### Teilbeweis (1/2) der Linkseindeutigkeit (Injektivität)
 $$
 \begin{aligned}
 \operatorname{ind}\left(h_{1}, \ldots, h_{n}\right)-\operatorname{ind}\left(k_{1}, \ldots, k_{n}\right) &=\\
- \sum_{i=1}^{l-1}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\underbrace{\left(h_{i}-k_{i}\right)}_{0} + \sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) + \underbrace{a - a}_{0} &\geq \\
+ \sum_{i=1}^{l-1}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\underbrace{\left(h_{i}-k_{i}\right)}_{0} + \sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) + \underbrace{a - a}_{0} &= \\
 \sum_{i=l}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot\left(h_{i}-k_{i}\right) &\geq \\
-\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(h_{i}-k_{i}\right) &\geq \\
+\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\cdot\left(h_{i}-k_{i}\right) &\geq \\
 \end{aligned}
 $$
 
@@ -693,15 +713,28 @@ $$
 ### Aufgabe 3
 $$
 \begin{aligned}
-\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(-s_{i}+1\right)+\left(-s_{n}\right) \left.s_{j}\right)\left(-s_{i}+1\right) &> \\
+\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(-s_{i}+1\right) &>\\
+\prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n-1}\left(\prod_{j=i+1}^{n} s_{j}\right)(-s_{i} + 1)+\left(-s_{n}\right) &= \\
 \prod_{j=l+1}^{n} s_{j}+\sum_{i=l+1}^{n-2}\left(\prod_{j=i+1}^{n} s_{j}\right)\left(-s_{i}+1\right)+\left(-s_{n-1}\right) s_{n} &= \\
 \ldots&=\\
 0
 \end{aligned}
 $$
 
-##### Beweis der Rechtstotalität (Surjektivität)
-- asdf
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+##### Teilbeweis (2/2) der Rechtstotalität (Surjektivität)
+- Da **Definitionsmenge** und **Wertemenge** gleich groß sind und die Abbildung $ind$ **injektiv** ist, ist sie auch **surjektiv**
+
+##### Beweis des Isomorphismus
+- Aus der **Linkseindeutigkeit** und **Rechtstotalität** des **Homomorphismus** folgt, dass es sich hierbei um einen **Isomorphismus** handelt
+
+**q.e.d.**
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
