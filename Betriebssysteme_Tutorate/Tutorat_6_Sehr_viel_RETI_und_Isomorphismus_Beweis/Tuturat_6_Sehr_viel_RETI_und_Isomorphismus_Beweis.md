@@ -88,7 +88,7 @@ style: |
 
 ---
 
-# Vertiefungen
+# Vorbereitungen
 
 <!--_class: lead-->
 <!--big-->
@@ -97,7 +97,357 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
+### Funktionen
+##### Definition
+- ordnet jedem Element $x$ einer **Definitionsmenge / Defintionsbereich** $D$ (Menge, auf der eine Funktion "definierbar" ist) genau ein Element $y$ einer **Zielmenge / Wertemenge / Wertebereich** $Z$ zu.
+  - **Umkehrung gilt nicht:** Ein Element der Zielmenge kann genau einem, mehreren, aber auch keinem Element der Definitionsmenge zugeordnet sein
+- für das dem Element $x\in D$ zugeordnete **Element der Zielmenge** schreibt man im Allgemeinen $f(x)$
+- $f(x)=y\Leftrightarrow (x, y) \in f$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Definition
+- $f:D\to Z$ ist Teil**menge** $f\subset D\times Z$, d. h. $f$ ist somit eine spezielle **Relation** zwischen $D$ und $Z$, die die folgenden Eigenschaften hat:
+    - $f$ ist **[linkstotal](Relationen_injektiv_surjektiv_bijektiv.md)**: für jedes Element $x$ aus der **Definitionsmenge** $D$ existiert **mindestens** einen Funktionswert $y$ in $Z$
+    - $f$ ist **[rechtseindeutig](Relationen_injektiv_surjektiv_bijektiv.md)**: zu jedem Element $x$ von der **Definitionsmenge** $D$ gibt es **höchstens** ein Element $y$ von $Z$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Bezeichnungen
+$f(x)=y\Leftrightarrow\text{Funktion}(\text{Funktionsargument/unabhängige Variable})=\text{Funktionswert/abhängige Variable}$
+- Elemente der **Definitionsmenge** heißen **Funktionsargumente**
+- Elemente der **Zielmenge** heißen **Zielwerte**
+- **Bildmenge (auch Bild) einer Funktion:** Teilmenge der Zielmenge, Menge der Bilder aller Elemente der Definitionsmenge ($D$ ($f(D)=\{f(x) \mid x \in D\}$)
+  - Element der Bildmenge heißen **Funktionswerte** / **Bildelemente** / **Bilder** (diejenigen Elemente von $Z$, die tatsächlich auch als Bild eines Funktionsarguments auftreten)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Bezeichnungen
+
+- **Bildmenge (auch Bild) von S:** Teilmenge der Bildmenge der Funktion, Menge der Bilder der Elemente aus der Definitionsmenge, die in der Teilmenge S sind, welche auch nur aus einem einzigen Funktionsargument bestehen kann ($f(S)=\{f(x) \mid x \in S\}, \quad S\subseteq D$)
+  - auch als **Einschränkung auf Teilemgen $S$ der Defintinsmenge** bezeichnet
+- **Urbild einer Teilmenge $T$ der Zielmenge:** Menge aller Elemente der Definitionsmenge, deren Bild Element dieser Teilmenge $T$ ist ($f^{-1}(T)=\{x \in D \mid f(x) \in T\}$)
+- bei einer Funktion ist Urbild der gesamten Zielmenge = der gesamten Definitionsmenge, weil Funktionen linkseindeutig sind. Daher nennt man die Definitionsmenge auch **Urbildmenge**
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Bezeichnungen
+
+![_2021-12-08-21-14-03](_resources/_2021-12-08-21-14-03.png)
+- **Faser / Urbild $f^{-1}(y)$ eines Elements $y$ der Zielmenge**: Menge aller Elemente der Definitionsmenge, deren Bild $y$ ist ($f^{-1}(\{y\})=\{x \in D \mid f(x)=y\}$)
+- Elemente der Urbildmenge heißen **Urbilder** (bzw sind =Funktionsargumente)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Funktion und keine Funktion
+
+![_2021-12-08-22-46-16](_resources/_2021-12-08-22-46-16.png) ![_2021-12-08-22-46-34](_resources/_2021-12-08-22-46-34.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Multi- und Partielle Funktionen
+- **Partielle Funktion:** $f: X\rightharpoonup Y$
+  - **rechtseindeutige** (aber **nicht** umbedingt **linkstotale**) Relation
+  - es darf Elemente der Definitionsmenge geben, denen kein Wert der Zielmenge zugeordnet ist
+- **Multifunktion:** $f: X \multimap Y$
+  - **linkstotale** (aber **nicht** umbedingt **rechtseindeutige**) Relation
+  - Elemente der Definitionsmenge X können auf mehrere Elemente der Zielmenge Y abgebildet werden
+- um normale Funktionen: $f: X\to Y$ zu unterscheiden, bezeichnet man sie auch als **totale Funktionen**
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Schreibweisen
+  - $f(x)=x^2,\quad x\in \{1, 2, 3, 4\}$ (Funktionsgleichung mit Definitionsmenge)
+  - $f: \{1, 2, 3, 4\}\to \{1, 4, 9, 16\}, (x)\mapsto (x^2)$ (eindeutige Zuordnungsvorschrift mit Definitions- und Zielmenge)
+  - $f = \{(1,4),(2,3),(3,2),(4,1)\}$ (als Relation)
+  - $f(x)=
+  \begin{cases}
+  1 & \text { falls} & x=1 \\
+  x^2 & \text { falls} & 2\le x\le3 \\
+  16 & \text { falls} & x\ge4
+  \end{cases}, \quad x\in\{1, 2, 3, 4\}$ (als Fallunterscheidung)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Injektivität, Surjektivität, Bijektivität
+
+- **Injektivität/Linkseindeutigkeit:** Wenn jedes Element der <u>Zielmenge</u> höchstens ein Urbild
+  - $f\left(x_{1}\right)=f\left(x_{2}\right)$ $\Rightarrow$ $x_{1}=x_{2}$
+- **Surjektivität/Rechtstotalität:** Wenn jedes Element <u>der Zielmenge</u> mindestens ein Urbild hat
+  - $\forall y\in Y\exists x\in X:f(x)=y$
+  - Surjektive Funktion $f: X \rightarrow Y$ zwischen endlichen Mengen, dann kann $Y$ höchstens so viele Elemente wie $X$ haben, es gilt also $|Y| \leq|X|$
+- **Bijektivität:** Wenn sie injektiv und surjektiv ist (wenn jedes Element der Zielmenge genau ein Urbild hat)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Injektivität, Surjektivität, Bijektivität
+
+![_2021-12-08-22-53-42](_resources/_2021-12-08-22-53-42.png) ![_2021-12-08-22-53-56](_resources/_2021-12-08-22-53-56.png) ![_2021-12-08-22-54-07](_resources/_2021-12-08-22-54-07.png)
+
+> beim Funktionsbegriff beziehen sich **Linkstotalität** und **Rechtseindeutigkeit** auf die **Definitionsmenge**, hier bezieht sich alles auf die **Zielmenge**
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Funktionen
+##### Homomorphismen
+- **Struktur**: $\mathcal{S}=\left(S,\left\{c_{i}^{\mathcal{S}}\right\}_{i \in I},\left\{f_{j}^{\mathcal{S}}\right\}_{j \in J},\left\{R_{k}^{\mathcal{S}}\right\}_{k \in K}\right)$, *Bsp.*: $G = (V, R, α, ω)$
+  - **Konstantenzeichen**, **Funktionszeichen**, **Relationszeichen**, die sich alle innerhalb der **Grundmenge** $S$ bewegen
+-  $F\left(c^{\mathcal{A}}\right)=c^{\mathcal{B}}$;
+- $F\left(f^{\mathcal{A}}\left(a_{1}, \ldots, a_{n}\right)\right)=f^{\mathcal{B}}\left(F\left(a_{1}\right), \ldots, F\left(a_{n}\right)\right)$
+- $\left(a_{1}, \ldots, a_{m}\right)\in R^{\mathcal{A}}$ *gdw.* $\left(F\left(a_{1}\right), \ldots, F\left(a_{m}\right)\right)\in R^{\mathcal{B}}$
+- **Monomorphismus** (auch **Einbettung**): ist **injektiver** Homomorphismus
+- **Isomorphismus**: ist **bijektiver** Homomorphismus, $\mathcal{A} \simeq \mathcal{B}$
+  - **Isomorphie** $\Rightarrow$ **Elementare Äquivalenz** (erfüllen dieselben Aussagen)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Strukturen
+##### Monoid $(M, \circ)$
+  - **Assoziativgesetz:** $(a \circ b) \circ c=a \circ(b \circ c)$
+  - **neutrales Element:** $n \circ a=a \circ n=a,\quad n\in G$
+
+##### $(G, \circ)$ (Monoid, in dem jedes Element invertierbar ist)
+- wobei $a \circ b \in G, \quad \forall a, b, c\in G:$
+- **Assoziativgesetz:** $(a \circ b) \circ c=a \circ(b \circ c)$
+- **neutrales Element:** $n \circ a=a \circ n=a,\quad n\in G$
+- **inverses Element:** $\forall a\exists! i(a):a \circ i(a)=i(a) \circ a=n$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Strukturen
+##### Körper $(\mathbb{K}, +, \cdot)$
+- $\forall a, b, c\in \mathbb{K}:$
+- kommutative Gruppe $(\mathbb{K}, +)$ mit neutralem Element $0$
+- kommutative Gruppe $(\mathbb{K}\setminus\{0\}, \cdot)$ mit neutralem Element $1$
+- **Distributivgesetz:** $a \cdot b+a \cdot c=a \cdot(b+c)$
+  - regelt, wie die beiden Verknüpfungen sich miteinander vertragen
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Strukturen
+##### Ring $(R, +,\cdot)$
+- $\forall a, b, c\in R:$
+- kommutative Gruppe $(R, +)$ mit neutralem Element $0$
+- **Assoziativgesetz:** $(a \cdot b) \cdot c=a \cdot(b \cdot c)$
+- **Distributivgesetz:** $a \cdot b+a \cdot c=a \cdot(b+c)$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweisarten
+
+- auch "zeigen" oder "nachweisen", statt "beweisen"
+- $A\Rightarrow B$ ist meist nur eine kurzschreibweise für $\forall x\in M: A(x)\Rightarrow B(x)$
+- **Voraussetzungen** und Konklusion, (in Form einer **Behauptung**) (wo man $Z\hspace{-0.25em}\raisebox{-0.25em}Z:$ davor schreibt) sind gegeben
+  - es gibt neben **expliziten Voraussetzungen** auch **implizite Voraussetzungen**, die nicht ausdrücklich genannt werden (Rechenregeln und Standard-Definitionen)
+  - in der **Behauptung** steht immer eine wahre Aussage. Hat man eine Aussage, die nicht wahr ist, muss man sie negiert in die Behauptung schreiben
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweisarten
+
+- gesucht wird ein **Beweis**, der zeigt, dass zwischen den vorgegebenen Voraussetzungen und der vorgegebenen Behauptung eine logische Folgerungsbeziehung besteht
+  - man muss nachweisen, sofern die Voraussetzungen erfüllt sind, ist garantiert, dass die Behauptung ebenfalls gilt
+  - **Beweissuche** mithilfe von **Vorwärs- und Rückwärtsschließen**, sowie **bidirektionaler Suche** und **Beweispräsentation** können sich sehr unterscheiden
+- $q.e.d.$ für **quod erat demonstrandum** ("was zu beweisen war")
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Schließen
+##### Deduktives Schließen
+##### ![_2021-12-09-00-16-10](_resources/_2021-12-09-00-16-10.png)
+- meist vom **Allgemeinen** zum **Speziellen**
+- Voraussetzungen müssen nicht umgedingt wahr sein
+  - im obigen Beispiel ist die Voraussetzung $(i)$ falsch, trotzdem besteht logische Folgerungsbeziehung zwischen Voraussetzungen und Konklusion
+  - es ist unmöglich, dass die Voraussetzungen wahr und die Konklusion falsch ist
+- Mathematisches Beweisen beruht meistens darauf
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+## Vorbereitungen
+### Schließen
+##### Induktives Schließen
+##### ![_2021-12-09-00-16-25](_resources/_2021-12-09-00-16-25.png)
+- vom **Speziellen** zum **Allgemeinen**
+- bei erfüllten Voraussetzungen ist eine induktive Konklusion nicht mit Sicherheit wahr. Sie ist nur mehr oder weniger wahrscheinlich. Man schließt aus Einzelfällen auf ein allgemeines Gesetz
+- bei **vollständiger Induktion** besteht Grundidee darin, nicht nur einige Einzelfälle zu betrachten, sondern tatsächlich alle. Wenn die Induktion in diesem Sinne vollständig ist, gilt bei erfüllten Voraussetzungen zwangsläufig auch die Konklusion
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+## Vorbereitungen
+### Schließen
+##### Vorwärtsschließen
+
+- geht von Voraussetzungen aus und erschließt daraus die Behauptung. Beginnend mit Voraussetzungen folgen also Beweisschritte, bis die Behauptung dasteht.
+
+##### Rückwärtsschließen
+
+- beginnt mit der Behauptung und verfolgt rückwärts die Argumentketten, mit denen die Behauptung bewiesen wird, bis diese Ketten mit Voraussetzungen enden
+
+##### Bidirektionales Schließen
+
+- Mischformen von Vorwärts- und Rückwärtsschließen. Auch bidirektionale Suche genannt, da es meistens zur Beweissuche dient
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweisarten
+
+- **Deduktive Kette** (Beweis durch "Ausrechnen")
+  - Behauptung ist Gleichung
+  - kann zu **Deuktivem Netz** werden
+- **Allbeweis**, $\forall x\;\mathcal{F}(x)$
+  ![_2021-12-09-00-40-33](_resources/_2021-12-09-00-40-33.png)
+  - Beweis durch **Fallunterschiedung**, $((A \rightarrow B) \wedge(\neg A \rightarrow B)) \rightarrow B$
+  - Beweis durch **Vollständige Induktion**
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweisarten
+
+- **Existenzbeweis**
+  - ohne $\forall$-Vorspann: $\exists x\;\mathcal{F}(x)$
+  - mit $\forall$-Vorspann: $\forall x\exists y\;\mathcal{F}(x, y)$
+  - *konstruktiv* oder *nicht-konstruktiv*
+- **Implikationsbeweis**, $\mathcal{F}\Rightarrow\mathcal{G}$
+  ![_2021-12-09-00-41-45](_resources/_2021-12-09-00-41-45.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweisarten
+- **Äquivalenzbeweis**, $\mathcal{F}\Leftrightarrow\mathcal{G}\equiv(\mathcal{F}\Rightarrow\mathcal{G})\wedge(\mathcal{G}\Rightarrow\mathcal{F})$
+  ![_2021-12-09-00-44-00](_resources/_2021-12-09-00-44-00.png)
+  - Beweis durch **Ringschluss**, bei z.B. $(\mathcal{F_1}\Leftrightarrow\mathcal{F_2})\wedge(\mathcal{F_1}\Leftrightarrow\mathcal{F_3})\wedge(\mathcal{F_2}\Leftrightarrow\mathcal{F_3})$ bräuchte man damit nur $3$ Teilbeweise, anstatt $6$ (wenn man das erste Beweissschema drei Mal verwenden würde)
+  ![_2021-12-09-00-45-13](_resources/_2021-12-09-00-45-13.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweisarten
+- **Beweis durch Kontraposition / Indirekter Beweis**, $\mathcal{F}\Rightarrow\mathcal{G}\Leftrightarrow¬\mathcal{F}\vee\mathcal{G}\Leftrightarrow¬¬\mathcal{G}\vee¬\mathcal{F}\Leftrightarrow¬\mathcal{G}\Rightarrow¬\mathcal{F}$
+  ![_2021-12-09-00-45-49](_resources/_2021-12-09-00-45-49.png)
+- **Widerspruchsbeweis**, $V\Rightarrow B\Leftrightarrow ¬V\vee B\Leftrightarrow¬(V\wedge ¬B)\Leftrightarrow(V\wedge¬B\Rightarrow\bot)$
+![_2021-12-09-00-46-14](_resources/_2021-12-09-00-46-14.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Beweise
+##### Begriffe
+- **Ohne Beschränkung der Allgemeinheit:**
+  - abgekürzt **o. B. d. A.**
+  - eine Einschränkung führt nur zur *Vereinfachung* (z.B. bei Symmetrie) der Beweisführung (Verringerung der Schreibarbeit), ohne dass die *Gültigkeit* der im Anschluss getroffenen Aussagen in Bezug auf die *Allgemeinheit darunter leidet
+- **(fest aber) beliebig:** "'fest' hat darin *keine Bedeutung*. Es stellt bestenfalls eine Erklärung des Autors dar, dass dieses Symbol, wenn es später wieder auftaucht, *dieselbe Bedeutung* haben soll – das ist aber eine *Selbstverständlichkeit*, die man wirklich nicht zu betonen braucht!" (*Quelle:* Prof. Dr. Albrecht Beutelspacher - „Das ist o.B.d.A. trivial!“ Eine Gebrauchsanleitung zur Formulierung mathematischer Gedanken[...])
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+<!--  -->
+<!-- ## Vorbereitungen -->
+<!-- ### Beweisarten -->
+<!-- ##### Beispiel für Beweis (Deduktive Kette) -->
+<!--  -->
+<!-- ##### ![_2021-12-09-01-15-00](_resources/_2021-12-09-01-15-00.png) -->
+<!--  -->
+<!-- [>small<] -->
+<!-- ![bg right:10%](_resources/background_2.png) -->
+<!--  -->
+<!-- --- -->
+
+## Vorbereitungen
 ### Addition binär und dezimal
 ```text
   011011 (27)            17718
@@ -118,7 +468,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Subtraktion binär und dezimal (nicht empfohlen, dient Vergleich mit nächster Folie)
 ```text
 (1)
@@ -140,7 +490,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Subtraktion  binär und dezimal (funktioniert immer, egal was für Vorzeichen Zahlen haben)
 ```text
 (2)
@@ -159,7 +509,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Multiplikation binär und dezimal
 ```text
 1101 x 1001 (13 * 9)          1304 x 12
@@ -177,7 +527,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Division binär
 ```text
   1110101 / 1011 (117 : 11) = 1010 (10) Rest: 111 (7)
@@ -200,7 +550,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Division dezimal
 ```text
 15658 / 12 = 1304,833...
@@ -222,7 +572,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Division dezimal
 ```text
    ==
@@ -243,7 +593,7 @@ style: |
 
 ---
 
-## Vertiefungen
+## Vorbereitungen
 ### Division binär
 - bei **binärer Division** gibt es nur **2 Zustände** (`1` oder `0`), dementsprechend wird entweder die Zahl so übernommen (Zahl $\cdot$ `1`) oder die Zahl ist `0` (Zahl $\cdot$ `0`)
 
@@ -316,16 +666,6 @@ void main() {
   }
 }
 ```
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-## Übungsblatt
-### Aufgabe 3
-- Beweis durch **Kontraposition**
-- Funtkion ist **bijektiv** *gdw.* Funktion **linkseindeutig** (*injektiv*) und **rechtstotal** (*surjektiv*)
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
