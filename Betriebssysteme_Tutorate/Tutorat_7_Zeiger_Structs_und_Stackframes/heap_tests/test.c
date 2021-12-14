@@ -6,15 +6,6 @@ void main()
   {
     int x;
     int y;
-    int z;
-    int a;
-    int b;
-    int c;
-    int d;
-    int e;
-    int f;
-    int g;
-    int h;
   };
 
   // Annahme Symboltabelleneintrag st(p1) = (var, struct point*, 8)
@@ -23,9 +14,6 @@ void main()
   struct point *p3;
   // Annahme Symboltabelleneintrag st(a) = (var, int*, 10)
   int* a;
-  struct point *p4;
-  struct point *p5;
-  struct point *p6;
 
   //Annahme Symboltabelleneintrag:
   //st(p2) = (struct, x -> (int,0), y -> (int,1), 15)
@@ -34,22 +22,10 @@ void main()
   a = &(p2.x);
   p2.x = 7;
   p2.y = 4;
-  p2.z = 1;
-  p2.a = 1;
-  p2.b = 1;
-  p2.c = 1;
-  p2.d = 1;
-  p2.e = 1;
-  p2.f = 1;
-  p2.g = 1;
-  p2.h = 1;
   /*** MARKE 1 ***/
 
   //Annahme: reserviert zusammenhaengenden Bereich auf dem Heap ab Adresse 33
   p1 = (struct point *) malloc(sizeof(struct point));
-  p4 = (struct point *) malloc(sizeof(struct point));
-  p5 = (struct point *) malloc(sizeof(struct point));
-  p6 = (struct point *) malloc(sizeof(struct point));
 
   (*p1).y = *a;
 
