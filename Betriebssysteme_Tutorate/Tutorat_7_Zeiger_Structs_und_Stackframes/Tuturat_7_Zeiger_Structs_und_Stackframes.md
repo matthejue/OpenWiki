@@ -62,6 +62,273 @@ style: |
 ---
 
 ## Vorbereitungen
+### GDB
+
+- content
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Hexadezimal zu Binärsystem und vice versa
+
+- content
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Pointerarithmetik
+
+- content
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Stackframes
+
+##### ![_2021-12-15-17-04-20](_resources/_2021-12-15-17-04-20.png)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Übungsblatt
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #909f68; -->
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+```
+#include <stdlib.h> //Stellt Bibliotheksfunktionen malloc() und free() bereit
+void main()
+{
+  struct point
+  {
+    int x;
+    int y;
+  };
+
+  // Annahme Symboltabelleneintrag st(p1) = (var, struct point*, 8)
+  struct point *p1;
+  // Annahme Symboltabelleneintrag st(p3) = (var, struct point*, 9)
+  struct point *p3;
+  // Annahme Symboltabelleneintrag st(a) = (var, int*, 10)
+  int* a;
+
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+
+```
+  //Annahme Symboltabelleneintrag:
+  //st(p2) = (struct, x -> (int,0), y -> (int,1), 15)
+  struct point p2;
+  a = &(p2.x);
+  p2.x = 7;
+  p2.y = 4;
+  /*** MARKE 1 ***/
+
+  //Annahme: reserviert zusammenhaengenden Bereich auf dem Heap ab Adresse 33
+  p1 = (struct point *) malloc(sizeof(struct point));
+
+  (*p1).y = *a;
+
+  p3 = p1;
+  p1 = &p2;
+  /*** MARKE 2 ***/
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+
+```
+  if((*p1).y > 5)
+  {
+    *a = 42;
+  }
+  else
+  {
+    *a = 1;
+  };
+  /*** MARKE 3 ***/
+
+  free(p3);
+};
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1a)
+
+- 8, 9, 10, 15, 16, 34
+- **Anmerkung zu 33:** 33 wird nicht gelesen, da für die **Ponterarithmetik** nur die Adresse wichtig ist und die steht in Speicherzelle 10, wo der Zeiger `p1` haust
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1b)
+
+- **Marke 1:**
+  ```
+  8: undefiniert   33: undefiniert
+  9: undefiniert   34: undefiniert
+  10: 15
+  15: 7
+  16: 4
+  ```
+- **Marke 2:**
+  ```
+  8: 15   33: undefiniert
+  9: 33   34: 7
+  10: 15
+  15: 7
+  16: 4
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1b)
+- **Marke 3:**
+  ```
+  8: 15   33: undefiniert
+  9: 33   34: 7
+  10: 15
+  15: 1
+  16: 4
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1c)
+
+- Speicheradressen 33 und 34 werden wieder freigegeben
+- `p3` zeigt auf den Speicherbereich, der mit `malloc()` reserviert wurde
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a
+
+```
+int fib(int n)
+{
+  int res_f, a, b;
+  if (n==0)
+    res_f = 0;
+  else if (n==1)
+    res_f = 1;
+  else // Fall: n > 1. {
+    int a = fib(n-1); // Ruecksprungadresse 200
+    int b = fib(n-2); // Ruecksprungadresse 300
+    res_f = a + b;
+  };
+  return res_f;
+}
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2b)
+
+- **Ablauf:** `fib(3)`, `fib(3-1)`, `fib(2-1)`, `fib(1)` & `ACC=1`, `fib(2-2)`, `fib(0)` & `ACC=0`, `fib(3-2)`, `fib(1)` & `ACC=1`, ``
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2c)
+##### Nachteil
+- Teilergebnisse **mehrfach** berechnet **🠒** $\#$Funktionsaufrufe wächst **exponentiel** **🠒** ineffizient
+
+##### Abschätzug für $\#$Funktionsaufrufe
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2d)
+
+```
+int fib_efficient(int n, int* res) {
+  if (n == 0) {
+    return 0;
+  }
+  else if (n == 1) {
+    res[0] = 0;
+    res[1] = 1;
+    return 1;
+  }
+  res[n] = fib_efficient(n-1, res) + res[n-2];
+  return res[n];
+}
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+# Ergänzungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #909f68; -->
+
+---
+
+## Ergänzungen
 ### Addition binär und dezimal
 ```text
   011011 (27)            17718
@@ -82,7 +349,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Subtraktion binär und dezimal (nicht empfohlen, dient Vergleich mit nächster Folie)
 ```text
 (1)
@@ -104,7 +371,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Subtraktion  binär und dezimal (funktioniert immer, egal was für Vorzeichen Zahlen haben)
 ```text
 (2)
@@ -123,7 +390,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Multiplikation binär und dezimal
 ```text
 1101 x 1001 (13 * 9)          1304 x 12
@@ -141,7 +408,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Division binär
 ```text
   1110101 / 1011 (117 : 11) = 1010 (10) Rest: 111 (7)
@@ -164,7 +431,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Division dezimal
 ```text
 15658 / 12 = 1304,833...
@@ -186,7 +453,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Division dezimal
 ```text
    ==
@@ -207,7 +474,7 @@ style: |
 
 ---
 
-## Vorbereitungen
+## Ergänzungen
 ### Division binär
 - bei **binärer Division** gibt es nur **2 Zustände** (`1` oder `0`), dementsprechend wird entweder die Zahl so übernommen (Zahl $\cdot$ `1`) oder die Zahl ist `0` (Zahl $\cdot$ `0`)
 
@@ -222,31 +489,6 @@ style: |
 
 ---
 
-# Übungsblatt
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #909f68; -->
-
----
-
-## Übungsblatt
-### Aufgabe 1
-
-<!--small-->
-![bg right:10%](_resources/background_2.png)
-
----
-
-# Ergänzungen
-
-<!--_class: lead-->
-<!--big-->
-![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #909f68; -->
-
----
 
 ## Ergänzungen
 ### Packages installieren mit `apt`
