@@ -261,8 +261,8 @@ int fib(int n)
   else if (n==1)
     res_f = 1;
   else // Fall: n > 1. {
-    int a = fib(n-1); // Ruecksprungadresse 200
-    int b = fib(n-2); // Ruecksprungadresse 300
+    a = fib(n-1); // Ruecksprungadresse 200
+    b = fib(n-2); // Ruecksprungadresse 300
     res_f = a + b;
   };
   return res_f;
@@ -277,7 +277,7 @@ int fib(int n)
 ## Übungsblatt
 ### Aufgabe 2b)
 
-- **Ablauf:** `fib(3)`, `fib(3-1)`, `fib(2-1)`, `fib(1)` & `ACC=1`, `fib(2-2)`, `fib(0)` & `ACC=0`, `fib(3-2)`, `fib(1)` & `ACC=1`, ``
+- siehe `aufgabe_2b.csv` auf dem **Nextcloud-Server**
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
