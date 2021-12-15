@@ -101,6 +101,25 @@ style: |
 
 ---
 
+## Vorbereitungen
+### Ceil und Floor
+##### Abrundungsfunktion (floor)
+- $\lfloor 2,8\rfloor=2$, $\lfloor -2,8\rfloor=-3$, $\lfloor -2,2\rfloor=-3$, $\lfloor 2\rfloor=2$
+- $\lfloor x\rfloor \leq x<\lfloor x\rfloor+1$
+- $\lfloor x\rfloor=x$ $\Leftrightarrow$ $x\in\mathbb{Z}$
+- $\lfloor x+k\rfloor=\lfloor x\rfloor+k, \quad k\in\mathbb{Z}$
+
+##### Aufrundungsfunktion (ceil)
+- $\lceil 2,8\rceil=3$, $\lceil -2,8\rceil=-2$, $\lceil -2,2\rceil=-2$, $\lceil 2\rceil=2$
+- $\lceil x\rceil - 1 < x\le\lceil x\rceil$
+- $\lceil x\rceil=x$ $\Leftrightarrow$ $x\in\mathbb{Z}$
+- $\lceil x+k\rceil=\lceil x\rceil+k, \quad k\in\mathbb{Z}$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -260,7 +279,7 @@ int fib(int n)
     res_f = 0;
   else if (n==1)
     res_f = 1;
-  else // Fall: n > 1. {
+  else /* Fall: n > 1. */ {
     a = fib(n-1); // Ruecksprungadresse 200
     b = fib(n-2); // Ruecksprungadresse 300
     res_f = a + b;
@@ -290,6 +309,7 @@ int fib(int n)
 - Teilergebnisse **mehrfach** berechnet **🠒** $\#$Funktionsaufrufe wächst **exponentiel** **🠒** ineffizient
 
 ##### Abschätzug für $\#$Funktionsaufrufe
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)

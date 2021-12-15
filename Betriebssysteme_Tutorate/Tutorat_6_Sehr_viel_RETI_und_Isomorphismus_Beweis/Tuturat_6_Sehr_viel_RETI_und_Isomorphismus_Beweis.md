@@ -677,11 +677,22 @@ void main() {
 ## Übungsblatt
 ### Aufgabe 3
 
+- anlog wie Umrechnungsformel zwischen **Zahlendarstellungen**, z.B. **Dezimal-** und **Binärdarstellung**, nur, dass man hier Register mit verschiedener Länge hat
+- wenn Ziffern gleich sind geht man solange bis das erste Ziffernpaar ungleich ist und welche von beiden Zahlen größer ist, dass ist dann auch die größere Zahl ($100_b > 11_b$)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+
 - **Isomorphismus** $F: \left(k_{1}, \ldots, k_{n}\right) \mapsto a+\sum_{i=1}^{n}\left(\prod_{j=i+1}^{n} s_{j}\right) \cdot k_{i}$ von Struktur $\mathcal{A}=(\N^n, 0^{\mathcal{A}}, +^{\mathcal{A}})$ nach $\mathcal{B}=(\N, 0^{\mathcal{B}}, +^{\mathcal{B}})$
 - **Deduktives Netz:** Funktion **bijektiv** gdw. **injektiv** und **surjektiv**
 - Beweis der Injektivität durch **Beweis durch Kontraposition:**
-  - $f(x)=f(y) \Rightarrow x=y$ wird umgeformt zu $x \neq y \Rightarrow f(x) \neq f(y)$
-  - $f(x) \neq f(y)$ wird umgeformt zu $f(x) - f(y) \neq 0$ bzw. $f(x) - f(y) > 0$
+  - $f(x)=f(y) \Rightarrow x=y$ umgef. $x \neq y \Rightarrow f(x) \neq f(y)$ bzw. $f(x) < f(y)$
+  - $f(x) \neq f(y)$ umgef. $f(x) - f(y) \neq 0$ bzw. $f(x) - f(y) > 0$
 - **Voraussetzungen:**
   - $\text { Sei } l \text { minimal mit } k_{l} \neq h_{l} . \text { O.B.d.A. gelte } k_{l}<h_{l} \text { und } k_{1}=h_{1}, \ldots, k_{l-1}=h_{l-1}$
 - **Behauptung:**
@@ -729,7 +740,17 @@ $$
 ## Übungsblatt
 ### Aufgabe 3
 ##### Teilbeweis (2/2) der Rechtstotalität (Surjektivität)
-- Da **Definitionsmenge** und **Wertemenge** gleich groß sind und die Abbildung $ind$ **injektiv** ist, ist sie auch **surjektiv**
+- Da **Definitionsmenge** und **Wertemenge** gleich groß sind und die Abbildung $ind$ **linkseindeutig** (injektiv) ist, ist sie auch **rechtstotal** (surjektiv)
+
+$$
+\displaystyle
+\begin{array}{l}
+|D|=\left|\left\{0, \ldots, s_{1}-1\right\} \times \ldots \times\left\{0, \ldots, s_{n-1}\right\}\right|=\prod_{i=1}^{n} s_{i} \\
+|Z|=\left|\left\{a, a+1, \ldots, a+\prod_{i=1}^{n} s_{i}-1\right\}\right|=\prod_{i=1}^{n} s_{i}
+\end{array}
+$$
+
+> Keine Spritze spritzt zweimal an dieselbe Stelle und jedes Element der Definitionsmenge (Linkstotalität) wird zu einer Spritze...
 
 ##### Beweis des Isomorphismus
 - Aus der **Linkseindeutigkeit** und **Rechtstotalität** des **Homomorphismus** folgt, dass es sich hierbei um einen **Isomorphismus** handelt
