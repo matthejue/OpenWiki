@@ -63,8 +63,15 @@ style: |
 
 ## Vorbereitungen
 ### GDB
-
-- content
+- **Stack ausgeben:** `x /40x $sp`
+- `x /20x &p2` (muss Adresse sein)
+- **Heap ausgeben:** `x /20x 0x555555559000`
+- dump memory file.dump 0xstart 0xstop
+- **find out heap location:**
+  - find out <pid> with `info inferior`
+  - find out heap adress with `info proc mapping <pid>`
+- process in `proc/<pid>/maps`
+  - pidof, kill -9 <pid>, ps -u <user>, top -U <user>
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -72,9 +79,72 @@ style: |
 ---
 
 ## Vorbereitungen
-### Hexadezimal zu Binärsystem und vice versa
+### Hexadezimalsystem
+- $
+\begin{aligned}
+\underline{beef}_{16} &= 11 * 16^3 + 14 * 16^2 + 14 * 16^1 + 15 * 16^0 \\
+&= 11 * 4096 + 14 * 256 + 14 * 16 + 15 \\
+&= 48879
+\end{aligned}
+$
 
-- content
+##### Hexadezimalsystem $\to$ Binärsystem
+
+```text
+   D    4    F    6    6    E
+1101 0100 1111 0110 0110 1110
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Hexadezimalsystem
+
+##### Binärsystem $\to$ Hexadezimalsystem
+
+```text
+1101 0100 1111 0110 0110 1110
+   D    4    F    6    6    E
+```
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Hexadezimalsystem
+- 8 Bit sind 2 Hexzahlen, also 1 Byte=1char wird durch 2 Hexzahlen dargestellt
+  - hex(0b11110000)
+  - bin(0xf0)
+  - immer 4er Bitvektoren lassen sich direkt in eine Hexzahl übersetzen
+- 32 Bit sind 8 Hexzahlen, da 32 Bit=4 Byte und 1Byte entspricht 2 Hexzahlen
+  - hex(0b11110000_00001111_00010010_00110100)
+  - bin(0xf00f1234)
+- bytes actually get read backwards because x86 is **little-endian** and bytes are the smallest unit -> 0xa0  0x92  0x55  0x55  0x55  0x55  0x00  0x00 gets read 0x5555555592a0
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Hexadezimalsystem
+
+| 0    | 1    | 2    | 3    | 4    | 5    | 6    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 |
+
+| 7    | 8    | 9    |
+| ---- | ---- | ---- |
+| 0111 | 1000 | 1001 |
+
+| A    | B    | C    | D    | E    | F    |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -83,8 +153,6 @@ style: |
 
 ## Vorbereitungen
 ### Pointerarithmetik
-
-- content
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -114,6 +182,71 @@ style: |
 - $\lceil x\rceil - 1 < x\le\lceil x\rceil$
 - $\lceil x\rceil=x$ $\Leftrightarrow$ $x\in\mathbb{Z}$
 - $\lceil x+k\rceil=\lceil x\rceil+k, \quad k\in\mathbb{Z}$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### O-Notation
+
+- Relationen $\mathrm{O}, \Omega, \Theta, o, \omega$ sind auf Funktionen, was die Relationen $\leq, \geq,=,<,>$ auf Zahlen sind
+- O entspricht $\leq$:
+    - $\mathrm{O}(f)=\{g: \mathbb{N} \rightarrow \mathbb{R} \mid \exists n_{0} \in \mathbb{N} \quad \exists C>0 \quad \forall n \geq n_{0} \quad g(n) \le C \cdot f(n)\}$
+      - oder auch $\left|f_{n}\right| \leq C\left|g_{n}\right| \quad \forall n \geq n_{0}$
+    - $f_{n} = O(g_{n})$ bedeutet $\text{"f(x) wächst höchstens wie g(x)"}$
+      - $f_{n} = O(g_{n})$ ist keine Gleichheit im mathematischen Sinne, präziser wäre $f_{n} \in O(g_{n})$ als Menge aller Funktionen, die von der Ordnung $g_n$ sind
+    - $\displaystyle f=O(g) \Leftrightarrow \lim _{n \rightarrow \infty} f(n) / g(n)<\infty$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### O-Notation
+  - $\Omega$ entspricht $\geq$:
+    - $\mathrm{\Omega}(f)=\{g: \mathbb{N} \rightarrow \mathbb{R} \mid \exists n_{0} \in \mathbb{N} \quad \exists C>0 \quad \forall n \geq n_{0} \quad g(n) \ge C \cdot f(n)\}$
+    - $f_{n} = O(g_{n})$ bedeutet $\text{"f(x) wächst mindestens wie g(x)"}$
+    - $\displaystyle f=\Omega(g) \Leftrightarrow \lim _{n \rightarrow \infty} f(n) / g(n)>0$
+  - $\Theta$ entspricht $=$:
+    - $\Theta(f)=O(f)\cap\Omega(f)$
+    - $f_{n} = \Theta(g_{n})$ bedeutet $\text{"f(x) wächst genauso wie g(x)"}$
+    - $\displaystyle f=\Theta(g) \Leftrightarrow \lim _{n \rightarrow \infty} f(n) / g(n)>0 \text { und }<\infty$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### O-Notation
+  - o entspricht $<$:
+    - $\mathrm{o}(f)=\{g: \mathbb{N} \rightarrow \mathbb{R} \mid \exists n_{0} \in \mathbb{N} \quad \forall C>0 \quad \forall n \geq n_{0} \quad g(n) \le C \cdot f(n)\}$
+    - $f_{n} = o(g_{n})$ bedeutet $\text{"f(x) wächst (strikt) langsamer als g(x)"}$
+    - $\displaystyle f=o(g) \Leftrightarrow \lim _{n \rightarrow \infty} f(n) / g(n)=0$
+  - $\omega$ entspricht $>$:
+    - $\mathrm{\omega}(f)=\{g: \mathbb{N} \rightarrow \mathbb{R} \mid \exists n_{0} \in \mathbb{N} \quad \forall C>0 \quad \forall n \geq n_{0} \quad g(n) \ge C \cdot f(n)\}$
+    - $f_{n} = \omega(g_{n})$ bedeutet $\text{"f(x) wächst (strikt) schneller als g(x)"}$
+    - $\displaystyle f=\omega(g) \Leftrightarrow \lim _{n \rightarrow \infty} f(n) / g(n)=\infty$
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### O-Notation
+##### Wachstum elementarer Folgen
+- $1 =O\left(\log _{a}(n)\right) \quad \text { für } a>0, a \neq 1$
+- $\log _{a}(n) =O\left(n^{b}\right) \quad \text { für } a>0, a \neq 1, b>0$
+- $n^{b_{1}} =O\left(n^{b_{2}}\right) \quad \text { für } 0 \leq b_{1} \leq b_{2}$
+- $n^{b} =O\left(a^{n}\right) \quad \text { für } \quad b \geq 0, a>1$
+- $a_{1}^{n} =O\left(a_{2}^{n}\right) \quad \text { für } 0<a_{1} \leq a_{2}$
+- $a^{n} =O(n !) \quad \text { für } a>0$
+- $n ! =O\left(n^{n}\right)$
+
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
@@ -309,7 +442,30 @@ int fib(int n)
 - Teilergebnisse **mehrfach** berechnet **🠒** $\#$Funktionsaufrufe wächst **exponentiel** **🠒** ineffizient
 
 ##### Abschätzug für $\#$Funktionsaufrufe
+- $\forall n \geq 4: f(n)=f(n-1)+f(n-2) \geq 2 \cdot f(n-2) \overset{*}{\Rightarrow} t(n) \geq 2^{\lfloor n / 2\rfloor}$
+- $\begin{aligned}
+\star: f(n) &>2 f(n-2) \\
+& \geq 2 \cdot 2 f(n-2 \cdot 2) \\
+& \ldots \\
+& \geq 2^{k} f(n-2 k)
+\end{aligned}
+$
 
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2c)
+
+- $n/2$ Verdopplungen, da wir in jedem Schritt $n − 2$ nehmen. Für ungerade $n$ muss abgerundet werden
+- Wähle nun $k_{0}:=\left\lfloor\frac{n-1}{2}\right\rfloor$, also $k_{0}=\frac{n-1}{2}$ falls $n$ ungerade und $k_{0}=\frac{n-2}{2}$, falls $n$ gerade. Dann ist $n-2 k_{0}=1$ oder $n-2 k_{0}=2$ und somit $f\left(n-2 k_{0}\right)=1$.
+- **Es folgt:**
+- $\forall n \geq 4: \quad f(n)>2^{k_{0}} f\left(n-2 k_{0}\right)=2^{\left\lfloor\frac{n-1}{2}\right\rfloor}$
+  - Da $\;t(n)=f(n+1)$ gilt für $n \geq 4:$
+  - $\displaystyle t(n)>2^{\left\lfloor\frac{n}{2}\right\rfloor} \geq 2^{\frac{n}{2}-1} = \frac{2^{\frac{n}{2}}}{2^{1}} = 0.5 \sqrt{2}^{n}$
+  also $t(n)=\Omega\left((\sqrt{2})^{n}\right)$
 
 <!--small-->
 ![bg right:10%](_resources/background_2.png)
