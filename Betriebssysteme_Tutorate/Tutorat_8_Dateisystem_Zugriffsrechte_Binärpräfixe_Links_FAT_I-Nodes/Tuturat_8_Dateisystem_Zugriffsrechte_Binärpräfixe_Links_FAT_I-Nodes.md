@@ -9,7 +9,7 @@ style: |
   h2 { color: #cb6647; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
   h3 { color: #647da6; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
   h4 { color: #cb6647; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
-  h5 { color: #647da6; font-size: 30px; text-align: left; margin-top: 40px; margin-bottom: 30px; line-height: 0px; font-weight: normal; }
+  h5 { color: #cb6647; font-size: 30px; text-align: left; margin-top: 40px; margin-bottom: 30px; line-height: 0px; font-weight: normal; }
   a { color: #647da6; }
   strong { color: #cb6647; }
   em { color: #647da6; }
@@ -52,6 +52,79 @@ style: |
 
 ---
 
+# Vorbereitungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #9db7b4; -->
+
+---
+
+## Vorbereitungen
+### `umask`-Befehl
+- Falls Zugriffsrechte **verloren** gehen, liegt das daran, dass die Zugriffsrechte mit der `umask` maskiert werden
+- **Beispiele:**
+  - `umask 0002` beim Kopieren wird Schreibrecht (w = 2) für **Others** gelöscht.
+  - `umask 0077` beim **Kopieren** werden alle Rechte (r+w+x = 4+2+1 = 7) für **Gruppe** und **Others** gelöscht.
+- Die führende `0` gibt an, dass es sich um **Oktaldarstellung** handelt
+  - the **first zero** is a special permission digit and can be ignored **🠒** `0002` is the same as `002`
+- Mit `umask -S` lassen sich die Rechte von neu erstellen **Dateien** anzeigen
+- To view current `umask` value: `umask`
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### `umask`-Befehl
+- in Linux, the default permissions value is `666` for a **regular file**, and `777` for a **directory**. When creating a new file or directory, the kernel takes this **default value**, **"subtracts"** the umask value, and gives the new files the resulting permissions
+- **folder:** $777 - 022 = 755$
+- **file:** $666 - 022 = 644$
+> *not really subtraction:* technically, the mask is **negated** (its bitwise compliment is taken) and this value is then applied to the default permissions using a logical **AND** operation (**🠒** **Material nonimplication**)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### `umask`-Befehl
+
+![height:400px](_resources/_2021-12-18-15-12-48.png)
+#### https://www.computerhope.com/unix/uumask.htm
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### `umark`-Befehl
+- `umask u-x,g=r,o+w`:
+  - **prohibit** the **execute** permission from being set for the **file's owner** (user), while leaving the **rest** of the **owner** permissions **unchanged**
+  - **enable read** permission for the **group**, while **prohibiting write** and **execute** permission for the **group**;
+  - **enable write** permission for **others**, while leaving the **rest** of the other permissions **unchanged**.
+- The default mask for a **non-root user** is `002`, changing the **folder** permissions to `775` (`rwxrwxr-x`), and **file** permissions to `664` (`rw-rw-r--`).
+- The default mask for a **root user** is `022`, changing the **folder** permissions to `755` (`rwxr-xr-x`), and **file** permissions to `644` (`rw-r--r--`).
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Material nonimplication
+- "p **minus** q.", "p **without** q.", "p **but not** q."
+##### ![height:125px](_resources/_2021-12-18-15-43-54.png)
+##### ![height:125px](_resources/_2021-12-18-15-44-09.png)
+##### https://en.wikipedia.org/wiki/Material_nonimplication
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -63,8 +136,158 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1
+##### a)
+```
+$ ls -l
+drwxr-x--x 2 un1062 uni 26 27. Okt 14:06 meine_dateien
+```
+- Der **Besitzer** `un1062` darf den **Verzeichnisinhalt** **auflisten** (`r`), **Dateien** **erstellen**, **löschen** und **umbenennen** (`w`) und in das **Verzeichnis wechseln** (`x`).
+- Mitglieder der **Gruppe** uni dürfen nur den **Verzeichnisinhalt auflisten** und in das **Verzeichnis wechseln**.
+- Alle anderen **Benutzer** dürfen nur in das **Verzeichnis wechseln**, den Inhalt aber **nicht** auflisten.
 
-- content
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+##### b)
+```
+cd /tmp
+mkdir $(whoami)  # oder $USER
+cd $(whoami)
+cp /usr/bin/whoami werbinich
+ls -lh /usr/bin/whoami
+ls -lh /tmp/$(whoami)/whoami
+```
+- Beim **Kopieren** von `/usr/bin/whoami` nach `werbinich` ändert sich der Besitzer und die Gruppe der Datei von `root:root` nach `<username>:student`. Die **Zugriffsrechte** können erhalten bleiben oder teilweise verloren gehen.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+##### b)
+- `chmod g=rx werbinich`. Gegegenfalls muss zunächst die Gruppe der Datei mit `chgrp uni werbinich` geändert werden
+- Falls die Gruppe `uni` noch nicht existiert:
+  ```
+  sudo groupadd uni  # Gruppe erstellen
+  sudo usermod -a -G uni $USER  # Mitglied der Gruppe werden
+  # Ausloggen und wieder einloggen, um Gruppenmitgliedschaft zu erlangen
+  sudo groupdel uni  # Löschen der Gruppe
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+##### b)
+- Das Programm `werbinich` zeigt den Namen des Nutzers (`xy1234`) an, da das Programm unter seiner Benutzerkennung ausgeführt wird. Um das Programm stattdessen unter der Benutzerkennung des Dateiinhabers auszuführen, muss das **SUID-Bit** (**Set User ID**) gesetzt werden:
+  ```
+  [chgrp uni werbinich]
+  chmod g=rx werbinich
+  chmod u+s werbinich
+  ./werbinich
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
+##### c)
+```
+cd
+mkdir systeme-public
+1) chmod go=rx systeme-public
+2) chmod go=x ~
+```
+- Das `x`-Recht muss für alle übergeordneten Verzeichnisse gesetzt sein, da der Gruppenpartner sonst nicht mit `cd` in **systeme-public** wechseln darf (selbst wenn `x` auf **systeme-public** selbst gesetzt ist). Wenn der Gruppenpartner in der selben Gruppe (`student`) ist, reichen auch **Gruppenrechte** aus.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a)
+##### Unterschiede
+- Alle Hardlinks zu einer Datei verweisen auf einen einzigen I-Node. Im Gegensatz dazu hat jeder symbolische Link einen eigenen I-Node, dessen Daten verweisen auf einen Verzeichniseintrag. [Bemerkung: In der Vorlesung wurde vorgestellt, dass der I-Node eines symbolischen Link einen Zeiger auf einen Datenblock enthält, der wiederum den Pfadnamen des Ziels enthält. Bei manchen Dateisystemen (z.B. ext) wird der Pfad des Ziels auch direkt im I-Node gespeichert.]
+- Ein Hardlink ist nur ein Verzeichniseintrag, jeder symbolische Link ist ein eigenständiger I-Node.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a)
+##### Unterschiede
+- Wird das Original gelöscht, so zeigen symbolische Links ins Leere, während über Hardlinks der Inhalt der Datei immer noch zugänglich ist.
+- Wird das Original gelöscht und eine Datei mit dem selben Namen angelegt, so zeigen die symbolischen Links auf die neue Datei, während Hardlinks weiterhin auf das I-Node mit dem alten Inhalt zeigen.
+- Während symbolische Links weit verbreitet sind, existieren Hardlinks nur in Dateisystemen mit I-Nodes oder ähnlichen Strukturen.
+- Hardlinks können nur innerhalb des selben Dateisystems angelegt werden, symbolische Links funktionieren auch über Dateisysteme hinweg.
+- Ordner können i.d.R. nur mit symbolischen Links als Ziel verwendet werden.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2a)
+##### Vorteile und Nachteile
+![height:400px](_resources/_2021-12-18-17-21-35.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2b)
+- Wenn dies möglich wäre, müsste man zusätzlich zum I-Node abspeichern, in welchem Dateisystem/in welcher Partition das Ziel liegt. Das wiederum macht aber keinen Sinn, da die Dateisysteme an verschiedenen Stellen, zu unterschiedlichen Zeiten und möglicherweise von unterschiedlichen Computern gemountet werden könnten und damit könnte dies zu unerwartetem Verhalten führen
+- Nehmen wir an, es würde eine Datei A erstellt und es verweisen zwei Hardlinks von unterschiedlichen Dateisy- stemen auf diese Datei. In welchem Dateisystem befinden sich nun tatsächlich die Daten? Was muss man tun, wenn ein Dateisystem nicht mehr mit dem Rechner verbunden ist? Sind die Daten noch vorhanden? Wenn ja, kann ich sie löschen?
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2c)
+- Erstelle in Verzeichnis D1 ein Verzeichnis A. Nun erstelle in Verzeichnis A mit ln ../A B einen Hardlink B auf A. Wechsle nun mit cd B in das Verzeichnis. Man befindet sich nun gleichzeitig in D1 und A. Was soll nun passieren wenn man cd .. eingibt? Das Verzeichnis hat zwei Vaterverzeichnisse (D1,A). Wie soll das Dateisystem wissen, welches ausgewählt werden soll?
+- Es gibt auch noch andere Probleme, z.B. gehen UNIX-Befehle immer von einer azyklischen Verzeichnisstruktur aus. Ein Zyklus könnte deshalb zu Endlosschleifen führen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+##### a)
+##### ![_2021-12-18-17-27-03](_resources/_2021-12-18-17-27-03.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+##### b)
+- Die Einheit `TB` bezeichnet hier typischerweise 1012 Bytes, da die Festplattenkapazität in SI-Einheiten größer aussieht als in Zweierpotenz-Einheiten. Im Gegensatz dazu ergibt sich für Arbeitsspeicher wegen der parallelen Adressierung immer eine Zweierpotenz, weshalb Arbeitsspeicher fast immer mit Binärpräfix angegeben wird.
+- **Differenz der Intepretationen:**
+  $3,0 · 240 Byte −3,0 · 1012 Byte = 298534883328 = 278,032 GiB$
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -75,7 +298,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background.png)
+![bg right:30%](_resources/background_2.png)
 <!-- _backgroundColor: #9db7b4; -->
 
 ---
@@ -425,7 +648,8 @@ style: |
 ## Quellen
 ### Wissenquellen
 
-- :shrug:
+- https://www.computerhope.com/unix/uumask.htm
+- https://phoenixnap.com/kb/what-is-umask
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
