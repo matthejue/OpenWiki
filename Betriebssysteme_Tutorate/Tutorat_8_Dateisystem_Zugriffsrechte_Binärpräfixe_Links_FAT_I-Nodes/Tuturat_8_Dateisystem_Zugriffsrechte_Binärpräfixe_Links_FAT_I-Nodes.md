@@ -125,6 +125,40 @@ style: |
 
 ---
 
+## Vorbereitungen
+### Binärepräfixe
+
+- Speicher wird in **Byte** = $8$ **Bit** angegeben
+- **Dezimalpräfixe:** Kilobyte [kB], Megabyte [MB], Gigabyte [GB], Terabyte [TB], Petabyte [PB], Exabyte [EB]
+- **Binärpräfixe:** Kibibyte [KiB], Mebibyte [MiB], Gibibyte [GiB], Tebibyte [TiB], Pebibyte [PiB], Exbibyte [EiB]
+- **Einheit umrechnen:**
+`1 000 000 000 kB` $\xLeftarrow{\cdot 1000}$ `1 000 000 MB` $\xLeftarrow{\cdot 10^3}$ `1 000 GB` $\xLeftarrow{\cdot 10^3}$ `1 TB`
+$\Downarrow \cdot 10^3$
+`1 000 000 000 000 B`
+$\Downarrow \operatorname{:} 2^{10}$
+`976 562 500 KiB` $\xRightarrow{\operatorname{:} 1024}$ `953 674,32 MiB` $\xRightarrow{\operatorname{:} 2^{10}}$ `931,32 GiB` $\xRightarrow{\operatorname{:} 2^{10}}$ `0,91 TiB`
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
+## Vorbereitungen
+### Binärepräfixe
+
+- $1\cdot2^{10}B=1KiB$, $1\cdot2^{20}=1MiB$, $1\cdot2^{30}=1GiB$ etc.
+- $1\cdot10^3B=1KB$, $1\cdot10^{6}B=1MB$, $1\cdot10^{9}B=1GB$ etc.
+- **Windows** verwendet $GiB$, schreibt aber $GB$ hin, einige **Linux Distributionen** auch, der **Manjaro Installer** aber z.B. $GiB$
+- wird von **Festplattenherstellern** genutzt, um $100GB$ draufzuschreiben, was viele fälschlicherweise als $GiB$ interpretieren, aber nur $(100 \cdot 1000 \cdot 1000 \cdot 1000) / 1024 / 1024 / 1024 \approx 93.13GiB$ tatsächlich zu liefern
+- **Unterschied** wird immer größer, z.B. zwischen GB und GiB sind es $7,4\%$
+- bei **SD-Karten** wird in GiB angegeben (512GiB)
+- **Arbeitsspeicher** wird in GiB angegebn (8 GiB Arbeitsspeicher)
+
+<!--small-->
+![bg right:10%](_resources/background_2.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -220,8 +254,10 @@ mkdir systeme-public
 ## Übungsblatt
 ### Aufgabe 2a)
 ##### Unterschiede
-- Alle Hardlinks zu einer Datei verweisen auf einen einzigen I-Node. Im Gegensatz dazu hat jeder symbolische Link einen eigenen I-Node, dessen Daten verweisen auf einen Verzeichniseintrag. [Bemerkung: In der Vorlesung wurde vorgestellt, dass der I-Node eines symbolischen Link einen Zeiger auf einen Datenblock enthält, der wiederum den Pfadnamen des Ziels enthält. Bei manchen Dateisystemen (z.B. ext) wird der Pfad des Ziels auch direkt im I-Node gespeichert.]
-- Ein Hardlink ist nur ein Verzeichniseintrag, jeder symbolische Link ist ein eigenständiger I-Node.
+- Alle **Hardlinks** zu einer Datei verweisen auf einen **einzigen** I-Node. Im Gegensatz dazu hat jeder **symbolische Link** einen **eigenen** I-Node, der einen Zeiger auf einen Datenblock enthält, der wiederum den Pfadnamen des Ziels enthält
+  - bei manchen Dateisystemen (z.B. **ext**) wird der **Pfad des Ziels** auch direkt im **I-Node** gespeichert, also die **Daten** des I-Nodes verweisen auf einen **Verzeichniseintrag**
+- ein **Hardlink** ist nur ein **Verzeichniseintrag**, jeder **symbolische Link** ist ein eigenständiger **I-Node**
+- wird das **Original gelöscht**, so zeigen **symbolische Links** ins **Leere**, während über **Hardlinks** der Inhalt der Datei **immer noch zugänglich** ist
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -231,11 +267,14 @@ mkdir systeme-public
 ## Übungsblatt
 ### Aufgabe 2a)
 ##### Unterschiede
-- Wird das Original gelöscht, so zeigen symbolische Links ins Leere, während über Hardlinks der Inhalt der Datei immer noch zugänglich ist.
-- Wird das Original gelöscht und eine Datei mit dem selben Namen angelegt, so zeigen die symbolischen Links auf die neue Datei, während Hardlinks weiterhin auf das I-Node mit dem alten Inhalt zeigen.
-- Während symbolische Links weit verbreitet sind, existieren Hardlinks nur in Dateisystemen mit I-Nodes oder ähnlichen Strukturen.
-- Hardlinks können nur innerhalb des selben Dateisystems angelegt werden, symbolische Links funktionieren auch über Dateisysteme hinweg.
-- Ordner können i.d.R. nur mit symbolischen Links als Ziel verwendet werden.
+- Wird das **Original gelöscht** und eine Datei mit dem **selben Namen** angelegt, so zeigen die **symbolischen Links** auf die **neue Datei**, während **Hardlinks** weiterhin auf das **I-Node** mit dem **alten Inhalt** zeigen
+- Während **symbolische Links** weit **verbreitet** sind, existieren **Hardlinks** nur in Dateisystemen **mit I-Nodes** oder ähnlichen Strukturen
+- **Hardlinks** können **nur innerhalb des selben Dateisystems** angelegt werden, **symbolische Links** funktionieren auch **über Dateisysteme hinweg**
+- **Ordner** können i.d.R. nur bei **symbolischen Links** als Target verwendet werden
+  ```
+  > $ ln folder folder_link
+  ln: folder: hard link not allowed for directory
+  ```
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -244,7 +283,7 @@ mkdir systeme-public
 
 ## Übungsblatt
 ### Aufgabe 2a)
-##### Vorteile und Nachteile
+##### Vorteile und Nachteile - Übersicht
 ![height:400px](_resources/_2021-12-18-17-21-35.png)
 
 <!--small-->
@@ -254,8 +293,8 @@ mkdir systeme-public
 
 ## Übungsblatt
 ### Aufgabe 2b)
-- Wenn dies möglich wäre, müsste man zusätzlich zum I-Node abspeichern, in welchem Dateisystem/in welcher Partition das Ziel liegt. Das wiederum macht aber keinen Sinn, da die Dateisysteme an verschiedenen Stellen, zu unterschiedlichen Zeiten und möglicherweise von unterschiedlichen Computern gemountet werden könnten und damit könnte dies zu unerwartetem Verhalten führen
-- Nehmen wir an, es würde eine Datei A erstellt und es verweisen zwei Hardlinks von unterschiedlichen Dateisy- stemen auf diese Datei. In welchem Dateisystem befinden sich nun tatsächlich die Daten? Was muss man tun, wenn ein Dateisystem nicht mehr mit dem Rechner verbunden ist? Sind die Daten noch vorhanden? Wenn ja, kann ich sie löschen?
+- Wenn dies möglich wäre, müsste man **zusätzlich** zum I-Node **abspeichern**, in welchem **Dateisystem/in welcher Partition** das Ziel liegt. Das wiederum macht aber **keinen Sinn**, da die **Dateisysteme** an **verschiedenen Stellen**, zu **unterschiedlichen Zeiten** und möglicherweise von **unterschiedlichen Computern** gemountet werden könnten und damit könnte dies zu **unerwartetem Verhalten** führen
+- Nehmen wir an, es würde eine **Datei A erstellt** und es verweisen **zwei Hardlinks** von **unterschiedlichen Dateisystemen** auf diese Datei. In **welchem Dateisystem** befinden sich nun tatsächlich die Daten? **Was** muss man **tun**, wenn ein Dateisystem **nicht mehr mit dem Rechner verbunden** ist? Sind die **Daten noch vorhanden**? Wenn ja, kann ich sie **löschen**?
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -264,8 +303,8 @@ mkdir systeme-public
 
 ## Übungsblatt
 ### Aufgabe 2c)
-- Erstelle in Verzeichnis D1 ein Verzeichnis A. Nun erstelle in Verzeichnis A mit ln ../A B einen Hardlink B auf A. Wechsle nun mit cd B in das Verzeichnis. Man befindet sich nun gleichzeitig in D1 und A. Was soll nun passieren wenn man cd .. eingibt? Das Verzeichnis hat zwei Vaterverzeichnisse (D1,A). Wie soll das Dateisystem wissen, welches ausgewählt werden soll?
-- Es gibt auch noch andere Probleme, z.B. gehen UNIX-Befehle immer von einer azyklischen Verzeichnisstruktur aus. Ein Zyklus könnte deshalb zu Endlosschleifen führen
+- Erstelle in **Verzeichnis D1** ein **Verzeichnis A**. Nun erstelle in **Verzeichnis A** mit `ln ../A B` einen **Hardlink B** auf **A**. Wechsle nun mit `cd B` in das Verzeichnis. Man befindet sich nun **gleichzeitig** in **D1** und **A**. Was soll nun **passieren** wenn man `cd ..` eingibt? Das Verzeichnis hat **zwei Vaterverzeichnisse** (D1,A). Wie soll das Dateisystem wissen, welches ausgewählt werden soll?
+- Es gibt auch noch andere Probleme, z.B. gehen **UNIX-Befehle** immer von einer **azyklischen Verzeichnisstruktur** aus. Ein Zyklus könnte deshalb zu **Endlosschleifen** führen
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -275,7 +314,7 @@ mkdir systeme-public
 ## Übungsblatt
 ### Aufgabe 3
 ##### a)
-##### ![_2021-12-18-17-27-03](_resources/_2021-12-18-17-27-03.png)
+##### ![height:250px](_resources/_2021-12-18-17-27-03.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -285,9 +324,18 @@ mkdir systeme-public
 ## Übungsblatt
 ### Aufgabe 3
 ##### b)
-- Die Einheit `TB` bezeichnet hier typischerweise 1012 Bytes, da die Festplattenkapazität in SI-Einheiten größer aussieht als in Zweierpotenz-Einheiten. Im Gegensatz dazu ergibt sich für Arbeitsspeicher wegen der parallelen Adressierung immer eine Zweierpotenz, weshalb Arbeitsspeicher fast immer mit Binärpräfix angegeben wird.
+- Die Einheit `TB` bezeichnet hier typischerweise $10^{12}$ Bytes, da die Festplattenkapazität in **SI-Einheiten** größer aussieht als in **Zweierpotenz-Einheiten**
+- Im Gegensatz dazu ergibt sich für **Arbeitsspeicher** wegen der **parallelen Adressierung** immer eine **Zweierpotenz**, weshalb Arbeitsspeicher fast immer mit **Binärpräfix** angegeben wird.
 - **Differenz der Intepretationen:**
-  $3,0 · 240 Byte −3,0 · 1012 Byte = 298534883328 = 278,032 GiB$
+  $3.0 · 2^{40} B −3.0 · 10^{12} B = 298534883328B = 278.032 GiB$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
