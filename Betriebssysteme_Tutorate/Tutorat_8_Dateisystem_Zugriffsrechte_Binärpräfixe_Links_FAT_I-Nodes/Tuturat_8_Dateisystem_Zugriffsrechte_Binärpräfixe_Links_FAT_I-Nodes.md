@@ -336,6 +336,8 @@ mkdir systeme-public
 
 ## Übungsblatt
 ### Aufgabe 4
+##### a)
+- Ein **Hardlink** in einem **anderen Verzeichnis** hätte einen **eigenen Verzeichniseintrag**. Wird etwas an einer Datei und somit am **Verzeichniseintrag verändert** (z.B gelöscht), müsste auch der **Eintrag des Hardlinks** entsprechend verändert werden. Dafür müssten aber alle **Hardlinks voneinander wissen**.
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
