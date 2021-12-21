@@ -159,6 +159,16 @@ $\Downarrow \operatorname{:} 2^{10}$
 
 ---
 
+## Vorbereitungen
+### Dateisysteme
+
+- siehe `Zusammenfassung_Dateisysteme.md` auf **Nextcloud**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -338,6 +348,97 @@ mkdir systeme-public
 ### Aufgabe 4
 ##### a)
 - Ein **Hardlink** in einem **anderen Verzeichnis** hätte einen **eigenen Verzeichniseintrag**. Wird etwas an einer Datei und somit am **Verzeichniseintrag verändert** (z.B gelöscht), müsste auch der **Eintrag des Hardlinks** entsprechend verändert werden. Dafür müssten aber alle **Hardlinks voneinander wissen**.
+
+##### b)
+- Es werden $\lceil \dfrac{158 KB}{32 KB/Block}\rceil = 5 \text{Blöcke}$ benötigt
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+##### b)
+
+![height:440](_resources/_2021-12-20-22-47-13.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+##### b)
+
+![_2021-12-20-22-45-55](_resources/_2021-12-20-22-45-55.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+##### a)
+
+- Bei der **1-/2-/3-fach indirekten Adressierung** passen $\left\lfloor\dfrac{b}{z}\right\rfloor$ Zeiger in einen Block. Die **Anzahl der Datenblöcke**, die ein **I-Node** adressieren kann, ist daher:
+$$
+N_{b}=10+\left\lfloor\frac{b}{z}\right\rfloor+\left\lfloor\frac{b}{z}\right\rfloor^{2}+\left\lfloor\frac{b}{z}\right\rfloor^{3}=10+\sum_{i=1}^{3}\left\lfloor\frac{b}{z}\right\rfloor^{i}
+$$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+##### b) Maximale Dateigrößen
+- **Blockgröße 1 KiB:**
+  - *Anzahl Zeiger pro Block:*
+    $$\displaystyle
+    \left\lfloor\frac{b}{z}\right\rfloor=\frac{1 \frac{\mathrm{KiB}}{\mathrm{Block}}}{4 \frac{\mathrm{Byte}}{\mathrm{Zeiger}}}=256 \frac{\text { Zeiger }}{\text { Block }}
+    $$
+  - *Maximale Anzahl der adressierbaren Datenblöcke pro I-Node:*
+    $$\displaystyle
+    N_{b}=10+256+256^{2}+256^{3}=10+256+65536+16777216=16843018
+    $$
+  - *Maximale Größe einer Datei:*
+    $$\displaystyle
+    16843018 \text { Blöcke } \cdot 1 \frac{\mathrm{KiB}}{\mathrm{Block}}=17247250432 \mathrm{Byte}=16843018 \mathrm{KiB} \approx 16448 \mathrm{MiB} \approx 16,06 \mathrm{GiB}
+    $$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+##### b) Maximale Dateigrößen
+- **Blockgröße 4 KiB:**
+  - *Anzahl Zeiger pro Block:*
+    $$
+    \left\lfloor\frac{b}{z}\right\rfloor=\frac{4 \frac{\mathrm{KiB}}{\mathrm{Block}}}{4 \frac{\mathrm{Byte}}{\mathrm{Zeiger}}}=1024 \frac{\text { Zeiger }}{\text { Block }}
+    $$
+  - *Maximale Anzahl der adressierbaren Datenblöcke pro I-Node:*
+    $$
+    N_{b}=10+1024+1024^{2}+1024^{3}=10+1024+1048576+1073741824=1074791434
+    $$
+  - *Maximale Größe einer Datei:*
+    $1074791434 Blöcke \cdot 4 \frac{\mathrm{KiB}}{\text { Block }}=4402345713664$ Byte $=4299165736 \mathrm{KiB} \approx 4100 \mathrm{GiB} \approx 4,00 \mathrm{TiB}$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+##### b) Maximale Dateigröße
+- Aufgrund der gewählten Zeigergröße von $4 Byte$ können maximal $232 Blöcke = $4'294'967'296 Blöcke$ adressiert werden (über mehrere dieser Blöcke erstreckt sich ein Datenblock, wovon es $16'843'018$ bzw. $1'074'791'434$ gibt)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
