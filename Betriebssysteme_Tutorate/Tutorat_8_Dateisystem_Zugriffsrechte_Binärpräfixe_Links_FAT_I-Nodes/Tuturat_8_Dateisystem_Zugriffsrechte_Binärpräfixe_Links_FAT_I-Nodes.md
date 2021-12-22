@@ -139,7 +139,7 @@ $\Downarrow \operatorname{:} 2^{10}$
 `976 562 500 KiB` $\xRightarrow{\operatorname{:} 1024}$ `953 674,32 MiB` $\xRightarrow{\operatorname{:} 2^{10}}$ `931,32 GiB` $\xRightarrow{\operatorname{:} 2^{10}}$ `0,91 TiB`
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -155,7 +155,7 @@ $\Downarrow \operatorname{:} 2^{10}$
 - **Arbeitsspeicher** wird in GiB angegebn (8 GiB Arbeitsspeicher)
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
