@@ -123,7 +123,7 @@ style: |
 ---
 
 ## Vorbereitungen
-### Binärepräfixe
+### Binärpräfixe
 
 - Speicher wird in **Byte** = $8$ **Bit** angegeben
 - **Dezimalpräfixe:** Kilobyte [kB], Megabyte [MB], Gigabyte [GB], Terabyte [TB], Petabyte [PB], Exabyte [EB]
@@ -141,7 +141,7 @@ $\Downarrow \operatorname{:} 2^{10}$
 ---
 
 ## Vorbereitungen
-### Binärepräfixe
+### Binärpräfixe
 
 - $1\cdot2^{10}B=1KiB$, $1\cdot2^{20}=1MiB$, $1\cdot2^{30}=1GiB$ etc.
 - $1\cdot10^3B=1KB$, $1\cdot10^{6}B=1MB$, $1\cdot10^{9}B=1GB$ etc.
@@ -159,7 +159,56 @@ $\Downarrow \operatorname{:} 2^{10}$
 ## Vorbereitungen
 ### Dateisysteme
 
-- siehe `Zusammenfassung_Dateisysteme.md` auf **Nextcloud**
+- siehe `Tutorat_8_Dateisysteme.pdf` auf **Nextcloud**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Zugriffsrechte
+- siehe `Tutorat_8_Users_Groups_Permissions.pdf` auf **Nextcloud**
+- nur `x` ist ein Dunkler Raum mit **geöffneter Tür**, `r` ist ein Raum mit **angeschaltetem Licht**
+  - Dateien in einem `x`-only Verzeichnis können allerdings trotzdem
+  **ausgeführt** werden, falls der Name richtig **geraten** wird.
+- Kann man sich mit **chmod u-rwx** nicht aussperren?
+  - Nein, weil im **I-Node des Ordner** die **Zugriffrechte** stehen und auf den hat man ja Zugriff. Und wenn man auf diesen keinen Zugriff hat, dann hat man hoffenltich auf sein **Elternverzeichnis** Zugriff
+- für **Others** gibt es kein **S-Bit**:
+  - **S-Bit** gibt es nur für **Gruppe** und **User**
+  - `a+s` skipt **Others**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Zugriffsrechte
+- **Überprüfung, ob man Recht für diese Datei hat**
+  ```
+  permission_for_file(self, file, permission) {
+    if file.user == self.user: return file.user[permission]
+    if file.group == self.group: return file.group[permission]
+    return file.others[permission]
+  }
+  ```
+  - `chmod 007 <file>` bedeutet **alle** haben vollen Zugriff, **außer** der **User** und alle in der **Gruppe** des Users
+  - `chmod 077 <file>` bedeutet **alle** **außer** dem **User** haben vollen Zugriff
+  - `chmod 070 <file>` bedeutet nur die **Gruppe** des Users hat darauf Zugriff
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Absoluter and relativer Softlink / Symbolischer Link
+- `ln -s <target> <link>` für **absoluten oder relativen Symbolischen Link**
+  - Ist nur ein **absoluter Link**, wenn `<target>` ein **absoluter Pfad** ist, also nicht einfach nur der Dateiname, sonst ist es ein **relativer Link**
+  - `ln -sr <target> <link>` für **auf jeden Fall** einen **relativen symbolischen Link**
+    - `-r`: auch wenn man einen **absoluten Pfad** angibt, wird daraus ein **relativer Pfad** gemacht
+- bei **relativen Pfandangaben** wird der Link **ungültig**, wenn das Ziel in ein anderes Verzeichnis **verschoben** wird
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -193,7 +242,7 @@ drwxr-x--x 2 un1062 uni 26 27. Okt 14:06 meine_dateien
 
 ## Übungsblatt
 ### Aufgabe 1
-##### b)
+##### b.1)
 ```
 cd /tmp
 mkdir $(whoami)  # oder $USER
@@ -202,7 +251,8 @@ cp /usr/bin/whoami werbinich
 ls -lh /usr/bin/whoami
 ls -lh /tmp/$(whoami)/werbinich
 ```
-- Beim **Kopieren** von `/usr/bin/whoami` nach `werbinich` ändert sich der Besitzer und die Gruppe der Datei von `root:root` nach `<username>:student`. Die **Zugriffsrechte** können erhalten bleiben oder teilweise verloren gehen.
+- `root:root` **🠒** `<username>:student`
+- **Zugriffsrechte** können teilweise verloren gehen (`umask`)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -211,15 +261,17 @@ ls -lh /tmp/$(whoami)/werbinich
 
 ## Übungsblatt
 ### Aufgabe 1
-##### b)
-- `chmod g=rx werbinich`. Gegegenfalls muss zunächst die Gruppe der Datei mit `chgrp uni werbinich` geändert werden
-- Falls die Gruppe `uni` noch nicht existiert:
-  ```
-  sudo groupadd uni  # Gruppe erstellen
-  sudo usermod -a -G uni $USER  # Mitglied der Gruppe werden
-  # Ausloggen und wieder einloggen, um Gruppenmitgliedschaft zu erlangen
-  sudo groupdel uni  # Löschen der Gruppe
-  ```
+##### b.2)
+- `chmod g=rx werbinich`,  (ggf. `chgrp uni werbinich`)
+  - falls **Gruppe** `uni` nicht existiert:
+    ```
+    sudo groupadd uni  # Gruppe erstellen
+    sudo usermod -a -G uni $USER  # Mitglied der Gruppe werden
+    # Ausloggen und wieder einloggen, um Gruppenmitgliedschaft zu erlangen
+    sudo groupdel uni  # Löschen der Gruppe
+    ```
+    - `-a`, `--append`: Appends the user to the current **supplementary group** list. Use only with the `-G` option. If the user is currently a member of a group which is **not listed**, the user will be **removed** from the group
+    - `-G`, `--groups GROUP1[,GROUP2,...[,GROUPN]]]`: A list of **supplementary groups** which the user is also a member of
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -228,11 +280,12 @@ ls -lh /tmp/$(whoami)/werbinich
 
 ## Übungsblatt
 ### Aufgabe 1
-##### b)
-- Das Programm `werbinich` zeigt den Namen des Nutzers (`xy1234`) an, da das Programm unter seiner Benutzerkennung ausgeführt wird. Um das Programm stattdessen unter der Benutzerkennung des Dateiinhabers auszuführen, muss das **SUID-Bit** (**Set User ID**) gesetzt werden:
+##### b.2)
+- `werbinich` zeigt den Namen des Nutzers (`xy1234`) an, da das Programm unter seiner Benutzerkennung ausgeführt wird.
+
+##### b.3)
+- **SUID-Bit** (**Set User ID**) setzen:
   ```
-  [chgrp uni werbinich]
-  chmod g=rx werbinich
   chmod u+s werbinich
   ./werbinich
   ```
@@ -244,14 +297,17 @@ ls -lh /tmp/$(whoami)/werbinich
 
 ## Übungsblatt
 ### Aufgabe 1
-##### c)
+##### c.1+2)
 ```
-cd
-mkdir systeme-public
-1) chmod go=rx systeme-public
-2) chmod go=x ~
+cd && mkdir systeme-public
+# 1)
+chmod go=rx systeme-public  # Oktalmodus: chmod 555 systeme-public
+# 2)
+chmod go=x ~                # Oktalmodus: chmod 511 ~
 ```
-- Das `x`-Recht muss für alle übergeordneten Verzeichnisse gesetzt sein, da der Gruppenpartner sonst nicht mit `cd` in **systeme-public** wechseln darf (selbst wenn `x` auf **systeme-public** selbst gesetzt ist). Wenn der Gruppenpartner in der selben Gruppe (`student`) ist, reichen auch **Gruppenrechte** aus.
+- das `x`-Recht muss für alle übergeordneten Verzeichnisse gesetzt sein
+- `chmod 555 systeme-public`, ist `101101101`, also `r-xr-xr-x`
+- `chmod 511 ~` ausführen, was `101001001`, also `r-x--x--x` ist.
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -261,9 +317,10 @@ mkdir systeme-public
 ## Übungsblatt
 ### Aufgabe 2a)
 ##### Unterschiede
-- Alle **Hardlinks** zu einer Datei verweisen auf einen **einzigen** I-Node. Im Gegensatz dazu hat jeder **symbolische Link** einen **eigenen** I-Node, der einen Zeiger auf einen Datenblock enthält, der wiederum den Pfadnamen des Ziels enthält
+- Alle **Hardlinks** einer Datei verweisen auf den **I-Node** dieser Datei
+- Jeder **Symbolische Link / Softlink** hat einen **eigenen** I-Node, der einen Zeiger auf einen **Datenblock** enthält, der wiederum den **Pfadnamen** des Ziels enthält
   - bei manchen Dateisystemen (z.B. **ext**) wird der **Pfad des Ziels** auch direkt im **I-Node** gespeichert, also die **Daten** des I-Nodes verweisen auf einen **Verzeichniseintrag**
-- ein **Hardlink** ist nur ein **Verzeichniseintrag**, jeder **symbolische Link** ist ein eigenständiger **I-Node**
+- ein **Hardlink** ist nur ein **Verzeichniseintrag**, jeder **symbolische Link** hat einen eigenständigen **I-Node**
 - wird das **Original gelöscht**, so zeigen **symbolische Links** ins **Leere**, während über **Hardlinks** der Inhalt der Datei **immer noch zugänglich** ist
 
 <!--small-->
@@ -299,9 +356,21 @@ mkdir systeme-public
 ---
 
 ## Übungsblatt
+### Aufgabe 2a)
+##### Weitere Vor- und Nachteile
+- **symoblischer Link** I-Node Verschwendung (**🠒** `df -i`)
+- man kann Zugriffrechte für jeden **Softlinks** **individuel** einstellen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
 ### Aufgabe 2b)
 - Wenn dies möglich wäre, müsste man **zusätzlich** zum I-Node **abspeichern**, in welchem **Dateisystem/in welcher Partition** das Ziel liegt. Das wiederum macht aber **keinen Sinn**, da die **Dateisysteme** an **verschiedenen Stellen**, zu **unterschiedlichen Zeiten** und möglicherweise von **unterschiedlichen Computern** gemountet werden könnten und damit könnte dies zu **unerwartetem Verhalten** führen
-- Nehmen wir an, es würde eine **Datei A erstellt** und es verweisen **zwei Hardlinks** von **unterschiedlichen Dateisystemen** auf diese Datei. In **welchem Dateisystem** befinden sich nun tatsächlich die Daten? **Was** muss man **tun**, wenn ein Dateisystem **nicht mehr mit dem Rechner verbunden** ist? Sind die **Daten noch vorhanden**? Wenn ja, kann ich sie **löschen**?
+  - Wenn das **Dateisystem**, auf das sich das Referenzobjekt befindet, **nicht gemountet** ist, kann der **Linkzähler nicht dekrementiert** werden, wenn der **Harte Link gelöscht** wird
+  - *Beispiel:* **Datei A erstellt** und es verweisen **zwei Hardlinks** von **unterschiedlichen Dateisystemen** auf diese Datei. In **welchem Dateisystem** befinden sich nun tatsächlich die Daten? **Was** muss man **tun**, wenn ein Dateisystem **nicht mehr mit dem Rechner verbunden** ist? Sind die **Daten noch vorhanden**? Wenn ja, kann ich sie **löschen**?
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -312,6 +381,7 @@ mkdir systeme-public
 ### Aufgabe 2c)
 - Erstelle in **Verzeichnis D1** ein **Verzeichnis A**. Nun erstelle in **Verzeichnis A** mit `ln ../A B` einen **Hardlink B** auf **A**. Wechsle nun mit `cd B` in das Verzeichnis. Man befindet sich nun **gleichzeitig** in **D1** und **A**. Was soll nun **passieren** wenn man `cd ..` eingibt? Das Verzeichnis hat **zwei Vaterverzeichnisse** (D1,A). Wie soll das Dateisystem wissen, welches ausgewählt werden soll?
 - Es gibt auch noch andere Probleme, z.B. gehen **UNIX-Befehle** immer von einer **azyklischen Verzeichnisstruktur** aus. Ein Zyklus könnte deshalb zu **Endlosschleifen** führen
+  - im Gegensatz zu **Softlinks** lassen sich **Hardlinks** nicht vom orginalen Verzeichniseintrag der Datei **unterscheiden**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -331,10 +401,10 @@ mkdir systeme-public
 ## Übungsblatt
 ### Aufgabe 3
 ##### b)
-- Die Einheit `TB` bezeichnet hier typischerweise $10^{12}$ Bytes, da die Festplattenkapazität in **SI-Einheiten** größer aussieht als in **Zweierpotenz-Einheiten**
+- Die Einheit `TB` bezeichnet bei Festplatten typischerweise $10^{12}$ Bytes, da die Festplattenkapazität in **SI-Einheiten** größer aussieht als in **Zweierpotenz-Einheiten**:
+  - **Differenz der Intepretationen:**
+    $3.0 · 2^{40} B −3.0 · 10^{12} B = 298534883328B = 278.032 GiB$
 - Im Gegensatz dazu ergibt sich für **Arbeitsspeicher** wegen der **parallelen Adressierung** immer eine **Zweierpotenz**, weshalb Arbeitsspeicher fast immer mit **Binärpräfix** angegeben wird.
-- **Differenz der Intepretationen:**
-  $3.0 · 2^{40} B −3.0 · 10^{12} B = 298534883328B = 278.032 GiB$
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -435,7 +505,7 @@ $$
 ## Übungsblatt
 ### Aufgabe 5
 ##### b) Maximale Dateigröße
-- Aufgrund der gewählten Zeigergröße von $4 Byte$ können maximal $232 Blöcke = $4'294'967'296 Blöcke$ adressiert werden (über mehrere dieser Blöcke erstreckt sich ein Datenblock, wovon es $16'843'018$ bzw. $1'074'791'434$ gibt)
+- Aufgrund der gewählten Zeigergröße von $4 Byte$ können maximal $2^{32}$ Blöcke = $4'294'967'296 Blöcke$ adressiert werden (über mehrere dieser Blöcke erstreckt sich ein Datenblock, wovon es $16'843'018$ bzw. $1'074'791'434$ gibt)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -807,7 +877,7 @@ $$
 ## Quellen
 ### Bildquellen
 
-- :shrug:
+- *Wallpaper:* https://www.peppercarrot.com/en/webcomic/ep24_The-Unity-Tree.html
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
