@@ -103,9 +103,6 @@ style: |
 ## Vorbereitungen
 ### `umark`-Befehl
 - `umask u-x,g=r,o+w`:
-  - **prohibit** the **execute** permission from being set for the **file's owner** (user), while leaving the **rest** of the **owner** permissions **unchanged**
-  - **enable read** permission for the **group**, while **prohibiting write** and **execute** permission for the **group**;
-  - **enable write** permission for **others**, while leaving the **rest** of the other permissions **unchanged**.
 - The default mask for a **non-root user** is `002`, changing the **folder** permissions to `775` (`rwxrwxr-x`), and **file** permissions to `664` (`rw-rw-r--`).
 - The default mask for a **root user** is `022`, changing the **folder** permissions to `755` (`rwxr-xr-x`), and **file** permissions to `644` (`rw-r--r--`).
 
@@ -203,7 +200,7 @@ mkdir $(whoami)  # oder $USER
 cd $(whoami)
 cp /usr/bin/whoami werbinich
 ls -lh /usr/bin/whoami
-ls -lh /tmp/$(whoami)/whoami
+ls -lh /tmp/$(whoami)/werbinich
 ```
 - Beim **Kopieren** von `/usr/bin/whoami` nach `werbinich` ändert sich der Besitzer und die Gruppe der Datei von `root:root` nach `<username>:student`. Die **Zugriffsrechte** können erhalten bleiben oder teilweise verloren gehen.
 
