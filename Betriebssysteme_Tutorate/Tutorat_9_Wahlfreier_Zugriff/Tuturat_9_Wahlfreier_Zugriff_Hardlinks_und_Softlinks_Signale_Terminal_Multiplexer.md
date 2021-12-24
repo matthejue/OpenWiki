@@ -96,6 +96,7 @@ echo $TERM
   - `infocmp | ssh "<pool-login>.informatik.uni-freiburg.de" 'tic -x /dev/stdin'`
 - https://github.com/gpakosz/.tmux
   - `tmux new -As default`
+  - `killall "tmux: server"`
   - `tmux source-file ~/.tmux.conf`
 
 <!--small-->
