@@ -1,9 +1,63 @@
+---
+theme: gaia
+paginate: true
+<!-- backgroundColor: #ffffff -->
+transition: fade
+footer: Betriebssysteme, Tutorat 9, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
+style: |
+  h1 { color: #d69871; font-size: 80px; text-align: center; }
+  h2 { color: #d69871; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
+  h3 { color: #58a498; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
+  h4 { color: #d69871; font-size: 30px; text-align: left; margin-top: 40px; margin-bottom: 30px; line-height: 0px; font-weight: normal; }
+  h5 { color: #d69871; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
+  a { color: #58a498; }
+  strong { color: #d69871; }
+  em { color: #58a498; }
+  footer { color: #d69871; font-size: 20px; text-align: center; }
+  ul { color: #252a2f; list-style: none; font-size: 25px; margin-bottom: 0px; }
+  p { color: #252a2f; list-style: none;  font-size: 25px; text-align: center; margin-top: 0px; }
+  ul li::before {
+    content: "\1F784";
+    color: #58a498;
+    font-size: 25px;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  section::after {
+      color: #d69871;
+      font-weight: bold;
+      text-shadow: 0 0 0px #000;
+  }
+  code {
+    background: #90bc9b;
+    color: #282e33;
+  }
+  :root {
+    --color-background: #ffffff;
+    --color-foreground: #90bc9b;
+    --color-highlight: #F96;
+    --color-dimmed: #6a6458;
+  }
+
+---
+
+# Tutorat 9 <!--fit-->
+### Wahlfreier Zugriff, Hardlinks und Softlinks, Terminal Multiplexer <!--fit-->
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+
+---
+
 # Vorbereitungen
 
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #909f68; -->
+<!-- _backgroundColor: #90bc9b; -->
 
 ---
 
@@ -16,19 +70,33 @@ echo $TERM
 ```
 
 #### Langfristige Lösung
-```
-infocmp > alacritty.terminfo
-# Pool-Account
-scp alacritty.terminfo XY123@login.uni-freiburg.de:~/
-# Uni-Account
-scp alacritty.terminfo <pool-login>@login.informatik.uni-freiburg.de:~/
-```
+- **Informationen über das verwendete Terminal rüberschicken:**
+  ```
+  infocmp > alacritty.terminfo
+  # Pool-Account
+  scp alacritty.terminfo XY123@login.uni-freiburg.de:~/
+  # oder Uni-Account
+  # scp alacritty.terminfo <pool-login>@login.informatik.uni-freiburg.de:~/
+  ```
 
-```
-tic -x alacritty.terminfo
-rm alacritty.terminfo  # optional: remove Terminfo file
-```
-- **oneliner:** `infocmp | ssh "$user@$host" 'tic -x /dev/stdin'`
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Tmux
+
+- **Informationen über das Terminal in Datenbank abspeichern:**
+  ```
+  tic -x alacritty.terminfo
+  ```
+- **oneliner:**
+  - `infocmp | ssh "XY123.uni-freiburg.de" 'tic -x /dev/stdin'`
+  - `infocmp | ssh "<pool-login>.informatik.uni-freiburg.de" 'tic -x /dev/stdin'`
+- https://github.com/gpakosz/.tmux
+  - `tmux new -As default`
+  - `tmux source-file ~/.tmux.conf`
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -39,14 +107,14 @@ rm alacritty.terminfo  # optional: remove Terminfo file
 ### Tmux
 #### Shh mit Tmux
 ```
-Host tf-tmux
-	HostName login.uni-freiburg.de
+Host uni-tmux
+  HostName login.uni-freiburg.de
   # oder HostName login.informatik.uni-freiburg.de
-	User XY123 # oder <pool-login>
+  User XY123  # oder <pool-login>
   RequestTTY yes
   RemoteCommand tmux new -As default
 ```
-- `ssh tf-tmux`
+- `ssh uni-tmux`
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -58,7 +126,7 @@ Host tf-tmux
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #909f68; -->
+<!-- _backgroundColor: #8dbdaf; -->
 
 ---
 
