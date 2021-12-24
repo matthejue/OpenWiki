@@ -96,11 +96,12 @@ echo $TERM
   - `infocmp | ssh "<pool-login>.informatik.uni-freiburg.de" 'tic -x /dev/stdin'`
 - https://github.com/gpakosz/.tmux
   - `tmux new -As default`
-  - `killall "tmux: server"`
+  - `killall "tmux: server"` oder `ctrl+b,e`
   - `tmux source-file ~/.tmux.conf`
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
+- `ctrl+b,e` zum öffnen von ``
 
 ---
 
