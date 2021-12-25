@@ -52,7 +52,7 @@ style: |
 
 ---
 
-# Vorbereitungen
+# Übungsblatt
 
 <!--_class: lead-->
 <!--big-->
@@ -61,14 +61,25 @@ style: |
 
 ---
 
-## Vorbereitungen
-### Tmux
+## Übungsblatt
+### Aufgabe 3 - Tmux
+#### Überblick
+- **Gute config file:** https://github.com/gpakosz/.tmux
+- **Tutorials:** https://github.com/rothgar/awesome-tmux
+- **Cheatsheet:** https://gist.github.com/MohamedAlaa/2961058
 #### Schnelle Lösung
 ```
-expoert TERM=xterm
+export TERM=xterm
 echo $TERM
 ```
 
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Tmux
 #### Langfristige Lösung
 - **Informationen über das verwendete Terminal rüberschicken:**
   ```
@@ -78,15 +89,6 @@ echo $TERM
   # oder Uni-Account
   # scp alacritty.terminfo <pool-login>@login.informatik.uni-freiburg.de:~/
   ```
-
-<!--small-->
-![bg right:10%](_resources/background.png)
-
----
-
-## Vorbereitungen
-### Tmux
-
 - **Informationen über das Terminal in Datenbank abspeichern:**
   ```
   tic -x alacritty.terminfo
@@ -94,19 +96,78 @@ echo $TERM
 - **oneliner:**
   - `infocmp | ssh "XY123.uni-freiburg.de" 'tic -x /dev/stdin'`
   - `infocmp | ssh "<pool-login>.informatik.uni-freiburg.de" 'tic -x /dev/stdin'`
-- https://github.com/gpakosz/.tmux
-  - `tmux new -As default`
-  - `killall "tmux: server"` oder `ctrl+b,e`
-  - `tmux source-file ~/.tmux.conf`
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
-- `ctrl+b,e` zum öffnen von ``
 
 ---
 
-## Vorbereitungen
-### Tmux
+## Übungsblatt
+### Aufgabe 3 - Tmux
+#### Wichtige Commands
+- `ctrl+a,?`
+- `ctrl+a,e` zum öffnen von `~/.tmux.conf.local`
+- `tmux new -As default`
+- `tmux ls`
+- `tmux kill-session -t default`
+- `tmux kill-server` oder `killall "tmux: server"` oder `ctrl+a,:kill-server`
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Tmux
+#### Nützliche Einstellungen
+- `tmux source-file ~/.tmux.conf`
+  - `set-option -g status-position top`
+  - `bind-key < swap-window -t -1`, executed with `ctrl+a,<`
+  - `bind-key > swap-window -t +1`, executed with `ctrl+a,>`
+  - `default theme` kommentieren und `default theme (ansi)` auskommentieren
+  - `tmux_conf_copy_to_os_clipboard=true` auskommentieren
+  - `set -g status-keys vi` und `set -g mode-keys vi` auskommentieren
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Tmux
+#### Plugin für Wiederherstellung über Neustart hinweg
+- https://github.com/tmux-plugins/tmux-resurrect
+- `set -g @plugin 'tmux-plugins/tmux-resurrect'` auskommentieren
+```
+# Prozesse wiederherstellen:
+set -g @resurrect-processes '~mocp ~htop ~nvim ~emacs ~neomutt ~vifm ~man ~less'
+# alle Prozesse: set -g @resurrect-processes ':all:'
+# Zeichen in Panes speichern:
+set -g @resurrect-capture-pane-contents 'on'
+# Session.vim berücksichtigen:
+set -g @resurrect-strategy-nvim 'session'
+```
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Tmux
+#### Plugin für Wiederherstellung über Neustart hinweg
+- `->` to specify a command to be used when restoring a program
+- `~` to restore a program whose process contains target name
+- gesichert mit Datum unter: `~/.tmux/resurrect/`, `ln -sf <file_name> last`
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Tmux
 #### Shh mit Tmux
 ```
 Host uni-tmux
@@ -128,7 +189,7 @@ Host uni-tmux
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #8dbdaf; -->
+<!-- _backgroundColor: #90bc9b; -->
 
 ---
 
@@ -308,7 +369,7 @@ Host uni-tmux
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #9db7b4; -->
+<!-- _backgroundColor: #90bc9b; -->
 
 ---
 
@@ -317,6 +378,7 @@ Host uni-tmux
 - https://wiki.archlinux.org/title/Alacritty#Terminal_functionality_unavailable_in_remote_shells
 - https://stackoverflow.com/questions/21523815/tmux-open-terminal-failed-missing-or-unsuitable-terminal-xterm-256color
 - https://github.com/alacritty/alacritty/issues/2487
+- https://linux.die.net/man/1/tic
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -325,6 +387,7 @@ Host uni-tmux
 
 ## Quellen
 ### Bildquellen
+- :shrug:
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -337,4 +400,4 @@ Host uni-tmux
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #9db7b4; -->
+<!-- _backgroundColor: #90bc9b; -->

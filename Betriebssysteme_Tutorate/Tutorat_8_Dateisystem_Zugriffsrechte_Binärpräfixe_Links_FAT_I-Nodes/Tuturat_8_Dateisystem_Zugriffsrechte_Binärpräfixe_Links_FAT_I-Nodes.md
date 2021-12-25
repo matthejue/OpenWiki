@@ -52,6 +52,25 @@ style: |
 
 ---
 
+# Einstieg
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #9db7b4; -->
+
+---
+
+## Einstieg
+### Xsnow
+- https://www.ratrabbit.nl/ratrabbit/xsnow/downloads/index.html
+- `yay -S xsnow`
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Vorbereitungen
 
 <!--_class: lead-->
@@ -160,6 +179,22 @@ $\Downarrow \operatorname{:} 2^{10}$
 ### Dateisysteme
 
 - siehe `Tutorat_8_Dateisysteme.pdf` auf **Nextcloud**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Dateisysteme
+##### Stow
+> Stow is a **symlink** farm manager which takes distinct sets of software and/or data located in separate directories on the filesystem, and makes them all appear to be installed in a single directory tree.
+- **stow directory:** `stow stow_directory`
+- **stow all direcoties:** `stow */`
+- **unstow:** `stow -D diretory`
+- **stow directory:** root of a tree containing separate packages in private subtrees. When Stow runs, it uses the **current directory** as the default stow directory
+- **target directory:** is assumed to be the parent of the **current directory**
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
