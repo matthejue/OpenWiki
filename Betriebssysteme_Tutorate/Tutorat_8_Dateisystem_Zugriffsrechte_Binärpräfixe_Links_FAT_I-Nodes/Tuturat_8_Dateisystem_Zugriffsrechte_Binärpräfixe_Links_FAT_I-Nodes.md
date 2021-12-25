@@ -540,7 +540,7 @@ $$
 ## Übungsblatt
 ### Aufgabe 5
 ##### b) Maximale Dateigröße
-- Aufgrund der gewählten Zeigergröße von $4 Byte$ können maximal $2^{32}$ Blöcke = $4'294'967'296 Blöcke$ adressiert werden (über mehrere dieser Blöcke erstreckt sich ein Datenblock, wovon es $16'843'018$ bzw. $1'074'791'434$ gibt)
+- Mit einer Zeigergröße von $4 Byte = 2^{32}$ werden $2^{32}$ Blöcke = $4'294'967'296 Blöcke$ adressiert. **Erhöht** man die **Blockgröße**, so ist es möglich in einem Zeigerblock **mehr Zeiger** unterzubringen und die **Größe** der **größtmöglichen Datei**, die man in diesem Dateisystem unterbringen kann, wird auch **größer**. Geht man mit der **Blockgröße** immer **weiter rauf**, so hat man irgedwann **alle** $2^{32}$ möglichen **Zeiger** untergebracht.
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
