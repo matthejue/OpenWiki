@@ -62,16 +62,11 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
-#### Überblick
-- **Gute config file:** https://github.com/gpakosz/.tmux
-- **Tutorials:** https://github.com/rothgar/awesome-tmux
-- **Cheatsheet:** https://gist.github.com/MohamedAlaa/2961058
-#### Schnelle Lösung
-```
-export TERM=xterm
-echo $TERM
-```
+### Aufgabe 1 - Wahlfreier Zugriff bei I-Nodes und bei FAT
+#### a) I-Node
+![_2022-01-04-11-01-56](_resources/_2022-01-04-11-01-56.png)
+
+- **Zeiger 0 bis 9:** 0 bis 10 · 4096 − 1 = 40959
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -79,23 +74,12 @@ echo $TERM
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
-#### Langfristige Lösung
-- **Informationen über das verwendete Terminal rüberschicken:**
-  ```
-  infocmp > alacritty.terminfo
-  # Pool-Account
-  scp alacritty.terminfo XY123@login.uni-freiburg.de:~/
-  # oder Uni-Account
-  # scp alacritty.terminfo <pool-login>@login.informatik.uni-freiburg.de:~/
-  ```
-- **Informationen über das Terminal in Datenbank abspeichern:**
-  ```
-  tic -x alacritty.terminfo
-  ```
-- **oneliner:**
-  - `infocmp | ssh "XY123.uni-freiburg.de" 'tic -x /dev/stdin'`
-  - `infocmp | ssh "<pool-login>.informatik.uni-freiburg.de" 'tic -x /dev/stdin'`
+### Aufgabe 1 - Wahlfreier Zugriff bei I-Nodes und bei FAT
+#### a) I-Node
+- **einfach indirekter Block:** 10 · 4096 = 40960 bis 10 · 4096 + 1024 · 4096 − 1 = 4235263 (1 indirekter Block mit 1024 Zeigern auf 4KB Blöcke) ✅
+  - $\displaystyle\left\lfloor\frac{50000-40960}{4096}\right\rfloor= 2$ **🠒** **Zeiger Nr. 1 im einfach indirekten Block**, also der **12te Datenblock**
+- **12ter Datenblock:** 12 · 4096 = 49152 bis 13 · 4096 − 1 = 53247
+- **Byte Nr. 50000:** 50000 − 12 · 4096 = 84
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -103,7 +87,188 @@ echo $TERM
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
+### Aufgabe 1 - Wahlfreier Zugriff bei I-Nodes und bei FAT
+#### b) FAT32
+- einfach verkette Liste der Datenblöcke der Datei wird **sequentiell** gelesen
+- **Anzahl N der verfolgten Verweis:** $N=\left\lceil\frac{n}{b}\right\rceil-1$
+  - danach dem gefundenen Verweis auf den Plattenblock folgen
+- Zugriffszeit in Abhängigkeit von n asymptotisch **linear**: $O(n)$
+
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsbaltt
+### Aufgabe 2 - Hardlinks und symbolische Links
+#### a)
+![_2022-01-04-11-28-58](_resources/_2022-01-04-11-28-58.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+## Übungsbaltt
+### Aufgabe 2 - Hardlinks und symbolische Links
+#### a)
+![height:400px](_resources/_2022-01-04-11-29-29.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 - Hardlinks und symbolische Links
+#### a)
+- Pfad in Datenblöcken 3/4 kann **relativ** oder **absolut** angegeben werde
+- Datenblöcke 3 und 4 auch dürfen auch fehlen und der Pfad stattdessen in den I-Nodes 2 bzw. 3 angegeben sein
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 - Hardlinks und symbolische Links
+#### b)
+- **Datei selbst:** 1 I-Node, 3 Datenblöcke, 1 Verzeichniseintrag (⇒ 3 KB)
+- **Symlinks:** jeweils 1 I-Node, 1 Datenblock für die Linkdatei und 1 Verzeichniseintrag (⇒ 2 · 1 KB)
+- **Hardlinks:** jeweils 1 Verzeichniseintrag, 0 I-Nodes und 0 Datenblöcke
+- **Insgesamt:** 5 Datenblöcke = 5 KB Speicherplatz, 3 I-Nodes, 6 Verzeichniseinträge
+
+> Die Verzeichniseinträge benötigen zusätzlich Speicherplatz in den Verzeichnistabellen der Elternverzeichnisse, in denen die Dateien liegen. Dieser Speicherplatz und der Speicherplatz für die I-Nodes selbst wird hier
+vernachlässigt.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 - Hardlinks und symbolische Links
+#### c)
+- die Zugriffsrechte aller **Hardlinks** ändern sich mit, da die Rechte im I-Node gespeichert werden und die Datei und alle Hardlinks auf das selbe I-Node zeigen
+- die Zugriffsrechte aller **symbolischen Links** bleiben bei `lrwxrwxrwx`, da sie eigene I-Nodes haben
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 - Hardlinks und symbolische Links
+#### d)
+- Die **Zugriffsrechte** des **symbolischen Links** konnen **nicht** geändert werden.
+- Stattdessen wird der chmod-Befehl auf das **Linkziel** angewandt, insofern die entsprechenden Rechte bestehen
+- Die angezeigten **Rechte der symbolischen Links** haben **keine Bedeutung** für den eigentlichen Zugriff auf die Zieldatei.
+- Wäre das nicht der Fall, so könnte man einen **symbolischen Link** auf eine **fremde Datei** anlegen
+  - Da man **selbst der Besitzer** des Links ist, konnte man die Rechte des Links nach Belieben andern und sich somit **Zugriffsrechte verschaffen**.
+  - Aus diesem Grund werden **symbolische Links** bei Benutzung immer **erst dereferenziert** und dann werden die **Rechte des Linkziels** ausgewertet um die **Zugriffsrechte zu bestimmen**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Prozesse und Signale
+#### a)
+
+- Mehrere Möglichkeiten, z.B.
+  - `ps ax`
+  - `ps aux`
+  - `ps -ef`
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe - Prozesse und Signale
+#### b)
+- Es existieren eine Reihe von möglichen Befehlen, z.B.
+  - `kill -s <signal value> <pid>`
+  - `kill -<signal value> <pid>`
+  - `kill -<option1> <pid>`
+  - `kill -<option2> <pid>`
+
+#### ![height:150](_resources/_2022-01-04-12-13-32.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe - Prozesse und Signale
+#### b)
+- `$(pidof -x counter.sh)` anstelle von `<signal value>`
+- Um die Ermittlung der **PID** zu umgehen, kann statt `kill [...] <pid>` der Befehl `killall [...] counter.sh` mit der selben Syntax verwendet werden
+  - If no signal name is specified, `SIGTERM` is sent
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe - Prozesse und Signale
+#### c)
+#### ![height:150px](_resources/_2022-01-04-12-18-28.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Prozesse und Signale
+#### d) Tmux
+- **Überblick:**
+  - **Gute config file:** https://github.com/gpakosz/.tmux
+  - **Tutorials:** https://github.com/rothgar/awesome-tmux
+  - **Cheatsheet:** https://gist.github.com/MohamedAlaa/2961058
+- **Schnelle Lösung:**
+  ```
+  export TERM=xterm
+  echo $TERM
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Prozesse und Signale
+- **Langfristige Lösung:**
+  - **Informationen über das verwendete Terminal rüberschicken:**
+    ```
+    infocmp > alacritty.terminfo
+    # Pool-Account
+    scp alacritty.terminfo XY123@login.uni-freiburg.de:~/
+    # oder Uni-Account
+    # scp alacritty.terminfo <pool-login>@login.informatik.uni-freiburg.de:~/
+    ```
+  - **Informationen über das Terminal in Datenbank abspeichern:**
+    ```
+    tic -x alacritty.terminfo
+    ```
+  - **oneliner:**
+    - `infocmp | ssh "XY123.uni-freiburg.de" 'tic -x /dev/stdin'`
+    - `infocmp | ssh "<pool-login>.informatik.uni-freiburg.de" 'tic -x /dev/stdin'`
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 - Prozesse und Signale
 #### Wichtige Commands
 - `ctrl+a,?`
 - `ctrl+a,e` zum öffnen von `~/.tmux.conf.local`
@@ -118,7 +283,7 @@ echo $TERM
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
+### Aufgabe 3 - Prozesse und Signale
 #### Nützliche Einstellungen
 - `tmux source-file ~/.tmux.conf`
   - `set-option -g status-position top`
@@ -134,7 +299,7 @@ echo $TERM
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
+### Aufgabe 3 - Prozesse und Signale
 #### Plugin für Wiederherstellung über Neustart hinweg
 - https://github.com/tmux-plugins/tmux-resurrect
 - `set -g @plugin 'tmux-plugins/tmux-resurrect'` auskommentieren
@@ -154,7 +319,7 @@ set -g @resurrect-strategy-nvim 'session'
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
+### Aufgabe 3 - Prozesse und Signale
 #### Plugin für Wiederherstellung über Neustart hinweg
 - `->` to specify a command to be used when restoring a program
 - `~` to restore a program whose process contains target name
@@ -167,7 +332,7 @@ set -g @resurrect-strategy-nvim 'session'
 ---
 
 ## Übungsblatt
-### Aufgabe 3 - Tmux
+### Aufgabe 3 - Prozesse und Signale
 #### Shh mit Tmux
 ```
 Host uni-tmux
