@@ -52,7 +52,7 @@ style: |
 
 ---
 
-# Übungsblatt
+# Organisatorisches
 
 <!--_class: lead-->
 <!--big-->
@@ -61,11 +61,34 @@ style: |
 
 ---
 
-## Übungsblatt
-### Aufgabe 1 - Wahlfreier Zugriff bei I-Nodes und bei FAT
-#### a) I-Node
-![_2022-01-04-11-01-56](_resources/_2022-01-04-11-01-56.png)
+## Organisatorisches
+### Mindestanforderungen Studienleistung
+- denkt an die Anmeldung der **Studienleistung**
+- **12** von **15** Übungsblättern sinnvoll bearbeitet
+  - **"sinnvoll bearbetet":** eine Aufgabe in anständiger Weise bearbeitet
+  - **Assistent:** Wenn es **nicht ganz 12** sind, die Person aber ansonsten bemüht war, passt das auch
+- Regelmäßige **aktive Teilnahme** an den Tutoraten
+  - aber **keine** Anwesenheitspflicht!
+  - **Kommentar vom Tutor:** Da gibt es einigen Interpretationsspielraum und Studienleistung wird auch vergeben, wenn die Person immer **schöne Abgaben** hatte (viel **grün** in Blättern) aber nie im Tutorat war. Und vice versa auch, wenn die Person immer gut in den **Tutoraten mitgearbeitet** hat, aber bei den **Abgaben geschwächelt** hat
 
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+# Übungsblatt
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #90bc9b; -->
+---
+
+## Übungsblatt
+### Aufgabe 1 freier Zugriff bei I-Nodes und bei FAT
+#### a) I-NodedColodColor
+![_2022-01-04-16](_resources/_2022-01-04-11-01-56.png)
 - **Zeiger 0 bis 9:** 0 bis 10 · 4096 − 1 = 40959
 
 <!--small-->
@@ -77,8 +100,8 @@ style: |
 ### Aufgabe 1 - Wahlfreier Zugriff bei I-Nodes und bei FAT
 #### a) I-Node
 - **einfach indirekter Block:** 10 · 4096 = 40960 bis 10 · 4096 + 1024 · 4096 − 1 = 4235263 (1 indirekter Block mit 1024 Zeigern auf 4KB Blöcke) ✅
-- $\displaystyle\left\lfloor\frac{50000-40960}{4096}\right\rfloor= 2$ **🠒** **Zeiger Nr. 1 im einfach indirekten Block**, also der **12te Datenblock**
-  - **12ter Datenblock:** 12 · 4096 = 49152 bis 13 · 4096 − 1 = 53247 ✅
+- $\displaystyle\left\lfloor\frac{50000-40960}{4096}\right\rfloor= 2$ **🠒** **Zeiger Nr. 1 im einfach indirekten Block**, also der **Datenblock Nr. 12** (von 1 anfangend zu zählen 13)
+  - **DatenblodColor 12:** 12 · 4096 = 49152 bis 13 · 4096 − 1 = 53247 ✅
 - **Byte Nr. 50000:** 50000 − 12 · 4096 = 84
 
 <!--small-->
@@ -178,9 +201,10 @@ vernachlässigt.
 #### a)
 
 - Mehrere Möglichkeiten, z.B.
-  - `ps ax`
-  - `ps aux`
-  - `ps -ef`
+  - `ps aux` (BSD syntax)
+  - `ps -ef` (standard syntax)
+    - `e`: Select all processes
+    - `f`: Do full-format listing
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -251,6 +275,45 @@ vernachlässigt.
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
 <!-- _backgroundColor: #90bc9b; -->
+
+---
+
+## Ergänzungen
+### Herausfinden, wer den Prozess aufgerufen hat
+- `ps auxf`
+  - `a`: list all processes with a terminal (tty), or to list all processes when used together with the `x` option
+  - `x`: list all processes owned by you (same EUID as ps), or to list all processes when used together with the `a` option
+  - `u`: Display user-oriented format
+  - `f`: ASCII art process hierarchy (forest)
+- `pstree`
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Ergänzungen
+### Weitere interessante command-line Argumente
+- `ps`:
+  - `T`: Select all processes associated with this terminal.  Identical to the t option without any argument
+  - `r`: Restrict the selection to only running processes
+  - `c`: Show the true command name. Command arguments and any modifications to them are thus not shown
+  - `H`: Show threads as if they were processes
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Ergänzungen
+### Sort keys
+- `ps -eo pid,ppid,user,priority,size,vsize,pcpu,cmd,start_time`
+
+![height:400px](_resources/_2022-01-05-14-01-58.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
 
 ---
 
