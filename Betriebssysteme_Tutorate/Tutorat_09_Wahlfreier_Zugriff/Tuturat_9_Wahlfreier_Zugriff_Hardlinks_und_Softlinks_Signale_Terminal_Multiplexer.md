@@ -100,7 +100,7 @@ style: |
 ### Aufgabe 1 - Wahlfreier Zugriff bei I-Nodes und bei FAT
 #### a) I-Node
 - **einfach indirekter Block:** 10 · 4096 = 40960 bis 10 · 4096 + 1024 · 4096 − 1 = 4235263 (1 indirekter Block mit 1024 Zeigern auf 4KB Blöcke) ✅
-- $\displaystyle\left\lfloor\frac{50000-40960}{4096}\right\rfloor= 2$ **🠒** **Zeiger Nr. 2 im einfach indirekten Block**, also der **Datenblock Nr. 12** (von 1 anfangend zu zählen 13)
+- $\displaystyle\left\lfloor\frac{50001-40960}{4096}\right\rfloor= 2$ **🠒** **Zeiger Nr. 2 im einfach indirekten Block**, also der **Datenblock Nr. 12** (von 1 anfangend zu zählen 13)
   - **Datenblock 12:** 12 · 4096 = 49152 bis 13 · 4096 − 1 = 53247 ✅
 - **Byte Nr. 50000:** 50001 − 12 · 4096 - 1 = 84
 
