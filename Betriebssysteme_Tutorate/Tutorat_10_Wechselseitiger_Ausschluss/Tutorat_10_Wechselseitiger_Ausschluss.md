@@ -63,6 +63,25 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1
+```
+/* Prozess 0 */                      /* Prozess 1 */
+wiederhole                           wiederhole
+{                                    {
+  solange (turn != 0)                  solange (turn != 1)
+    tue nichts;                          tue nichts;
+  /* kritische Region */               /* kritische Region */
+  turn := 1;                           turn := 0;
+  /* nicht-kritische Region */         /* nicht-kritische Region */
+}                                    }
+```
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1
 ![_2022-01-05-02-25-17](_resources/_2022-01-05-02-25-17.png)
 
 <!--small-->
