@@ -273,7 +273,7 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ## Übungsblatt
 ### Aufgabe 4
 #### a)
-- **Beweis durch Gegenbeispiel:**
+- **Beweis durch Gegenbeispiel 2:**
   - **Prozess 1**
     - in *while-Schleife* verbleiben
     - *Kontextwechsel*
