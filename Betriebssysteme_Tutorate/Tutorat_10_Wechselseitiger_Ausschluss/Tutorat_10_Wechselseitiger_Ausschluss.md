@@ -52,6 +52,25 @@ style: |
 
 ---
 
+# Korrektur
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #b17237; -->
+
+---
+
+## Korrektur
+### Anmerkungen
+
+- es hilft sich das ganze immer zuerstmal unter **Pseudo-Parellelität** vorzustellen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -101,11 +120,11 @@ wiederhole                           wiederhole
 ## Übungsblatt
 ### Aufgabe 2
 #### a)
+- **Voraussetzungen:**
+  - Sei $t_i$ der Zeitpunkt, *nachdem* Prozess i die solange-Schleife verlassen hat. *O.B.d.A.* sei $t_0 < t_1$
 - **Behauptung:** Der wechselseitige Ausschluss ist garantiert
-- **Beweis:** Durch Widerspruch
-- **Annahme:** Es gebe einen Zeitpunkt t, zu dem beide Prozesse im kritischen Abschnitt sind
-  - Sei ti der Zeitpunkt, zu dem Prozess i zum letzten Mal die solange-Schleife verlassen hat. O.B.d.A. sei t0 < t1
-  - Zum Zeitpunkt t0 muss flag[0] = true gewesen sein, da Prozess 0 das Flag vor der solange-Schleife auf true gesetzt hat und erst nach dem kritischen Abschnitt (also nach t) wieder auf false setzen wird.
+#### Beweis Durch Widerspruch
+- **Annahme:** Es gebe einen Zeitpunkt $t$, zu dem beide Prozesse im kritischen Abschnitt sind, für den *O.B.d.A.* gilt: $t_0 < t_1 < t$
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -114,10 +133,10 @@ wiederhole                           wiederhole
 
 ## Übungsblatt
 ### Aufgabe 2
-- **Annahme:** Es gebe einen Zeitpunkt t, zu dem beide Prozesse im kritischen Abschnitt sind
-  - flag[0] wird sonst an keiner Stelle ver ̈andert. Da t0 < t1 < t gilt, muss auch zum Zeitpunkt t1 das Flag
-  - flag[0] = true sein. Dann kann Prozess 1 jedoch die solange-Schleife zum Zeitpunkt t1 nicht verlassen haben.
-- **Widerspruch:** Dass Prozess 1 die solange-Schleife zum Zeitpunkt t1 nicht verlassen hat, ist ein Widerspruch zur Definition von t1.
+  - Zum Zeitpunkt $t_0$ muss `flag[0] = true` gewesen sein, da Prozess $0$ das Flag vor der *solange-Schleife* auf `true` gesetzt hat und erst nach dem kritischen Abschnitt (also nach $t$) wieder auf `false` setzen wird. `flag[0]` wird sonst an keiner Stelle verändert **🠒** `flag[0] = true` im Zeitraum von $t_0$ bis $t$
+  - Da $t_0 < t_1 < t$ angenommen wird, müsste zum Zeitpunkt $t_1$ das Flag `flag[0] = false` sein, um die *solange-Schleife* verlassen zu können
+- **Widerspruch:**
+  - Prozess $1$ kann die solange-Schleife zum Zeitpunkt $t_1$ nicht verlassen haben, da $t_0 < t_1 < t$ angenommen wird und das `flag[0]` zwischen $t_0$ und $t$ `true` sein muss, wie oben festgestellt wurde
 - **Schlussfolgerung:** Daraus folgt, dass die Annahme falsch sein muss, also ist der wechselseitige Ausschluss garantiert
 
 <!--small-->
@@ -129,7 +148,9 @@ wiederhole                           wiederhole
 ### Aufgabe 2
 #### b)
 - Die Prozesse prüfen ständig den Wert bestimmter Flags, was unnötig Rechen-
-zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen zu legen und erst wieder auszuführen, wenn sie in die kritische Region eintreten dürfen
+zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen zu legen und erst wieder auszuführen, wenn sie in die kritische Region eintreten dürfen **🠒** *Aktives Warten (busy waiting)*
+- Softwarelösung ist abhängig von Code und Betriebssystem
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -147,7 +168,12 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 
 ## Übungsblatt
 ### Aufgabe 3
-- **Keine Annahmen über Geschwindigkeit und Anzahl CPUs:** Erfüllt. Der Algorithmus funktioniert unabhängig von der Ausführungsgeschwindigkeit der beiden Prozesse und der wechselseitige Ausschluss ist auch dann garantiert, wenn Befehle parallel auf mehreren CPUs ausgeführt werden. Insbesondere gibt es keine Konflikte beim Schreiben der Variablen, da jeder Prozess nur sein eigenes Flag schreibt und das Setzen von turn direkt nach der kritischen Region an einer Stelle stattfindet, an der sich nur ein Prozess gleichzeitig befinden kann.
+#### Wenn ein Prozess in den kritischen Abschnitt will, so muss er nur
+#### *endliche Zeit* darauf *warten* ✓
+- **Flag wird nie unendlich lange auf true gelassen:**
+  - Prozesse, die auf die *kritische Region warten* und nicht an der Reihe sind, müssen das Flag in Zeile 11 auf `false` setzen und warten, bis sie an der Reihe sind
+- **`turn` kann sich nicht selbst zugewiesen werden:**
+  - Ist das Flag des anderen Prozesses auf `false`, so hat der Prozess freien ungehinderten Zugang zur kritischen Region. Nach dem Durchlaufen der kritischen Region muss der Prozess seinen Vorrang abgeben und kann sich den Vorrang niemals selbst geben, sodass der andere Prozess auf jeden Fall zum Zug kommt
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -156,7 +182,14 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 
 ## Übungsblatt
 ### Aufgabe 3
-- **Nicht blockieren:** Erfüllt. Will ein Prozess nicht in die kritische Region, so ist sein Flag false und der andere Prozess kann ungehindert in die kritische Region. Wollen beide Prozesse gleichzeitig in die kritische Region, so legt die Variable turn den Vorrang fest, sodass einer der Prozesse sein Flag zurückziehen muss und der andere Prozess ohne Verzögerung in die kritische Region eintreten kann. Nach der kritischen Region wird der Vorrang weitergegeben und das Flag gel ̈oscht, sodass der andere Prozess ohne Verzögerung in den kritischen Abschnitt eintreten kann. Bemerkung: Streng genommen können sich beide Prozesse in den Ein- und Austrittsbereichen zur kritischen Region (Zeile 6–14, 20–21) blockieren, da diese nicht zur kritischen Region gehören. Dies wird jedoch nicht berücksichtigt.
+#### Nicht blockieren ⨯✓
+
+- **Funktion des Flags:**
+  - Will ein Prozess nicht in die kritische Region, so ist sein Flag `false` und der andere Prozess kann *ungehindert in die kritische Region*
+- **Funktion von `turn`:**
+  - Wollen beide Prozesse *gleichzeitig in die kritische Region*, so legt die Variable `turn` den Vorrang fest, sodass einer der Prozesse sein *Flag zurückziehen* muss und der andere Prozess *ohne Verzögerung in die kritische Region eintreten* kann
+- **Resetten:**
+  - Nach der kritischen Region wird der *Vorrang weitergegeben* und das *Flag gelöscht*, sodass der *andere Prozess ohne Verzögerung* in den kritischen Abschnitt eintreten kann
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -165,7 +198,19 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 
 ## Übungsblatt
 ### Aufgabe 3
-- **Nicht ewig warten:** Erfüllt. Kein Prozess darf sein Flag unendlich lange auf true lassen: Prozesse, die auf die kritische Region warten und nicht an der Reihe sind, müssen das Flag in Zeile 6 auf false setzen und warten, bis sie an der Reihe sind. Prozesse, die nicht auf die kritische Region warten, müssen ihr Flag spätestens beim Verlassen der Schleife auf false setzen. Ist das Flag des anderen Prozesses auf false, so hat der Prozess freien ungehinderten Zugang zur kritischen Region. Nach dem Durchlaufen der kritischen Region muss der Prozess seinen Vorrang abgeben und kann sich den Vorrang niemals selbst geben, sodass der andere Prozess auf jeden Fall zum Zug kommt.
+- **Blockieren in Ein- und Austrittsbereichen zur kritischen Region:**
+  - **Bsp.:** Prozess 0 setzt nach der kritischen Region `turn = 1`, aber kommt nicht dazu sein flag zu resetten. In der Zeit kann ein Kontextwechsel stattfinden, wo Prozess 1 *nicht* in den *kritischen Abschnitt kann* obwohl *niemand anderes will*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+#### Keine Annahmen über Geschwindigkeit und Anzahl CPUs ✓
+- **keine Schreiben der gleichen Variablen zu selben Zeit möglich:**
+  - Es gibt keine Konflikte beim Schreiben der Variablen, da jeder Prozess nur sein *eigenes Flag* schreibt und das *Setzen von turn* direkt nach der kritischen Region an einer Stelle stattfindet, an der sich nur *ein Prozess gleichzeitig* befinden kann
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
