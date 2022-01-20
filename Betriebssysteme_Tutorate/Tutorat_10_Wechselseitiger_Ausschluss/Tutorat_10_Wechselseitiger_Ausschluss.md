@@ -241,7 +241,60 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ### Aufgabe 4
 #### a)
 - Der wechselseitige Ausschluss **nicht garantiert**:
-  - Angenommen, nach der Initialisierung wird Prozess 0 aus- geführt. Da die Flags f[1] und f[2] jeweils nicht gesetzt sind, kann P0 die kritische Region betreten. Nun muss P0 innerhalb dieser die CPU abgeben und Prozess 1 wird ausgeführt. Dieser Prozess bleibt zun ̈achst in der while-Schleife. Wird nun Prozess 2 ausgeführt, so wird dieser ebenfalls zunächst in seiner while-Schleife verbleiben, durch turn = 2 verlässt aber nun Prozess 1 seine while-Schleife und ist gemeinsam mit Prozess 0 im kritischen Bereich.
+  - **Beweis durch Gegenbeispiel:**
+    - **Prozess 0:**
+      - Da die Flags `f[1]` und `f[2]` jeweils *nicht gesetzt* sind, kann Prozess 0 die *kritische Region betreten*
+      - *Kontextwechsel*
+    - **Prozess 1:**
+      - Prozess bleibt zunächst in der *while-Schleife*
+      - *Kontextwechsel*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+- **Prozess 2:**
+  - *turn = 2*
+  - zunächst in seiner *while-Schleife* verbleiben
+  - *Kontextwechsel*
+- **Prozess 1:**
+  - durch *turn = 2* *verlässt while-Schleife*
+- **Prozess 0 und 1 im kritischen Bereich**
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+#### a)
+- **Beweis durch Gegenbeispiel:**
+  - **Prozess 1**
+    - in *while-Schleife* verbleiben
+    - *Kontextwechsel*
+  - **Prozess 2**
+    - in *while-Schleife* verbleiben
+    - *Kontextwechsel*
+  - **Prozess 0:**
+    - `turn = 0`
+    - *Kontextwechsel*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+  - **Prozess 1 und 2**
+    - beide *while-Schleife verlassen*
+    - beide **im kritischen Bereich**
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -252,7 +305,15 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ### Aufgabe 4
 #### b)
 - Der wechselseitige Ausschluss **nicht garantiert**:
-  - Es lässt sich ein ähnliches Gegenbeispiel konstruieren. Prozess 0 wird ausgeführt und führt nicht die while-Schleife aus, weil die Bedingung turn!=0 nicht erfüllt ist. Prozess 0 geht in den kritischen Bereich. Wenn nun Prozess 1 ausgeführt wird, ist das Verhalten analog. Auch er geht nicht in die while-Schleife und kommt gleich in den kritischen Bereich. Somit sind jetzt Prozess 0 und Prozess 1 im kritischen Bereich.
+  - **Beweis durch Gegenbeispiel:**
+    - **Prozess 0:**
+      - führt *nicht* die *while-Schleife aus*, weil die Bedingung `turn!=0` *nicht erfüllt* ist
+      - geht in *kritischen Bereich*
+      - *Kontextwechsel*
+    - **Prozess 1:**
+      - geht *nicht* in die *while-Schleife*
+      - kommt gleich in den *kritischen Bereich*
+    - **Prozess 0 und 1 im kritischen Bereich**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -261,8 +322,9 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 
 ## Übungsblatt
 ### Aufgabe 4
-####
-- Der wechselseitige Auschluss kann solange nicht gewährleistet werden, wie ein Prozess nicht alle anderen ’sperren’ kann. Denn sonst gibt es immer eine Lücke die am Ende dazu führt, dass mehrere Prozesse gleichzeitig im kritischen Bereich sind
+#### Feststellung
+- **Wechselseitige Auschluss** kann *gewährleistet* werden, sobald ein *einzelner Prozess* in der Lage alle anderen zu *blockieren*
+  - sonst gibt es, *Anomalien* die ausgenutzt werden können, um mehrere Prozesse im *Kritischen Bereich* zu bringen
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
