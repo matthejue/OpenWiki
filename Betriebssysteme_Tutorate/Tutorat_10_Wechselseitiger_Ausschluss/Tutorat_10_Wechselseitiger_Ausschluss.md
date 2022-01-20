@@ -199,7 +199,7 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ## Übungsblatt
 ### Aufgabe 3
 - **Blockieren in Ein- und Austrittsbereichen zur kritischen Region:**
-  - **Bsp.:** Prozess 0 setzt nach der kritischen Region `turn = 1`, aber kommt nicht dazu sein flag zu resetten. In der Zeit kann ein Kontextwechsel stattfinden, wo Prozess 1 *nicht* in den *kritischen Abschnitt kann* obwohl *niemand anderes will*
+  - **Bsp.:** *Prozess 0* setzt nach der kritischen Region `turn = 1`, aber kommt nicht dazu sein *Flag zu resetten*. In der Zeit kann ein *Kontextwechsel* stattfinden, wo Prozess 1 *nicht* in den *kritischen Abschnitt kann* obwohl *niemand anderes will*
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -220,7 +220,7 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ## Übungsblatt
 ### Aufgabe 3
 #### Nice to know:
-- Der Algorithmus ist als ”Dekker-Algorithmus“ bekannt und war der erste veröffentlichte Algorithmus, der das Problem des Wechselseitigen Ausschlusses für zwei Prozesse korrekt löste. Er wurde 1965 von Theodorus J. Dekker entdeckt und von Dijkstra veröffentlicht.
+- Der Algorithmus ist als *”Dekker-Algorithmus“* bekannt und war der erste veröffentlichte Algorithmus, der das *Problem des Wechselseitigen Ausschlusses für zwei Prozesse* korrekt löste. Er wurde 1965 von *Theodorus J. Dekker* entdeckt und von *Dijkstra* veröffentlicht.
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -240,7 +240,8 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ## Übungsblatt
 ### Aufgabe 4
 #### a)
-- Der wechselseitige Ausschluss ist **nicht garantiert**. Angenommen, nach der Initialisierung wird Prozess 0 aus- geführt. Da die Flags f[1] und f[2] jeweils nicht gesetzt sind, kann P0 die kritische Region betreten. Nun muss P0 innerhalb dieser die CPU abgeben und Prozess 1 wird ausgeführt. Dieser Prozess bleibt zun ̈achst in der while-Schleife. Wird nun Prozess 2 ausgeführt, so wird dieser ebenfalls zunächst in seiner while-Schleife verbleiben, durch turn = 2 verlässt aber nun Prozess 1 seine while-Schleife und ist gemeinsam mit Prozess 0 im kritischen Bereich.
+- Der wechselseitige Ausschluss **nicht garantiert**:
+  - Angenommen, nach der Initialisierung wird Prozess 0 aus- geführt. Da die Flags f[1] und f[2] jeweils nicht gesetzt sind, kann P0 die kritische Region betreten. Nun muss P0 innerhalb dieser die CPU abgeben und Prozess 1 wird ausgeführt. Dieser Prozess bleibt zun ̈achst in der while-Schleife. Wird nun Prozess 2 ausgeführt, so wird dieser ebenfalls zunächst in seiner while-Schleife verbleiben, durch turn = 2 verlässt aber nun Prozess 1 seine while-Schleife und ist gemeinsam mit Prozess 0 im kritischen Bereich.
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -250,7 +251,18 @@ zeit verbraucht. Besser wäre es, die Prozesse durch das Betriebssystem schlafen
 ## Übungsblatt
 ### Aufgabe 4
 #### b)
-- Der wechselseitige Ausschluss ist auch hier **nicht garantiert**. Es lässt sich ein ähnliches Gegenbeispiel konstruieren. Prozess 0 wird ausgeführt und führt nicht die while-Schleife aus, weil die Bedingung turn!=0 nicht erfüllt ist. Prozess 0 geht in den kritischen Bereich. Wenn nun Prozess 1 ausgeführt wird, ist das Verhalten analog. Auch er geht nicht in die while-Schleife und kommt gleich in den kritischen Bereich. Somit sind jetzt Prozess 0 und Prozess 1 im kritischen Bereich.
+- Der wechselseitige Ausschluss **nicht garantiert**:
+  - Es lässt sich ein ähnliches Gegenbeispiel konstruieren. Prozess 0 wird ausgeführt und führt nicht die while-Schleife aus, weil die Bedingung turn!=0 nicht erfüllt ist. Prozess 0 geht in den kritischen Bereich. Wenn nun Prozess 1 ausgeführt wird, ist das Verhalten analog. Auch er geht nicht in die while-Schleife und kommt gleich in den kritischen Bereich. Somit sind jetzt Prozess 0 und Prozess 1 im kritischen Bereich.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+####
+- Der wechselseitige Auschluss kann solange nicht gewährleistet werden, wie ein Prozess nicht alle anderen ’sperren’ kann. Denn sonst gibt es immer eine Lücke die am Ende dazu führt, dass mehrere Prozesse gleichzeitig im kritischen Bereich sind
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
