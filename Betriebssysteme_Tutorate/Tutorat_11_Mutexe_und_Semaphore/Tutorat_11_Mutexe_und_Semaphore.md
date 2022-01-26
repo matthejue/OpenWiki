@@ -52,6 +52,29 @@ style: |
 
 ---
 
+# Organisatorisches
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #7293a6; -->
+
+---
+
+## Organisatorisches
+### Verbesserte Lösungen
+- `uebungsblatt_5_aufgabe_3.reti` (RETI-Code)
+- `uebungsblatt_5_aufgabe_3.csv`  (Symboltabelle)
+- `uebungsblatt_5_aufgabe_3.ast`  (Abstract Syntax **🠒** Klammern)
+- `uebungsblatt_6_aufgabe_1.reti` (RETI-Code)
+- `uebungsblatt_6_aufgabe_1.csv`  (Symboltabelle)
+- `uebungsblatt_6_aufgabe_1.ast`  (Abstract Syntax **🠒** Klammern)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Vorbereitungen
 
 <!--_class: lead-->
