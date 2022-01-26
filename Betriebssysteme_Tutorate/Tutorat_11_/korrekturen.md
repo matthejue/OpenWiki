@@ -2,6 +2,9 @@
 ## a)
 -1 ich bin mir sicher, ihr habt es verstanden, aber das ganze ist etwas zu unkonkrett -> Konkrett sagen, dass ein Prozess i = j-1 Zeile 15 ausführt, dann Prozess j=i+1 Zeile 15 ausführt, dann haben beide das glecihe mein_i und führen dann beide Zeile 16 aus, Wodruch i = i_old+2 ist, also i_old+1 wird übersprungen
 
+Bei 2 parallel laufenden Prozessen fällt mir kein Problem auf, wenn aber 3 oder mehr Prozesse
+parallel laufen, kann es Probleme geben.
+
 # b)
 -4 so ist gar keine Parellelität mehr möglich.
 Man will doch gerade, dass mehrere Prozess gleichzeitig Zeile 17 -21 ausführen. Bei eurer Lösung kann nur ein Prozess zur selben Zeit in der Schleife sein -> da kann man es auch gleich mit der Parellelität lassen und die komplizierte_funktion einfach nacheiannder für die Paare aus Vektor a und b ausführen
