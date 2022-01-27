@@ -102,6 +102,18 @@ style: |
 
 ---
 
+## Vorbereitungen
+### Semaphor
+- $count_S \ge 0$: Menge an **Platz** in der **kritischen Region**
+- $count_S \le 0$: **Anzahl Prozesse**, die auf die **kritische Region** warten
+- `up()`: mitteilen, dass **neuer Platz** in kritischen Region **verfügbar**
+- `down()`: **Platz** in kritischer Region **reservieren**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -171,13 +183,24 @@ solange (i < n) {
 ---
 
 ## Übungsblatt
+### Aufgabe 1b)
+- `mein_i := i;` und  `i := i + 1;` müssen **atomar** in einem Zug bearbeitet werden, ohne, dass ein andere Prozess dazwischenfunken kann **🠒** daher mit einem **Mutex** sicherstellen, dass da auch **nur einer rein kann** und raus kommt, bevor ein andere rein kann
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
 ### Aufgabe 2a)
-- Prozess A wird **schlafen gelegt**, wenn
+- **Prozess A** wird **schlafen gelegt**, wenn
   - Prozess A die Methode `S.down()` aufruft
   - der Zähler **vor** dem Aufruf $\le 0$ bzw. $< 1$ war und der Zähler **nach** dem Aufruf $\le -1$ bzw. $< 0$ war
-- Prozess A wird **aufgeweckt**, wenn
+- **Prozess A** wird **aufgeweckt**, wenn
   - sich Prozess A (an erster Stelle) in der **Warteschlange** des Semaphors befindet **🠒** Zähler **vor** dem Aufruf $\le -1$ bzw. $< 0$ und **nach** dem Aufruf $\le 0$ bzw. $< 1$
-  - Prozess B die Methode `S.up()` aufruft
+  - **Prozess B** die Methode `S.up()` aufruft
+    - **Prozess A** wird sich nicht selber mit `up()` aufwecken können, da er ja in der Queue ein Nickerchen macht
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -190,6 +213,10 @@ solange (i < n) {
   - Wird `up()` aufgerufen und ist die Warteschlange **nicht leer**, dann wird immer ein **Prozess** aus der Warteschlange **geholt** und aufgeweckt
   - Der Betrag des Zählerstands vor dem Inkrementieren entspricht der **Länge der Warteschlange**. Wie in der Vorlesung:
     - "Wenn der Zählerstand nach dem Inkrementieren $\le 0$ ist, dann wird ein ”**Prozess** aus der Warteschlange **geholt** und aufgeweckt“
+- **Queue** laut **Wikipedia:**
+  - Eine Queue kann [...] eine beliebige Menge von Objekten aufnehmen und gibt diese **in der Reihenfolge ihres Einfügens** wieder zurück
+  - aber später steht auch: "Es gibt Implementierungen, die **gar keinen prinzipiellen Unterschied zwischen Stacks und Queues machen**."
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -236,6 +263,18 @@ solange (i < n) {
 ### Aufgabe 3b)
 ![height:115px](_resources/_2022-01-26-23-39-01.png)
 ![height:200px](_resources/_2022-01-26-23-36-35.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3b)
+#### Alternativlösung
+  - Semaphore `warte_bis_A_fertig` und `warte_bis_B_fertig` können zu einem Semaphor **zusammengefasst** werden
+  - Das Zusammenfassen mit dem Semaphor `warte_bis_Maschine_aus` funktioniert **nicht** ohne weitere Hilfsvariablen, da sonst **nicht sichergestellt** wäre, dass **vor** dem Einschalten der Maschine die **Arbeiten** der anderen Arbeiter **fertiggestellt** wurden
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
