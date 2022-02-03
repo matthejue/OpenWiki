@@ -79,8 +79,8 @@ style: |
 ### Ressourcendiagramm
 - **Ressourcenspur** gibt eine **Ausführungsreihenfolge** der beiden **Prozesse** auf einem **pseudoparallelen** Prozessor an
 - Die **Ressourcenspur** darf vom Start zum Ende nur nach **rechts** und nach **oben** entlang des Gitters verlaufen
-- eine **Ressourcenspur** darf ein Rechteck nur am **linken** und **unteren** Rand berühren kann, da die Prozesse ihre jeweiligen Operationen erst beim Überschreiten eines Zeitpunktes vollständig ausführen
-- Läuft die Ressourcenspur in eine Ecke hinein, von der die Spur weder nach rechts noch nach oben fortgesetzt werden kann, ohne ein Rechteck zu betreten, so befinden sich die Prozesse in einem Deadlock
+- Eine **Ressourcenspur** kann ein Rechteck nur am **linken** und **unteren** Rand berühren, da die Prozesse ihre jeweiligen **Operationen** erst beim **Überschreiten** eines Zeitpunktes **vollständig** ausführen
+- Läuft die **Ressourcenspur** in eine **Ecke** hinein, von der die Spur **weder** nach **rechts** noch nach **oben** fortgesetzt werden kann, ohne ein Rechteck zu betreten, so befinden sich die Prozesse in einem **Deadlock**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -92,6 +92,15 @@ style: |
 - Wenn eine Ressource von einem Prozess **gesperrt** ist, zeichnet man den Pfeil von der **Ressource** zum **Prozess**
 - Wenn ein Prozess eine Ressource anfordert und **blockiert**, weil die Ressource nicht verfügbar ist, dann zeichnet man den Pfeil vom **Prozess** zur **Ressource**.
   - dieser Pfeil wird verwendet, sobald von einer Resource **zwei** Pfeil ausgehen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitung
+### Bankier-Algorithmus
+![height:450px](_resources/_2022-02-03-03-06-40.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -183,8 +192,38 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 1 e)
-- adsf
+### Aufgabe 2 a)
+![height:350px](_resources/_2022-02-03-02-54-48.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 a)
+![height:450px](_resources/_2022-02-03-02-55-59.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 a)
+![_2022-02-03-02-58-50](_resources/_2022-02-03-02-58-50.png)
+
+- Da in jeder der drei verbleibenden relevanten Zeilen mindestens ein Eintrag negativ ist, kann kein weiterer Prozess mehr mit seinen Maximalanforderungen ausgeführt werden kann
+- **alternativ:** da in jeder Zeile mindestens ein Eintrag von $A$ größer als der entsprechende Eintrag von F ist) ⇒ Kein sicherer Zustand.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+- asdf
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
