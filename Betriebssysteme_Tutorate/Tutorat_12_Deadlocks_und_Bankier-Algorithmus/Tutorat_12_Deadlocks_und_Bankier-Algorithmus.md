@@ -92,6 +92,7 @@ style: |
 - Wenn eine Ressource von einem Prozess **gesperrt** ist, zeichnet man den Pfeil von der **Ressource** zum **Prozess**
 - Wenn ein Prozess eine Ressource anfordert und **blockiert**, weil die Ressource nicht verfügbar ist, dann zeichnet man den Pfeil vom **Prozess** zur **Ressource**.
   - dieser Pfeil wird verwendet, sobald von einer Resource **zwei** Pfeil ausgehen
+- Pfeile lassen sich **in Worten** ausdrücken als **"belegt von"** und **"blockiert von"**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -101,6 +102,15 @@ style: |
 ## Vorbereitung
 ### Bankier-Algorithmus
 ![height:450px](_resources/_2022-02-03-05-23-34.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitung
+### Bankier-Algorithmus
+- es geht **nicht** darum einen **Deadlock** zu finden, es geht darum zu sagen, ob man in einem **sicheren** oder **unsicheren** Zustand ist, der **möglicherweise** zu einem **Deadlock** führen könnte
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -158,6 +168,21 @@ style: |
   - **6:** *Prozess 2* Zeile 4: Fordert B an und blockiert, da belegt von **Prozess 3**
   - **7:** **Prozess 3** Zeile 2: bekommt A nun zugeteilt
   - **8:** **Prozess 3** Zeile 3: Fordert C an und blockiert, da belegt von *Prozess 2*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 d)
+#### Anmerkungen
+- wobei man bei $(1, 1)$ anfängt, bei der **Resourcenspur** die Tupel aus **Prozess** und **Zeilennummer** anzugeben, da es keine $0$te Zeile gibt.
+  - Prozesse tuen ihre jeweiligen **Operationen** erst beim **Überschreiten**
+eines Zeitpunktes **vollständig** ausführen. Daher kann eine **Resourcenspur** die Rechtecke auch am **linken** und **oberen** Rand berühren
+  - der Schritt von $0$ zu $1$ bedeutet, man ist bei Zeile $1$, hat sie aber noch **nicht** ausgeführt
+- am **Ende** landet man immer in der **rechten oberen Ecke**, da man ja alle Prozesse ausgeführt haben will
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
