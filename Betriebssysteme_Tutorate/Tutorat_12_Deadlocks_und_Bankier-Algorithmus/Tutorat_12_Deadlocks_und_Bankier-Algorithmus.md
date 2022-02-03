@@ -100,7 +100,7 @@ style: |
 
 ## Vorbereitung
 ### Bankier-Algorithmus
-![height:450px](_resources/_2022-02-03-03-06-40.png)
+![height:450px](_resources/_2022-02-03-05-23-34.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -308,8 +308,8 @@ style: |
 - Wir nehmen $V = 2$ an
 - $M_0 = 2$ (kann im Fall von $y \ge 0$ auftreten) $M_1 = 2$
 - Die **Voraussetzungen** für den **Bankier-Algorithmus** sind erfüllt:
-  – Die **Maximalanforderungen** sind im Voraus bekannt
-  – $M_0 \le V$ und $M_1 \le V$, also übersteigen die **Maximalanforderungen** für keinen Prozess die zur Verfügung stehenden **Ressourcen**
+  - Die **Maximalanforderungen** sind im Voraus bekannt
+  - $M_0 \le V$ und $M_1 \le V$, also übersteigen die **Maximalanforderungen** für keinen Prozess die zur Verfügung stehenden **Ressourcen**
 - **Unsichrer Zustand nach Ereignissen:**
   - $P_0$ führt zuerst Zeile $1$ und $2$ aus, danach führt $P_1$ die Zeilen $1$ und $2$ aus:
   - **Unsichrer Zustand:** $E_{0}=1, E_{1}=1, A_{0}=M_{0}-E_{0}=1, A_{1}=M_{1}-E_{1}=1$ und $F_{A}=V_{A}-E_{0}-E_{1}=2-1-1=0$.
@@ -362,7 +362,7 @@ style: |
 ---
 
 # Vielen Dank für eure Aufmerksamkeit!
-# :penguin:
+# :palm_tree:
 
 <!--_class: lead-->
 <!--big-->
