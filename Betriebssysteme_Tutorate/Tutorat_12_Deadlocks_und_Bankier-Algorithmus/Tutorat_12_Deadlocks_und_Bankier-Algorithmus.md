@@ -166,7 +166,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1 e)
-![height:400px](_resources/_2022-02-03-02-15-59.png)
+![height:400px](_resources/prozesse.png)![height:400px](_resources/_2022-02-03-02-15-59.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -175,7 +175,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1 e)
-![height:400px](_resources/_2022-02-03-02-17-26.png)
+![height:400px](_resources/prozesse.png)![height:400px](_resources/_2022-02-03-02-17-26.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -184,7 +184,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1 e)
-![height:400px](_resources/_2022-02-03-02-18-54.png)
+![height:400px](_resources/prozesse.png)![height:400px](_resources/_2022-02-03-02-18-54.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -268,7 +268,21 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 3 a)
-- asdf
+- Der **Bankier-Algorithmus** betrachtet nur die **Maximalanforderungen** und nicht den tatsächlichen **Programmablauf**
+**🠒** Bankier-Algorithmus verhält sich oft zu **restrektiv**
+
+#### Beispiel
+![height:125px](_resources/_2022-02-03-03-54-38.png)
+- Die **Zeitintervalle**, in denen verschiedene **Ressourcen** für einen Prozess **reserviert** sind, müssen sich **nicht** überlappen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 a)
+![height:350px](_resources/_2022-02-03-04-21-33.png)
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -277,7 +291,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 3 b)
-- asdf
+- Ein Prozess muss nicht zwingend die von ihm angegebene ”maximale Anzahl angeforderter Ressourcen“ einer Klasse auch wirklich anfordern
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
