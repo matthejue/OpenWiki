@@ -213,8 +213,8 @@ style: |
 ### Aufgabe 2 a)
 ![_2022-02-03-02-58-50](_resources/_2022-02-03-02-58-50.png)
 
-- Da in jeder der drei verbleibenden relevanten Zeilen mindestens ein Eintrag negativ ist, kann kein weiterer Prozess mehr mit seinen Maximalanforderungen ausgeführt werden kann
-- **alternativ:** da in jeder Zeile mindestens ein Eintrag von $A$ größer als der entsprechende Eintrag von F ist) ⇒ Kein sicherer Zustand.
+- Da in jeder der drei verbleibenden relevanten Zeilen **mindestens** **ein** Eintrag **negativ** ist, kann **kein** weiterer Prozess mehr mit seinen **Maximalanforderungen** ausgeführt werden kann
+- **in kurz:** da in jeder Zeile **mindestens** **ein** Eintrag von $A$ **größer** als der entsprechende Eintrag von $F$ ist **🠒** **unsicherer Zustand**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -223,9 +223,100 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 2 b)
+![height:350px](_resources/_2022-02-03-03-28-27.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+![height:450px](_resources/_2022-02-03-03-29-41.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+![height:450px](_resources/_2022-02-03-03-31-34.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+![height:450px](_resources/_2022-02-03-03-32-58.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+![height:450px](_resources/_2022-02-03-03-34-07.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 a)
 - asdf
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
 
 ---
+
+## Übungsblatt
+### Aufgabe 3 b)
+- asdf
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+# Quellen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #000D0D; -->
+
+---
+
+## Quellen
+### Wissenquellen
+
+- :shrug:
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Quellen
+### Bildquellen
+
+- :shrug:
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+# Vielen Dank für eure Aufmerksamkeit!
+# :penguin:
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #000D0D; -->
