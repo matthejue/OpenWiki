@@ -375,6 +375,21 @@ style: |
 
 ---
 
+## Linux Überblick
+### Ergänzungen
+- https://github.com/jonaburg/picom
+  - `picom --experimental-backend`
+- **für qt5ct:**
+  - `/etc/profile` als `export QT_QPA_PLATFORMTHEME=qt5ct` oder `/etc/environment` als `QT_QPA_PLATFORMTHEME=qt5ct`
+  - mit `--platformtheme qt5ct` starten
+- https://fishshell.com/
+- https://github.com/jorgebucaran/fisher
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Quellen
 
 <!--_class: lead-->
