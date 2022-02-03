@@ -66,6 +66,38 @@ style: |
 
 ---
 
+# Vorbereitung
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #000D0D; -->
+
+---
+
+## Vorbereitung
+### Ressourcendiagramm
+- **Ressourcenspur** gibt eine **Ausführungsreihenfolge** der beiden **Prozesse** auf einem **pseudoparallelen** Prozessor an
+- Die **Ressourcenspur** darf vom Start zum Ende nur nach **rechts** und nach **oben** entlang des Gitters verlaufen
+- eine **Ressourcenspur** darf ein Rechteck nur am **linken** und **unteren** Rand berühren kann, da die Prozesse ihre jeweiligen Operationen erst beim Überschreiten eines Zeitpunktes vollständig ausführen
+- Läuft die Ressourcenspur in eine Ecke hinein, von der die Spur weder nach rechts noch nach oben fortgesetzt werden kann, ohne ein Rechteck zu betreten, so befinden sich die Prozesse in einem Deadlock
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitung
+### Belegungs-Anforderungs-Graph
+- Wenn eine Ressource von einem Prozess **gesperrt** ist, zeichnet man den Pfeil von der **Ressource** zum **Prozess**
+- Wenn ein Prozess eine Ressource anfordert und **blockiert**, weil die Ressource nicht verfügbar ist, dann zeichnet man den Pfeil vom **Prozess** zur **Ressource**.
+  - dieser Pfeil wird verwendet, sobald von einer Resource **zwei** Pfeil ausgehen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
@@ -76,8 +108,7 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 1
-#### a)
+### Aufgabe 1 a)
 ![_2022-02-03-01-41-07](_resources/_2022-02-03-01-41-07.png)
 
 <!--small-->
@@ -86,8 +117,74 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 1
-#### b)
+### Aufgabe 1 b)
+- Es gibt keine **konkave** Ecke, in die die Ressourcenspur hineinlaufen kann und nicht mehr nach **rechts** oder **oben** fortgesetzt werden kann:
+  - Ressourcenspur kann sich nur nach **oben** oder **rechts** bewegen, da wegen **Pseudoparallelität** immer einer der beiden Prozesse, der gerade die CPU zugewiesen bekommen hat, Instructions ausführt, sich also **vorwärts** in der Zeit bewegt
+  - Da es hier zu keinem Zeitpunkt **konkaven** Ecken oder **Sackgassen** gibt, gibt es immer einen Weg, den man nach **oben** oder **rechts** ausweichen kann **🠒** es ist zu jedem erreichbaren **Zeitpunkt** einer der beiden **Prozesse ausführbar**
+    - Falls die **Instruction** des einen Prozesses **blockiert** ist, kann dafür immer der **andere Prozess** eine **Instruction** ausführen. Es gibt immer einen **Ausweg**, wie sich die beiden Prozesse **nicht** gegenseitig **blockieren**
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 c)
+![_2022-02-03-01-55-22](_resources/_2022-02-03-01-55-22.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 d)
+- **Befehlsfolge, die zum Deadlock führt:**
+  - **1:** *Prozess 2* Zeile 1: Belegt A
+  - **2:** **Prozess 3** Zeile 1: Belegt B
+  - **3:** **Prozess 3** Zeile 2: Fordert A an und blockiert, da belegt von *Prozess 2*
+  - **4:** *Prozess 2* Zeile 2: Belegt C
+  - **5:** *Prozess 2* Zeile 3: Gibt A frei
+  - **6:** *Prozess 2* Zeile 4: Fordert B an und blockiert, da belegt von **Prozess 3**
+  - **7:** **Prozess 3** Zeile 2: bekommt A nun zugeteilt
+  - **8:** **Prozess 3** Zeile 3: Fordert C an und blockiert, da belegt von *Prozess 2*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 e)
+![height:400px](_resources/_2022-02-03-02-15-59.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 e)
+![height:400px](_resources/_2022-02-03-02-17-26.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 e)
+![height:400px](_resources/_2022-02-03-02-18-54.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 1 e)
+- adsf
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
