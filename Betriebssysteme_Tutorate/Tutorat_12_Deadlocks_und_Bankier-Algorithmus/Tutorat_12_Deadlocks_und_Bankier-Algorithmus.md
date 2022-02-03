@@ -271,7 +271,7 @@ style: |
 - Der **Bankier-Algorithmus** betrachtet nur die **Maximalanforderungen** und nicht den tatsächlichen **Programmablauf**
 **🠒** Bankier-Algorithmus verhält sich oft zu **restrektiv**
 
-#### Beispiel
+#### Beispiel 2
 ![height:125px](_resources/_2022-02-03-03-54-38.png)
 - Die **Zeitintervalle**, in denen verschiedene **Ressourcen** für einen Prozess **reserviert** sind, müssen sich **nicht** überlappen
 
@@ -293,10 +293,10 @@ style: |
 ### Aufgabe 3 b)
 - Ein Prozess muss **nicht zwingend** die von ihm angegebene ”**maximale Anzahl** angeforderter Ressourcen“ einer **Klasse** auch wirklich anfordern
 
-#### Beispiel
+#### Beispiel 2
 ![_2022-02-03-04-33-14](_resources/_2022-02-03-04-33-14.png)
 
-- Variable `x` von beiden Prozessen gemeinsam genutzt, Ausführung jeder Zeile atomare Operation
+- Variable `x` von beiden Prozessen **gemeinsam** genutzt, Ausführung jeder Zeile **atomare** Operation
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -305,7 +305,27 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 3 b)
+- Wir nehmen $V = 2$ an
+- $M_0 = 2$ (kann im Fall von $y \ge 0$ auftreten) $M_1 = 2$
+- Die **Voraussetzungen** für den **Bankier-Algorithmus** sind erfüllt:
+  – Die **Maximalanforderungen** sind im Voraus bekannt
+  – $M_0 \le V$ und $M_1 \le V$, also übersteigen die **Maximalanforderungen** für keinen Prozess die zur Verfügung stehenden **Ressourcen**
+- **Unsichrer Zustand nach Ereignissen:**
+  - $P_0$ führt zuerst Zeile $1$ und $2$ aus, danach führt $P_1$ die Zeilen $1$ und $2$ aus:
+  - **Unsichrer Zustand:** $E_{0}=1, E_{1}=1, A_{0}=M_{0}-E_{0}=1, A_{1}=M_{1}-E_{1}=1$ und $F_{A}=V_{A}-E_{0}-E_{1}=2-1-1=0$.
 
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 b)
+- Es kann für **keinen** Prozess eine **Restausführung** gewährleistet werden, da der **Bankier-Algorithmus** die **Maximalanforderungen** betrachtet ohne den **tatsächlichen Programmablauf** zu berücksichtigen
+- Da $x = −3$ ist, wird von $P_0$ **nie** mehr als eine **Ressource** **gleichzeitig** von $A$ verwendet. Deshalb gibt es ausgehend von diesem Zustand **keine Möglichkeit** einen **Deadlock** zu erhalten
+
+#### Fazit
+- In den beiden Beispielen, **kann** (nicht muss) es einen **unsicheren Zustand** geben, der aber **nicht zwingend** zu einem **Deadlock** führt
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
