@@ -291,7 +291,21 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 3 b)
-- Ein Prozess muss nicht zwingend die von ihm angegebene ”maximale Anzahl angeforderter Ressourcen“ einer Klasse auch wirklich anfordern
+- Ein Prozess muss **nicht zwingend** die von ihm angegebene ”**maximale Anzahl** angeforderter Ressourcen“ einer **Klasse** auch wirklich anfordern
+
+#### Beispiel
+![_2022-02-03-04-33-14](_resources/_2022-02-03-04-33-14.png)
+
+- Variable `x` von beiden Prozessen gemeinsam genutzt, Ausführung jeder Zeile atomare Operation
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3 b)
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
