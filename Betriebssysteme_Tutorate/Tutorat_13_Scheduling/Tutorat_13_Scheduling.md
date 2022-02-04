@@ -77,7 +77,7 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 1
-- Evaluation
+- **🠒** **Evaluation**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -105,6 +105,72 @@ style: |
   &=\frac{5 \cdot 1+4 \cdot 3+3 \cdot 5+2 \cdot 6+1 \cdot 7}{5} \min \\
   &=\frac{51}{5} \min =10,2 \min =10 \min 12 \mathrm{sek}
   \end{aligned}$$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+#### Shortest Job First
+- **1:** *Abarbeitungsreihenfolge*
+  ![_2022-02-04-04-24-25](_resources/_2022-02-04-04-24-25.png)
+- **2:** *Abarbeitungszeit:* 13 Minuten
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 b)
+- **3:** *Durchschnittliche Aufenthaltszeit*
+  ![_2022-02-04-04-30-27](_resources/_2022-02-04-04-30-27.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 c)
+#### Longest Job First
+- **1:** *Abarbeitungsreihenfolge*
+  ![_2022-02-04-04-35-04](_resources/_2022-02-04-04-35-04.png)
+- **2:** *Abarbeitungszeit:* 11 Minuten
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 c)
+- **3:** *Durchschnittliche Aufenthaltszeit:*
+  ![_2022-02-04-04-40-25](_resources/_2022-02-04-04-40-25.png)
+- Aus Sicht des **Azubis** ist **Longest Job First** optimal, da so nur $11$ statt $13$ Minuten zum Abarbeiten aller Kunden benötigt wird
+- Aus Sicht der **Kunden** ist **Shortest Job First** optimal, da sie sich so durchschnittlich nur $6,4$ Minuten statt $9$ Minuten in der Bäckerei aufhalten müssen
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 2 c) - Anmerkungen
+- **SJF** ist der **optimale Scheduler** zur **Minimierung der durchschnittlichen Durchlaufzeit** (Beweis siehe Vorlesung). **LJF** liefert einen Schedule mit **hohem Durchsatz**. In diesem Spezialfall sogar den optimalen Plan.
+  - Wie man an diesem Beispiel sieht, sind **Durchlaufzeit** und **Durchsatz** verschieden und **nicht** gleichzeitig optimierbar.
+- Den optimalen Schedule zur Maximierung des **Durchsatzes** zu bestimmen ist im Allgemeinen NP-schwer, **LJF** ist jedoch eine gute **Heuristik**, die eine **obere Grenze** für die Gesamtdauer von $\left(\frac{4}{3}-\frac{1}{3 m}\right) \cdot O P T$ garantiert, wobei $m$ die **Anzahl der Verkäufer** bzw. **parallelen Prozessoren** und OPT die **Gesamtdauer** des **optimalen Schedule** ist.
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
