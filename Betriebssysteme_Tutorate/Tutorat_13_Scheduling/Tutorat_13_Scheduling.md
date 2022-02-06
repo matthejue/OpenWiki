@@ -66,12 +66,31 @@ style: |
 
 ---
 
+# Vorbereitungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #909f68; -->
+
+---
+
+## Vorbereitungen
+### Definitionen
+- **Ankunftzeit** ist der *Zeitpunkt*, ab dem ein Prozess verfügbar ist
+- **Durchlaufzeit** ist die *Differenz* zwischen dem *Zeitpunkt der Beendigung* eines Prozesses und seiner *Ankunftzeit*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
 # Übungsblatt
 
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #BACC8B; -->
+<!-- _backgroundColor: #476042; -->
 
 ---
 
@@ -170,7 +189,36 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 3
+- **Behauptung:** Die Scheduling-Strategie **Shortest Job First** (SJF) ist im Allgemeinen nicht optimal, wenn alle Prozesse **nicht** gleichzeitig verfügbar sind
 
+#### Beweis durch Gegenbeispiel
+- **4 Prozesse:**
+  ![height:250px](_resources/_2022-02-06-23-47-17.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+- **Laufzeiten:** $2, 3, 1, 1$
+- **Ankunftzeiten:** $0, 0, 3, 3$
+- **Mittlere Durchlaufzeit** von **SJF**:
+  ![height:80px](_resources/_2022-02-06-23-54-35.png)
+- **Mittlere Durchlaufzeit** des **alternativen Plans**:
+  ![height:80px](_resources/_2022-02-06-23-54-49.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 3
+#### ![_2022-02-06-23-56-45](_resources/_2022-02-06-23-56-45.png)
+- **Erklärung:**
+  - Ankunft der kurzen Prozesse $P3$, $P4$ fällt genau auf die Beendigung des längeren Prozesses $P2$, falls dieser zuerst ausgeführt wird. Wird dagegen der kurze Prozess P1 zuerst ausgeführt, steht danach zuerst nur P2 zur Verfügung und wird deswegen ausgeführt, was dann die kurzen Prozesse blockiert und somit die mittlere Durchlaufzeit ansteigen lässt
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
