@@ -71,7 +71,7 @@ style: |
 <!--_class: lead-->
 <!--big-->
 ![bg right:30%](_resources/background_2.png)
-<!-- _backgroundColor: #909f68; -->
+<!-- _backgroundColor: #476042; -->
 
 ---
 
@@ -216,11 +216,176 @@ style: |
 
 ## Übungsblatt
 ### Aufgabe 3
-#### ![_2022-02-06-23-56-45](_resources/_2022-02-06-23-56-45.png)
+- **Ausführungsplan:**
+  ![_2022-02-06-23-56-45](_resources/_2022-02-06-23-56-45.png)
 - **Erklärung:**
-  - Ankunft der kurzen Prozesse $P3$, $P4$ fällt genau auf die Beendigung des längeren Prozesses $P2$, falls dieser zuerst ausgeführt wird. Wird dagegen der kurze Prozess P1 zuerst ausgeführt, steht danach zuerst nur P2 zur Verfügung und wird deswegen ausgeführt, was dann die kurzen Prozesse blockiert und somit die mittlere Durchlaufzeit ansteigen lässt
+  - So konstruiert, dass **Ankunft** der kurzen Prozesse $P_3$, $P_4$ genau auf die **Beendigung** des längeren Prozesses $P_2$ fällt, falls dieser **zuerst** ausgeführt wird
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
 
 ---
+
+## Übungsblatt
+### Aufgabe 3
+- Wird dagegen der kurze Prozess $P_1$ **zuerst** ausgeführt, steht danach **zuerst** nur $P_2$ zur Verfügung und wird deswegen **ausgeführt**, was dann die **kurzen Prozesse** ($P_3$ und $P_4$) **blockiert** und somit die **mittlere Durchlaufzeit** ansteigen lässt
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4
+- **Alterungs-Algorithmus**
+  ![_2022-02-07-00-22-29](_resources/_2022-02-07-00-22-29.png)
+  - berechnet `CPU USAGE`
+    - zur Bestimmung der **Prioritäten**
+- `CPU Anteil(t)` ist dabei der von dem Prozess verbrauchte **Anteil an Rechenzeit** in der **letzten Sekunde**, also im Interval von $t − 1$ bis $t$, und liegt zwischen $0$ und $1$
+- *Nice to know:* CPU USAGE ist ein **exponentiell geglätteter Mittelwert**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4 a)
+- **geg.:**
+  - `T = 3`
+  - Zeitpunkt `k` war `CPU_USAGE(k) = 0.32`
+  - Intervall `k` bis `k+1` war `48%` CPU-Anteil
+  - Intervall `k+1` bis `k+2` war `96%` CPU-Anteil
+  - Intervall `k+2` bis `k+3` war `28%` CPU-Anteil
+  - Intervall `k+3` bis `k+4` war `52%` CPU-Anteil
+- **ges.:** `CPU USAGE`-Werte zu den Zeitpunkten `k + 1`, `k + 2`, `k + 3` und `k + 4`
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4 a)
+#### ![_2022-02-07-02-27-13](_resources/_2022-02-07-02-27-13.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4 b)
+> Auswirkung **größerer Werte** von `T` auf die **Berechnung** und den **zeitlichen Verlauf** von `CPU USAGE`
+
+- für **größere Werte** von $T$ wird auch der **Faktor** $q$ **größer**
+  - bei **größerem** $q$ wird bei der Berechnung von `CPU USAGE` **mehr Gewicht** auf den **alten Wert** von `CPU USAGE` gelegt, der aktuelle **CPU-Anteil** wird **geringer gewichtet**.
+    - **Veränderungen** des **CPU-Anteils** zeichnen sich **langsamer** in `CPU USAGE` ab, der Wert verhält sich **träger**”
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4 b)
+![height:450px](_resources/_2022-02-07-02-45-53.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 4 b)
+![height:450px](_resources/_2022-02-07-02-47-33.png)
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+- **geg.:**
+  - mehrere **Prozesse**, die genau $T$ Zeiteinheiten laufen, bevor sie **blockieren**
+  - **Kontextwechsel** dauert $S$ Zeiteinheiten, wobei diese Zeit als **Verlust** zu rechnen ist, da die Prozesse in dieser Zeit **keine** Rechenoperationen durchführen können
+  - Scheduler **Round-Robin-Verfahren** (RR)
+  - Quantum (Zeitscheibe) von $Q$ **Zeiteinheiten**
+- **ges.:**
+  - Formel in Abhängigkeit des Quantums welcher **Anteil** der **gesamten CPU-Zeit** den Prozessen nach Abzug des Verlusts durch die Kontextwechsel **effektiv zur Verfügung**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+#### $T < Q$
+- $\dfrac{T}{T+S}$
+- Jeder Prozess wird ausgeführt, bis er **blockiert**, dann wird ein **Kontextwechsel** durchgeführt. Die Gesamtzeit ist $T + S$, wovon $T$ effektiv genutzt wird. Also ist das die **effektive CPU-Auslastung**
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungsblatt
+### Aufgabe 5
+#### $Q < T$
+- $\displaystyle\frac{T}{T+\left|\frac{T}{Q}\right| S}$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Übungblatt
+### Aufgabe 5
+#### $Q$ gegen $0$
+- $\displaystyle\lim _{Q \rightarrow 0} \frac{T}{T+\left[\frac{T}{Q}\right] \cdot S}=0$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+# Quellen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #476042; -->
+
+---
+
+## Quellen
+### Wissenquellen
+
+- :shrug:
+- source
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Quellen
+### Bildquellen
+
+- :shrug:
+- source
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+# Vielen Dank für eure Aufmerksamkeit!
+# :penguin:
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #476042; -->
