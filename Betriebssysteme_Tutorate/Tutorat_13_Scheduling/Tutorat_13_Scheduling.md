@@ -36,15 +36,15 @@ style: |
   }
   :root {
     --color-background: #ffffff;
-    --color-foreground: #BACC8B;
+    --color-foreground: #D8DEA6;
     --color-highlight: #F96;
     --color-dimmed: #6a6458;
   }
   .hljs-number {
-    color: #A8BA54;
+    color: #A2B671;
   }
   .hljs-keyword {
-    color: #DDDE8E;
+    color: #1F3A36;
   }
   .hljs-comment {
     color: #6a6458;
@@ -53,7 +53,7 @@ style: |
     color: #000000;
   }
   .hljs-title {
-    color: #BACC8B;
+    color: #1F3A36;
   }
 ---
 
@@ -321,10 +321,11 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 5
+### Aufgabe 5 a)
 #### $T < Q$
 - $\dfrac{T}{T+S}$
-- Jeder Prozess wird ausgeführt, bis er **blockiert**, dann wird ein **Kontextwechsel** durchgeführt. Die Gesamtzeit ist $T + S$, wovon $T$ effektiv genutzt wird. Also ist das die **effektive CPU-Auslastung**
+- Jeder Prozess wird ausgeführt, bis er **blockiert**, dann wird ein **Kontextwechsel** durchgeführt.
+- Die Gesamtzeit ist $T + S$, wovon $T$ effektiv genutzt wird. Also ist das oben die **effektive CPU-Auslastung**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -332,9 +333,11 @@ style: |
 ---
 
 ## Übungsblatt
-### Aufgabe 5
+### Aufgabe 5 b)
 #### $Q < T$
-- $\displaystyle\frac{T}{T+\left|\frac{T}{Q}\right| S}$
+- $\displaystyle\frac{T}{T+\lceil\frac{T}{Q}\rceil S}$
+- Jeder Prozess wird $\lceil\frac{T}{Q}\rceil$ mal **unterbrochen**, bis er **blockiert** (einschließlich des **Kontextwechsels** beim **Blockieren** selbst)
+- Dadurch entsteht ein **Overhead** von $\lceil\frac{T}{Q}\rceil$, also ist das oben die **effektive CPU-Auslastung**
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -342,9 +345,103 @@ style: |
 ---
 
 ## Übungblatt
-### Aufgabe 5
+### Aufgabe 5 c)
 #### $Q$ gegen $0$
-- $\displaystyle\lim _{Q \rightarrow 0} \frac{T}{T+\left[\frac{T}{Q}\right] \cdot S}=0$
+- $\displaystyle\lim _{Q \rightarrow 0} \frac{T}{T+\lceil\frac{T}{Q}\rceil \cdot S}=0$
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+# Ergänzungen
+
+<!--_class: lead-->
+<!--big-->
+![bg right:30%](_resources/background_2.png)
+<!-- _backgroundColor: #476042; -->
+
+---
+
+## Ergänzungen
+### 16 Color Terminals
+![height:300px](_resources/_2022-02-07-04-54-49.png)
+- **Resetsequenz**, um das printen von Farben zu **stoppen**: `\033[0;0m`
+- können auch **andere Farbtöne** sein, als die **Farbnamen** vorgeben
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Ergänzungen
+### 256 Color Terminals
+![height:350px](_resources/_2022-02-07-04-57-01.png)
+- **Teilmenge** innerhalb aller Farben, die durch das **Terminal** festgelegt wird
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Ergänzungen
+### 256 Color Terminals
+##### ![height:350px](_resources/_2022-02-07-04-59-52.png)
+##### https://www.ditig.com/256-colors-cheat-sheet
+
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Ergänzungen
+### Alle 256 Farben ausgeben
+- `colors256.py`:
+  ```python
+  def colors_16(color_):
+      return("\033[2;{num}m {num} \033[0;0m".format(num=str(color_)))
+
+
+  def colors_256(color_):
+      num1 = str(color_)
+      num2 = str(color_).ljust(3, ' ')
+      if color_ % 16 == 0:
+          return(f"\033[38;5;{num1}m {num2} \033[0;0m\n")
+      else:
+          return(f"\033[38;5;{num1}m {num2} \033[0;0m")
+
+  print("The 16 colors scheme is:")
+  print(' '.join([colors_16(x) for x in range(30, 38)]))
+  print("\nThe 256 colors scheme is:")
+  print(' '.join([colors_256(x) for x in range(256)]))
+  ```
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Ergänzungen
+### 24-bit truecolor
+- `printf "\x1b[${bg};2;${red};${green};${blue}m\n"`
+  - **Bsp.:** `printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"`
+- **alle anzeigen:**
+  ```awk
+  awk 'BEGIN{
+      s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;
+      for (colnum = 0; colnum<77; colnum++) {
+          r = 255-(colnum*255/76);
+          g = (colnum*510/76);
+          b = (colnum*255/76);
+          if (g>255) g = 510-g;
+          printf "\033[48;2;%d;%d;%dm", r,g,b;
+          printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+          printf "%s\033[0m", substr(s,colnum+1,1);
+      }
+      printf "\n";
+  }'
+  ```
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -362,9 +459,9 @@ style: |
 
 ## Quellen
 ### Wissenquellen
-
-- :shrug:
-- source
+- https://stackabuse.com/how-to-print-colored-text-in-python/
+- https://www.ditig.com/256-colors-cheat-sheet
+- https://github.com/termstandard/colors
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -373,9 +470,7 @@ style: |
 
 ## Quellen
 ### Bildquellen
-
-- :shrug:
-- source
+- https://stackabuse.com/how-to-print-colored-text-in-python/
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
@@ -383,7 +478,7 @@ style: |
 ---
 
 # Vielen Dank für eure Aufmerksamkeit!
-# :penguin:
+# :four_leaf_clover:
 
 <!--_class: lead-->
 <!--big-->
