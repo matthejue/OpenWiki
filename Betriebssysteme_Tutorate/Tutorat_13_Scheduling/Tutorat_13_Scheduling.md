@@ -77,8 +77,29 @@ style: |
 
 ## Vorbereitungen
 ### Definitionen
-- **Ankunftzeit** ist der *Zeitpunkt*, ab dem ein Prozess verfügbar ist
+- **Ankunftszeit / Erzeugungszeit** ist der *Zeitpunkt*, ab dem ein Prozess verfügbar ist
 - **Durchlaufzeit** ist die *Differenz* zwischen dem *Zeitpunkt der Beendigung* eines Prozesses und seiner *Ankunftzeit*
+  - von mehreren Prozessen kann man die  **mittlere / durchschnittliche Durchlaufzeit** berechnen
+- **Nicht-präemptives Scheduling:** CPU kann einem Prozess nur *entzogen* werden, wenn er *beendet* oder *blockiert* ist
+- **Präemptives Scheduling:** Aktueller Prozess kann vom Betriebssystem *unterbrochen* werden, wenn dies *richtig erscheint*
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
+### Scheduling Verfahren
+- w = Wartezeit, s = Laufzeit, r = Restlaufzeit (s - e), e = bereits durchlaufene s
+#### Nicht-Präemptiv
+- **First Come First Served:** $max(w)$
+- **Shortest Job First:** $min(s)$
+- **Highest Response Ratio Next:** $max(\frac{w+s}{s})$
+
+#### Präemptiv
+- **Round Robin:** $max(w)$
+- **Shortest Remaining Time:** $min(r)$
+- **Feedback:** Abarbeitung von *Warteschlangen* nach *Priorität* unter Verwendung der *bisher verbrauchten CPU-Zeit*
 
 <!--small-->
 ![bg right:10%](_resources/background.png)
