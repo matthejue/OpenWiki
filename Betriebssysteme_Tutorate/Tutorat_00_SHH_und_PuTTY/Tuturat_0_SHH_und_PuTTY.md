@@ -2,20 +2,20 @@
 theme: gaia
 paginate: true
 backgroundColor: #ffffff
-footer: Betriebssysteme, Tutorat 0, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
+footer: Betriebssysteme, Tutorat 1, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
 style: |
-  h1 { color: #9c49ac; font-size: 80px; text-align: center;}
-  h2 { color: #9c49ac; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
-  h3 { color: #c53465; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
-  h4 { color: ##9c49ac; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
-  a { color: #9c49ac; }
-  strong { color: #c53465; }
-  footer { color: #c53465; font-size: 20px; text-align: center; }
+  h1 { color: #2a8892; font-size: 80px; text-align: center;}
+  h2 { color: #2a8892; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
+  h3 { color: #e96e1a; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
+  h4 { color: ##2a8892; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
+  a { color: #2a8892; }
+  strong { color: #e96e1a; }
+  footer { color: #e96e1a; font-size: 20px; text-align: center; }
   ul { color: #252a2f; list-style: none; font-size: 25px; }
   p { color: #252a2f; list-style: none;  font-size: 25px; }
   ul li::before {
     content: "\1F784";
-    color: #c53465;
+    color: #e96e1a;
     font-size: 25px;
     font-weight: bold;
     display: inline-block;
@@ -23,17 +23,17 @@ style: |
     margin-left: -1em;
   }
   section::after {
-      color: #c53465;
+      color: #e96e1a;
       font-weight: bold;
     text-shadow: 0 0 8px #000;
   }
   code {
-    background: #d9829f;
+    background: #fcd09a;
     color: #282e33;
   }
   :root {
     --color-background: #ffffff;
-    --color-foreground: #d9829f;
+    --color-foreground: #fcd09a;
     --color-highlight: #F96;
     --color-dimmed: #888;
   }
@@ -45,7 +45,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)
 
 ---
 
@@ -53,7 +53,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)
 
 ---
 
@@ -71,7 +71,7 @@ style: |
 **➡** zeigt einfach, dass ihr bemüht seid :thumbsup:
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -87,7 +87,7 @@ style: |
 #### Folien und Aufzeichnungen downloaden -->
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -97,7 +97,7 @@ style: |
 #### ![height:400px](_resources/_2021-10-31-01-37-03.png)
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -105,7 +105,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)
 
 ---
 
@@ -123,7 +123,7 @@ style: |
 - zum **Verlassen** `exit`, `logout`, `ctrl + d` eingeben
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -142,7 +142,7 @@ style: |
 - `ssh uni` oder `ssh tf` und dann da enstprechende **Passwort** eingeben
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -158,7 +158,7 @@ style: |
 - `ssh-add ~/.ssh/id_rsa`: add SSH private key to the ssh-agent
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -174,7 +174,7 @@ style: |
 - **Github:** `Account/Settings/SSH and GPG keys>New SSH key`
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -198,7 +198,7 @@ style: |
     - `git remote (add/set-url) origin git@github.com-2:<username>/<repository-name>.git`
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -213,7 +213,7 @@ style: |
 - `lpq -PhpXX`: queue
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -221,7 +221,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)
 
 ---
 
@@ -237,7 +237,7 @@ style: |
 - **copy image:** `xclip -selection clipboard -i /home/path/image.png -t image/png`
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -252,7 +252,7 @@ style: |
 - (`config` and `know_hosts` are both `-r--------`)
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -260,7 +260,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)
 
 ---
 ## Linux Überblick
@@ -273,7 +273,7 @@ style: |
 #### ![right height:150px](_resources/_2021-10-29-01-32-57.png)![right height:150px](_resources/_2021-10-29-01-40-44.png)
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -283,7 +283,7 @@ style: |
 
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -293,7 +293,7 @@ style: |
 - [...] Linux is the kernel: the program in the system that allocates the machine’s resources to the other programs that you run. The kernel is an essential part of an operating system, but useless by itself; it can only function in the context of a complete operating system. Linux is normally used in combination with the GNU operating system: the whole system is basically GNU with Linux added, or GNU/Linux. All the so-called “Linux” distributions are really distributions of GNU/Linux."
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -305,7 +305,7 @@ style: |
 #### https://netmarketshare.com/operating-system-market-share
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -319,7 +319,7 @@ style: |
 #### https://distrowatch.com/dwres.php?resource=family-tree
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -338,7 +338,7 @@ style: |
   - **Shell:** Zsh, Bash, Fish, (Powershell, Batch **➡** Windows), später mehr dazu
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -354,7 +354,7 @@ style: |
 #### https://www.secjuice.com/wayland-vs-xorg/
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -371,7 +371,7 @@ style: |
 - **Initsystem:** systemd, OpenRC
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -386,7 +386,7 @@ style: |
 - https://github.com/jorgebucaran/fisher
 
 <!--small-->
-![bg right:10%](_resources/background.png)
+![bg right:10%](_resources/breath.png)
 
 ---
 
@@ -394,7 +394,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)
 
 ---
 
@@ -407,7 +407,7 @@ style: |
 - **Fuck u Nvidea:** http://lininuxrookies.blogspot.com/2013/06/linus-torvalds-descarga-su-furia-contra.html
 
 <!--small-->
-![bg right:10%](_resources/background_2.png)
+![bg right:10%](_resources/breath_2.png)
 
 ---
 
@@ -416,4 +416,4 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/background_2.png)
+![bg right:30%](_resources/breath_2.png)

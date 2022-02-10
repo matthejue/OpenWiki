@@ -2,20 +2,20 @@
 theme: gaia
 paginate: true
 backgroundColor: #ffffff
-footer: Betriebssysteme, Tutorat 1, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
+footer: Betriebssysteme, Tutorat 0, Gruppe 6, [juergmatth@gmail.com](juertmatth@gmail.com), Universität Freiburg Technische Fakultät
 style: |
-  h1 { color: #2a8892; font-size: 80px; text-align: center;}
-  h2 { color: #2a8892; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
-  h3 { color: #e96e1a; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
-  h4 { color: ##2a8892; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
-  a { color: #2a8892; }
-  strong { color: #e96e1a; }
-  footer { color: #e96e1a; font-size: 20px; text-align: center; }
+  h1 { color: #9c49ac; font-size: 80px; text-align: center;}
+  h2 { color: #9c49ac; font-size: 60px; text-align: left; margin-top: 0px; margin-bottom: 0px; line-height: 0px; line-height: 60px;}
+  h3 { color: #c53465; font-size: 40px; text-align: left; margin-top: 10px; margin-bottom: 20px; line-height: 40px;}
+  h4 { color: ##9c49ac; font-size: 20px; text-align: center; margin-top: 0px; margin-bottom: 20px; line-height: 0px; font-weight: normal; }
+  a { color: #9c49ac; }
+  strong { color: #c53465; }
+  footer { color: #c53465; font-size: 20px; text-align: center; }
   ul { color: #252a2f; list-style: none; font-size: 25px; }
   p { color: #252a2f; list-style: none;  font-size: 25px; }
   ul li::before {
     content: "\1F784";
-    color: #e96e1a;
+    color: #c53465;
     font-size: 25px;
     font-weight: bold;
     display: inline-block;
@@ -23,17 +23,17 @@ style: |
     margin-left: -1em;
   }
   section::after {
-      color: #e96e1a;
+      color: #c53465;
       font-weight: bold;
     text-shadow: 0 0 8px #000;
   }
   code {
-    background: #fcd09a;
+    background: #d9829f;
     color: #282e33;
   }
   :root {
     --color-background: #ffffff;
-    --color-foreground: #fcd09a;
+    --color-foreground: #d9829f;
     --color-highlight: #F96;
     --color-dimmed: #888;
   }
@@ -45,7 +45,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/_2021-10-26-22-13-54.png)
+![bg right:30%](_resources/background_2.png)
 
 ---
 
@@ -53,7 +53,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/_2021-10-26-22-13-54.png)
+![bg right:30%](_resources/background_2.png)
 
 ---
 
@@ -73,7 +73,7 @@ style: |
 - `sudo parted -l`, `sudo fdisk -l` (detailed)
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -92,7 +92,7 @@ style: |
 - `cal -3`, `cal 2021`
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -110,7 +110,7 @@ style: |
   - `mv file1 ... fileN path`: **move** a number of files to a different directory
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -127,7 +127,7 @@ style: |
   - `function mkcd() { mkdir $1; cd $1; }` in `~/.zshrc`, `~/.bashrc` uä.
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -144,7 +144,7 @@ style: |
 - `tac`: like `cat` but other way round
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -158,7 +158,7 @@ style: |
 - `file file`: system guesses format of file
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -174,7 +174,7 @@ style: |
   - `grep ie /usr/share/dict/words | less`: sending the output of a grep command to less
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -192,7 +192,7 @@ style: |
 - `which tesseract`, `whereis vim`: show path to the executable
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -210,7 +210,7 @@ style: |
 - `reboot`, `init 6`: restart
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -218,7 +218,7 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/_2021-10-26-22-13-54.png)
+![bg right:30%](_resources/background_2.png)
 
 ---
 
@@ -232,7 +232,7 @@ style: |
 - **Pipe:** `cat ./index.md | wc -l / -w / -m / -c`
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -245,7 +245,7 @@ style: |
 - `.[^.]*` or `.??*`: get all dot files except the current and parent directories
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -257,7 +257,7 @@ style: |
 - `$` for normal user and `#` for superuser / root user
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -273,7 +273,7 @@ style: |
   - `w` toggle file preview or `:view`
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -288,7 +288,7 @@ style: |
 - `:tree` for tree view
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -311,7 +311,7 @@ style: |
   ```
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -329,7 +329,7 @@ style: |
 - `sudo apt install ascii`
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -342,7 +342,7 @@ style: |
     ![[_2021-10-28-00-46-27](_2021-10-28-00-46-27)](_resources/_2021-10-28-00-46-27.png)
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -355,7 +355,7 @@ style: |
 - some packages dump their available documentation into `/usr/share/doc`
 
 <!--small-->
-![bg right:10%](_resources/_2021-10-26-22-13-07.png)
+![bg right:10%](_resources/background.png)
 
 ---
 
@@ -364,4 +364,4 @@ style: |
 
 <!--_class: lead-->
 <!--big-->
-![bg right:30%](_resources/_2021-10-26-22-13-54.png)
+![bg right:30%](_resources/background_2.png)
