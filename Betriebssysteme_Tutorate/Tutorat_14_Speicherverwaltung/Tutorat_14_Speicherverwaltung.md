@@ -99,6 +99,16 @@ style: |
 ---
 
 ## Vorbereitungen
+### Buddy System
+![height:350px](_resources/_2022-02-11-15-33-36.png)
+- **freie** Blöcke können nur **verschmolzen** werden, wenn sie **denselben Elterknoten** haben
+
+<!--small-->
+![bg right:10%](_resources/background.png)
+
+---
+
+## Vorbereitungen
 ### Paging
 - **Logische Adresse** im Programm besteht aus *Seitennummer* und *Offset*
 - **Physikalische Adresse** besteht aus *Rahmennummer* und *Offset*
